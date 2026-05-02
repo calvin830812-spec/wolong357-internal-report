@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">不續行判斷漏斗圖</title>
+  <desc id="desc">呈現全案、縮小基地、臥龍街側三種口徑與綜合停損判斷。</desc>
+  <defs>
+    <style>
+      .bg{fill:#F7F3EA}.panel{fill:#fffdf8;stroke:#D8E2DF;stroke-width:2}.text{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",Arial,sans-serif;fill:#173137}.title{font-size:34px;font-weight:800}.sub{font-size:18px}.small{font-size:15px}.label{font-size:19px;font-weight:800}.num{font-size:28px;font-weight:900}.teal{fill:#0F5F6D}.dark{fill:#0A4E59}.light{fill:#1F7885}.cream{fill:#F7F3EA}.gold{fill:#B89A5E}.muted{fill:#5E6E6F}
+    </style>
+  </defs>
+  <rect width="1200" height="760" class="bg"/>
+  <rect x="40" y="36" width="1120" height="688" rx="26" class="panel"/>
+  <text x="76" y="92" class="text title">不續行判斷漏斗圖</text>
+  <text x="76" y="126" class="text sub">圖像目的：把三種判斷口徑與不續行的綜合停損邏輯視覺化。</text>
+  <text x="76" y="154" class="muted small">使用章節建議：第二章本案不續行的核心判斷、第三章推進歷程與關鍵數據</text>
+
+  <g transform="translate(220 205)">
+    <polygon points="0,0 760,0 680,110 80,110" class="teal"/>
+    <text x="42" y="46" fill="#fff" class="label">全案口徑</text>
+    <text x="390" y="44" text-anchor="middle" fill="#fff" class="num">34 / 52｜65.38%</text>
+    <text x="390" y="82" text-anchor="middle" fill="#EAF3F1" class="small">未達續行條件，未簽18人</text>
+    <polygon points="92,132 668,132 598,242 162,242" class="light"/>
+    <text x="182" y="178" fill="#fff" class="label">縮小基地｜172巷側</text>
+    <text x="380" y="176" text-anchor="middle" fill="#fff" class="num">28 / 37｜75.68%</text>
+    <text x="380" y="214" text-anchor="middle" fill="#EAF3F1" class="small">最接近達標，但仍差2人、49.23坪</text>
+    <polygon points="174,264 586,264 522,374 238,374" fill="#6FA3A8"/>
+    <text x="260" y="310" fill="#fff" class="label">臥龍街側</text>
+    <text x="380" y="308" text-anchor="middle" fill="#fff" class="num">6 / 15｜40.00%</text>
+    <text x="380" y="346" text-anchor="middle" fill="#EAF3F1" class="small">不具單獨續行條件</text>
+    <polygon points="248,396 512,396 460,506 300,506" class="gold"/>
+    <text x="380" y="438" text-anchor="middle" fill="#fff" class="label">綜合停損</text>
+    <text x="380" y="474" text-anchor="middle" fill="#fff" class="small">門檻、財務、資源、機會成本</text>
+  </g>
+
+  <rect x="78" y="615" width="1044" height="64" rx="14" fill="#F2F7F4" stroke="#D8E2DF"/>
+  <text x="100" y="642" class="text small">提醒：財務安全邊際數字仍待補，不能寫成財務不足已定論；不續行是綜合停損判斷。</text>
+  <text x="100" y="668" class="muted small">對應報告內容來源：第二章不續行核心判斷、附件06續行／縮小基地／不續行決策依據。</text>
+</svg>

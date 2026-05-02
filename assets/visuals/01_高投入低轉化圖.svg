@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">高投入低轉化圖</title>
+  <desc id="desc">呈現臥龍357案投入大量資源，但未有效轉化為住戶信任、簽署成果與案件成熟度。</desc>
+  <defs>
+    <style>
+      .bg{fill:#F7F3EA}.panel{fill:#fffdf8;stroke:#D8E2DF;stroke-width:2}.teal{fill:#0F5F6D}.dark{fill:#0A4E59}.light{fill:#1F7885}.gold{fill:#B89A5E}.muted{fill:#5E6E6F}.text{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",Arial,sans-serif;fill:#173137}.title{font-size:34px;font-weight:800}.sub{font-size:18px}.label{font-size:18px;font-weight:700}.small{font-size:15px}.num{font-size:32px;font-weight:900}.line{stroke:#0F5F6D;stroke-width:3;fill:none}.dash{stroke:#B89A5E;stroke-width:3;stroke-dasharray:8 8;fill:none}
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#0F5F6D"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1200" height="760"/>
+  <rect x="40" y="36" width="1120" height="688" rx="26" class="panel"/>
+  <text x="76" y="92" class="text title">高投入低轉化圖</text>
+  <text x="76" y="126" class="text sub">圖像目的：說明本案投入高，但未有效轉化為住戶信任、簽署成果與案件成熟度。</text>
+  <text x="76" y="154" class="muted small">使用章節建議：第四章資源投入與機會成本盤點、第五章投入未有效轉化的原因</text>
+
+  <rect x="76" y="198" width="450" height="420" rx="20" fill="#F2F7F4" stroke="#D8E2DF" stroke-width="2"/>
+  <text x="106" y="238" class="text label">已投入資源</text>
+  <g transform="translate(106 270)">
+    <rect width="170" height="54" rx="12" class="teal"/><text x="18" y="35" fill="#fff" class="label">14個月推進</text>
+    <rect y="70" width="170" height="54" rx="12" class="light"/><text x="18" y="105" fill="#fff" class="label">5場大型說明會</text>
+    <rect y="140" width="170" height="54" rx="12" class="light"/><text x="18" y="175" fill="#fff" class="label">6場小型會議</text>
+    <rect y="210" width="170" height="54" rx="12" class="light"/><text x="18" y="245" fill="#fff" class="label">10次導覽</text>
+    <rect y="280" width="170" height="54" rx="12" class="teal"/><text x="18" y="315" fill="#fff" class="label">20次圖面會議</text>
+  </g>
+  <g transform="translate(306 270)">
+    <rect width="180" height="54" rx="12" fill="#E6F0EE" stroke="#0F5F6D"/><text x="18" y="35" class="text label">8種財務試算</text>
+    <rect y="70" width="180" height="54" rx="12" fill="#E6F0EE" stroke="#0F5F6D"/><text x="18" y="105" class="text label">4版對外簡報</text>
+    <rect y="140" width="180" height="54" rx="12" fill="#E6F0EE" stroke="#0F5F6D"/><text x="18" y="175" class="text label">9版說明資料</text>
+    <rect y="210" width="180" height="54" rx="12" fill="#E6F0EE" stroke="#0F5F6D"/><text x="18" y="245" class="text label">約8次高層決策</text>
+    <rect y="280" width="180" height="54" rx="12" fill="#F7F3EA" stroke="#B89A5E"/><text x="18" y="315" class="text label">排擠6個案件</text>
+  </g>
+
+  <path d="M545 408 C610 408 625 408 690 408" class="line" marker-end="url(#arrow)"/>
+  <text x="570" y="386" class="text small">轉化不足</text>
+
+  <rect x="704" y="198" width="380" height="420" rx="20" fill="#fff" stroke="#D8E2DF" stroke-width="2"/>
+  <text x="734" y="238" class="text label">未有效轉化為</text>
+  <g transform="translate(734 278)">
+    <circle cx="34" cy="34" r="34" class="dark"/><text x="14" y="42" fill="#fff" class="label">信任</text>
+    <text x="86" y="30" class="text label">住戶信任不足</text>
+    <text x="86" y="56" class="muted small">多數問題是否閉環仍待確認</text>
+    <circle cx="34" cy="134" r="34" class="teal"/><text x="14" y="142" fill="#fff" class="label">簽署</text>
+    <text x="86" y="130" class="text label">簽署成果不足</text>
+    <text x="86" y="156" class="muted small">全案65.38%，縮小基地75.68%</text>
+    <circle cx="34" cy="234" r="34" class="gold"/><text x="14" y="242" fill="#fff" class="label">成熟</text>
+    <text x="86" y="230" class="text label">案件成熟度不足</text>
+    <text x="86" y="256" class="muted small">財務安全邊際與退場紀錄仍待補</text>
+  </g>
+  <path d="M720 650 H1080" class="dash"/>
+  <text x="76" y="682" class="muted small">對應報告內容來源：第一章總結論、第四章資源投入與機會成本盤點、第五章投入未有效轉化的原因。</text>
+</svg>

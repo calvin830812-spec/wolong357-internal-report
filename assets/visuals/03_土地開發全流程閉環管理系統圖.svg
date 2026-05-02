@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
+  <title id="title">土地開發全流程閉環管理系統圖</title>
+  <desc id="desc">呈現六大模組與閉環關係。</desc>
+  <defs>
+    <style>
+      .bg{fill:#F7F3EA}.panel{fill:#fffdf8;stroke:#D8E2DF;stroke-width:2}.text{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",Arial,sans-serif;fill:#173137}.title{font-size:34px;font-weight:800}.sub{font-size:18px}.small{font-size:15px}.label{font-size:18px;font-weight:800}.tiny{font-size:13px}.teal{fill:#0F5F6D}.dark{fill:#0A4E59}.light{fill:#1F7885}.gold{fill:#B89A5E}.card{fill:#fff;stroke:#D8E2DF;stroke-width:2}.arrow{stroke:#0F5F6D;stroke-width:3;fill:none}.muted{fill:#5E6E6F}
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#0F5F6D"/></marker>
+  </defs>
+  <rect width="1200" height="820" class="bg"/>
+  <rect x="40" y="36" width="1120" height="748" rx="26" class="panel"/>
+  <text x="76" y="92" class="text title">土地開發全流程閉環管理系統圖</text>
+  <text x="76" y="126" class="text sub">圖像目的：呈現未來閉環管理系統由六大模組組成，並形成可判斷、可追蹤、可驗收的循環。</text>
+  <text x="76" y="154" class="muted small">使用章節建議：第八章未來土地開發閉環管理系統、第十二章執行任務拆解與驗收標準</text>
+
+  <circle cx="600" cy="430" r="108" fill="#E6F0EE" stroke="#0F5F6D" stroke-width="4"/>
+  <text x="600" y="405" text-anchor="middle" class="text label">全流程閉環</text>
+  <text x="600" y="435" text-anchor="middle" class="text small">判斷｜推進｜回覆</text>
+  <text x="600" y="462" text-anchor="middle" class="text small">投入｜退場｜回寫</text>
+
+  <g>
+    <rect x="472" y="190" width="256" height="88" rx="18" class="card"/><text x="600" y="222" text-anchor="middle" class="text label">住戶分類模組</text><text x="600" y="250" text-anchor="middle" class="muted tiny">住戶分類與推進策略表</text>
+    <rect x="775" y="310" width="256" height="88" rx="18" class="card"/><text x="903" y="342" text-anchor="middle" class="text label">案件判斷模組</text><text x="903" y="370" text-anchor="middle" class="muted tiny">案件狀態判斷表</text>
+    <rect x="775" y="486" width="256" height="88" rx="18" class="card"/><text x="903" y="518" text-anchor="middle" class="text label">資源控管模組</text><text x="903" y="546" text-anchor="middle" class="muted tiny">資源投入盤點表</text>
+    <rect x="472" y="608" width="256" height="88" rx="18" class="card"/><text x="600" y="640" text-anchor="middle" class="text label">住戶閉環模組</text><text x="600" y="668" text-anchor="middle" class="muted tiny">住戶問題閉環表</text>
+    <rect x="169" y="486" width="256" height="88" rx="18" class="card"/><text x="297" y="518" text-anchor="middle" class="text label">牛肉論述模組</text><text x="297" y="546" text-anchor="middle" class="muted tiny">三問牛肉＋一戶一張牛肉表</text>
+    <rect x="169" y="310" width="256" height="88" rx="18" class="card"/><text x="297" y="342" text-anchor="middle" class="text label">退場閉環模組</text><text x="297" y="370" text-anchor="middle" class="muted tiny">不續行退場SOP</text>
+  </g>
+
+  <path d="M600 278 C720 278 780 300 850 334" class="arrow" marker-end="url(#arrow)"/>
+  <path d="M903 398 C940 430 940 475 903 486" class="arrow" marker-end="url(#arrow)"/>
+  <path d="M850 574 C780 632 718 650 728 650" class="arrow" marker-end="url(#arrow)"/>
+  <path d="M472 650 C375 650 330 605 297 574" class="arrow" marker-end="url(#arrow)"/>
+  <path d="M297 486 C250 445 250 400 297 398" class="arrow" marker-end="url(#arrow)"/>
+  <path d="M425 334 C500 285 540 278 600 278" class="arrow" marker-end="url(#arrow)"/>
+
+  <text x="76" y="744" class="muted small">對應報告內容來源：第八章未來土地開發閉環管理系統、八之一住戶分類與推進策略、第十二章六項制度模板。</text>
+</svg>

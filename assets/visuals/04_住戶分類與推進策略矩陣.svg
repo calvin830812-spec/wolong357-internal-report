@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
+  <title id="title">住戶分類與推進策略矩陣</title>
+  <desc id="desc">依支持度與住戶樣態呈現推進策略。</desc>
+  <defs>
+    <style>
+      .bg{fill:#F7F3EA}.panel{fill:#fffdf8;stroke:#D8E2DF;stroke-width:2}.text{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",Arial,sans-serif;fill:#173137}.title{font-size:34px;font-weight:800}.sub{font-size:18px}.small{font-size:15px}.label{font-size:18px;font-weight:800}.tiny{font-size:13px}.teal{fill:#0F5F6D}.dark{fill:#0A4E59}.light{fill:#1F7885}.gold{fill:#B89A5E}.muted{fill:#5E6E6F}.cell{fill:#fff;stroke:#D8E2DF;stroke-width:2}.soft{fill:#F2F7F4}.warn{fill:#FFF8E8}
+    </style>
+  </defs>
+  <rect width="1200" height="820" class="bg"/>
+  <rect x="40" y="36" width="1120" height="748" rx="26" class="panel"/>
+  <text x="76" y="92" class="text title">住戶分類與推進策略矩陣</text>
+  <text x="76" y="126" class="text sub">圖像目的：把住戶從名單轉為可判斷、可推進、可追蹤的對象。</text>
+  <text x="76" y="154" class="muted small">使用章節建議：八之一住戶分類與推進策略、第八章住戶分類模組</text>
+
+  <text x="110" y="215" class="text label">依支持度分類</text>
+  <g transform="translate(110 240)">
+    <rect width="230" height="86" rx="14" class="soft"/><text x="18" y="32" class="text label">高度／一般支持戶</text><text x="18" y="60" class="muted tiny">維繫、示範、協助形成共識</text>
+    <rect x="250" width="230" height="86" rx="14" class="cell"/><text x="268" y="32" class="text label">觀望戶</text><text x="268" y="60" class="muted tiny">補一戶一張牛肉與個別說明</text>
+    <rect x="500" width="230" height="86" rx="14" class="warn"/><text x="518" y="32" class="text label">條件疑慮戶</text><text x="518" y="60" class="muted tiny">分配、車位、租金、坪數具體化</text>
+    <rect x="750" width="230" height="86" rx="14" fill="#F4FAF8" stroke="#1F7885" stroke-width="2"/><text x="768" y="32" class="text label">信任／制度疑慮戶</text><text x="768" y="60" class="muted tiny">主管、標準QA、圖解與證據介入</text>
+    <rect y="108" width="480" height="86" rx="14" fill="#fff" stroke="#B89A5E" stroke-width="2"/><text x="18" y="140" class="text label">明確反對戶</text><text x="18" y="168" class="muted tiny">判斷原因是否可突破；無法突破則進入風險表，不無限投入</text>
+    <rect x="500" y="108" width="480" height="86" rx="14" fill="#fff" stroke="#B89A5E" stroke-width="2"/><text x="518" y="140" class="text label">失聯戶</text><text x="518" y="168" class="muted tiny">戶籍、掛號、親送、鄰里詢問、關係人協尋，設定處理期限</text>
+  </g>
+
+  <text x="110" y="485" class="text label">依住戶樣態分類</text>
+  <g transform="translate(110 510)">
+    <rect width="210" height="62" rx="12" class="cell"/><text x="18" y="38" class="text small">高齡戶｜家屬陪同</text>
+    <rect x="230" width="210" height="62" rx="12" class="cell"/><text x="248" y="38" class="text small">海外戶｜遠端授權</text>
+    <rect x="460" width="210" height="62" rx="12" class="cell"/><text x="478" y="38" class="text small">繼承未完成戶｜先查狀態</text>
+    <rect x="690" width="210" height="62" rx="12" class="cell"/><text x="708" y="38" class="text small">多人共有戶｜找決策者</text>
+    <rect y="82" width="210" height="62" rx="12" class="cell"/><text x="18" y="120" class="text small">出租戶｜分開處理</text>
+    <rect x="230" y="82" width="210" height="62" rx="12" class="cell"/><text x="248" y="120" class="text small">一樓特殊戶｜獨立說明</text>
+    <rect x="460" y="82" width="210" height="62" rx="12" class="cell"/><text x="478" y="120" class="text small">關鍵影響戶｜主管策略</text>
+    <rect x="690" y="82" width="210" height="62" rx="12" class="cell"/><text x="708" y="120" class="text small">家族決策戶｜找決策鏈</text>
+  </g>
+  <rect x="110" y="700" width="980" height="44" rx="12" class="teal"/>
+  <text x="600" y="729" text-anchor="middle" fill="#fff" class="label">核心觀念：開案不是開始拜訪，而是開始建立判斷；土地開發不是簽約工作，而是信任工作。</text>
+  <text x="76" y="774" class="muted small">對應報告內容來源：八之一住戶分類與推進策略。</text>
+</svg>
