@@ -3,1085 +3,1257 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>臥龍357不續行案檢討與土地開發閉環管理系統建置報告</title>
+<title>臥龍357不續行案檢討與土地開發閉環管理系統建置報告 V15</title>
 <style>
 :root{
-  --baopu-teal:#0F5F6D;
-  --baopu-teal-dark:#0A4E59;
-  --baopu-teal-light:#1F7885;
-  --baopu-cream:#F7F3EA;
-  --baopu-gold:#B89A5E;
-  --bp-ink:#173137;
-  --bp-deep:#0A4E59;
-  --bp-gold:var(--baopu-gold);
-  --bp-gold-dark:#8E7444;
-  --bp-sand:var(--baopu-cream);
-  --bp-paper:#fffdf8;
-  --bp-sage:#6B8B86;
-  --bp-line:#D8E2DF;
-  --bp-muted:#5E6E6F;
-  --bp-red:#9b4d3f;
-  --bp-blue:var(--baopu-teal);
-  --bp-green:var(--baopu-teal-light);
+  --teal:#0F5F6D;
+  --teal-dark:#0A4E59;
+  --teal-light:#1F7885;
+  --cream:#F7F3EA;
+  --gold:#B89A5E;
+  --ink:#173137;
+  --deep:#0A4E59;
+  --gold-dark:#8E7444;
+  --paper:#fffdf8;
+  --sage:#6B8B86;
+  --line:#D8E2DF;
+  --muted:#5E6E6F;
+  --red:#9b4d3f;
   --shadow:0 20px 58px rgba(10,78,89,.12);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",Arial,sans-serif;
-  color:var(--bp-ink);
-  background:linear-gradient(135deg,var(--baopu-cream) 0%,#EAF3F1 100%);
-  line-height:1.75;
-  font-size:17px;
-}
-.hero{
-  position:relative;
-  overflow:hidden;
-  background:radial-gradient(circle at 15% 15%,rgba(184,154,94,.28),transparent 30%),linear-gradient(135deg,var(--baopu-teal) 0%,var(--baopu-teal-dark) 72%);
-  color:#fff;
-  padding:56px 56px 48px;
-  border-bottom:8px solid var(--bp-gold);
-}
-.hero:after{
-  content:"";
-  position:absolute;
-  right:-80px;top:-80px;
-  width:330px;height:330px;border-radius:50%;
-  border:1px solid rgba(255,255,255,.18);
-  box-shadow:0 0 0 65px rgba(255,255,255,.03),0 0 0 130px rgba(255,255,255,.02);
-}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,var(--cream) 0%,#EAF3F1 100%);line-height:1.75;font-size:17px}
+.hero{position:relative;overflow:hidden;background:radial-gradient(circle at 15% 15%,rgba(184,154,94,.28),transparent 30%),linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 72%);color:#fff;padding:56px 56px 48px;border-bottom:8px solid var(--gold)}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:330px;height:330px;border-radius:50%;border:1px solid rgba(255,255,255,.18);box-shadow:0 0 0 65px rgba(255,255,255,.03),0 0 0 130px rgba(255,255,255,.02)}
 .hero .kicker{font-size:14px;letter-spacing:.2em;color:#E9D6A6;text-transform:uppercase;margin-bottom:14px;font-weight:700}
-.hero h1{font-size:40px;line-height:1.25;margin:0 0 18px;font-weight:800;max-width:980px;color:#fff;border:0;padding:0}
-.hero p{font-size:20px;max-width:900px;margin:0;color:#EAF3F1}
+.hero h1{font-size:38px;line-height:1.25;margin:0 0 18px;font-weight:800;max-width:980px;color:#fff;border:0;padding:0}
+.hero p{font-size:19px;max-width:900px;margin:0;color:#EAF3F1}
 .hero .meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
 .badge{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid rgba(255,255,255,.28);border-radius:999px;color:#fff;background:rgba(255,255,255,.10);font-size:14px}
-.layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:28px;max-width:1500px;margin:0 auto;padding:28px}
-.sidebar{position:sticky;top:22px;align-self:start;max-height:calc(100vh - 44px);overflow:auto;background:rgba(255,253,248,.94);backdrop-filter:blur(8px);border:1px solid var(--bp-line);border-top:4px solid var(--baopu-teal);border-radius:22px;padding:22px;box-shadow:var(--shadow)}
-.sidebar .toc-title{font-size:15px;font-weight:800;letter-spacing:.08em;color:var(--baopu-teal-dark);margin-bottom:12px}
-.sidebar a{display:block;text-decoration:none;color:var(--bp-muted);padding:7px 8px;border-radius:10px;font-size:14px;line-height:1.45}
-.sidebar a:hover{background:#E6F0EE;color:var(--baopu-teal-dark)}
-.sidebar .toc-h1{font-weight:800;color:var(--bp-ink);margin-top:8px}
-.sidebar .toc-h2{padding-left:18px;font-size:13px}
-.content{min-width:0;background:var(--bp-paper);border:1px solid var(--bp-line);border-top:5px solid var(--baopu-teal);border-radius:26px;box-shadow:var(--shadow);padding:44px 54px 72px}
-.quick-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0 0 34px}
-.card{background:linear-gradient(180deg,#fff,#F4FAF8);border:1px solid var(--bp-line);border-top:4px solid var(--baopu-teal-light);border-radius:18px;padding:18px;box-shadow:0 8px 22px rgba(10,78,89,.07)}
-.card .label{font-size:13px;color:var(--bp-muted);font-weight:700;letter-spacing:.08em}
-.card .num{font-size:28px;font-weight:900;color:var(--baopu-teal-dark);margin:6px 0 2px;line-height:1.2}
-.card .desc{font-size:14px;color:var(--bp-muted);line-height:1.5}
-h1,h2,h3,h4{color:var(--bp-deep);line-height:1.35;scroll-margin-top:30px}
-.content>h1{font-size:30px;margin:48px 0 22px;padding:18px 0 12px;border-bottom:2px solid var(--bp-gold);position:relative}
+.layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:28px;max-width:1500px;margin:0 auto;padding:28px}
+.sidebar{position:sticky;top:22px;align-self:start;max-height:calc(100vh - 44px);overflow:auto;background:rgba(255,253,248,.94);backdrop-filter:blur(8px);border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:22px;padding:22px;box-shadow:var(--shadow)}
+.sidebar .toc-title{font-size:15px;font-weight:800;letter-spacing:.08em;color:var(--teal-dark);margin-bottom:12px}
+.sidebar a{display:block;text-decoration:none;color:var(--muted);padding:6px 8px;border-radius:10px;font-size:13.5px;line-height:1.4}
+.sidebar a:hover{background:#E6F0EE;color:var(--teal-dark)}
+.sidebar .toc-h1{font-weight:800;color:var(--ink);margin-top:8px;font-size:14px}
+.sidebar .toc-h2{padding-left:16px;font-size:12.5px}
+.content{min-width:0;background:var(--paper);border:1px solid var(--line);border-top:5px solid var(--teal);border-radius:26px;box-shadow:var(--shadow);padding:44px 54px 72px}
+.qcards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin:0 0 34px}
+.card{background:linear-gradient(180deg,#fff,#F4FAF8);border:1px solid var(--line);border-top:4px solid var(--teal-light);border-radius:18px;padding:16px;box-shadow:0 8px 22px rgba(10,78,89,.07)}
+.card .label{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.08em}
+.card .num{font-size:26px;font-weight:900;color:var(--teal-dark);margin:5px 0 2px;line-height:1.2}
+.card .desc{font-size:13px;color:var(--muted);line-height:1.4}
+.card.warn{border-top-color:var(--red)}
+.card.warn .num{color:var(--red)}
+.card.gold{border-top-color:var(--gold)}
+.card.gold .num{color:var(--gold-dark)}
+h1,h2,h3,h4{color:var(--deep);line-height:1.35;scroll-margin-top:30px}
+.content>h1{font-size:29px;margin:48px 0 20px;padding:18px 0 12px;border-bottom:2px solid var(--gold);position:relative}
 .content>h1:first-child{margin-top:0}
-h1:before{content:"";display:inline-block;width:10px;height:28px;background:var(--baopu-teal);border-radius:6px;margin-right:12px;vertical-align:-5px}
-h2{font-size:24px;margin:34px 0 14px;color:var(--baopu-teal-dark)}
-h3{font-size:20px;margin:26px 0 10px;color:var(--bp-gold-dark)}
-h4{font-size:18px;margin:22px 0 8px;color:var(--bp-blue)}
-p{margin:0 0 14px}
-blockquote{margin:22px 0;padding:18px 22px;border-left:5px solid var(--baopu-teal);background:#F2F7F4;border-radius:0 14px 14px 0;color:#243E42}
+h1:before{content:"";display:inline-block;width:10px;height:26px;background:var(--teal);border-radius:6px;margin-right:12px;vertical-align:-5px}
+h2{font-size:22px;margin:32px 0 12px;color:var(--teal-dark)}
+h3{font-size:19px;margin:24px 0 10px;color:var(--gold-dark)}
+h4{font-size:17px;margin:20px 0 7px;color:var(--deep)}
+p{margin:0 0 13px}
+blockquote{margin:20px 0;padding:16px 20px;border-left:5px solid var(--teal);background:#F2F7F4;border-radius:0 14px 14px 0;color:#243E42}
 strong{color:#151513}
-ul,ol{padding-left:1.35em;margin:10px 0 18px}
+ul,ol{padding-left:1.35em;margin:8px 0 16px}
 li{margin:4px 0}
-table{border-collapse:separate;border-spacing:0;width:100%;margin:18px 0 28px;background:#fff;border:1px solid var(--bp-line);border-radius:16px;overflow:hidden;font-size:15px;line-height:1.55}
-th{background:linear-gradient(180deg,var(--baopu-teal),var(--baopu-teal-dark));color:#fff;font-weight:800;text-align:left;padding:12px 14px;border-right:1px solid rgba(255,255,255,.16)}
-td{padding:11px 14px;border-top:1px solid var(--bp-line);border-right:1px solid #E3ECE9;vertical-align:top}
+table{border-collapse:separate;border-spacing:0;width:100%;margin:16px 0 26px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;font-size:14.5px;line-height:1.55}
+th{background:linear-gradient(180deg,var(--teal),var(--teal-dark));color:#fff;font-weight:800;text-align:left;padding:11px 13px;border-right:1px solid rgba(255,255,255,.16)}
+td{padding:10px 13px;border-top:1px solid var(--line);border-right:1px solid #E3ECE9;vertical-align:top}
 th:last-child,td:last-child{border-right:0}
 tr:nth-child(even) td{background:#F7FBFA}
-code{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;background:#E7F0EE;color:var(--baopu-teal-dark);border-radius:6px;padding:2px 6px;font-size:.92em}
-pre{background:#0A3F48;color:#F7F3EA;border-radius:18px;padding:18px 20px;overflow:auto;border:1px solid var(--baopu-teal-dark);line-height:1.6;margin:18px 0 26px}
-pre code{background:transparent;color:inherit;padding:0}
-hr{border:0;border-top:1px solid var(--bp-line);margin:34px 0}
-.tag-internal{display:inline-block;background:#F7F3EA;color:var(--baopu-teal-dark);border:1px solid var(--baopu-gold);border-radius:999px;padding:4px 10px;font-size:13px;font-weight:800}
-.section-note{font-size:15px;color:var(--bp-muted)}
-.visual-block{margin:30px 0 38px;padding:22px;background:linear-gradient(180deg,#fff,#F4FAF8);border:1px solid var(--bp-line);border-left:6px solid var(--baopu-teal);border-radius:20px;box-shadow:0 10px 28px rgba(10,78,89,.08);break-inside:avoid}
-.visual-block h3{margin:0 0 8px;color:var(--baopu-teal-dark);font-size:22px}
-.visual-block p{margin:0 0 14px;color:var(--bp-muted);font-size:15px}
-.visual-block img{display:block;width:100%;height:auto;border:1px solid var(--bp-line);border-radius:14px;background:#F7F3EA}
-.visual-source{margin-top:12px;color:var(--bp-muted);font-size:13px}
-.footer{max-width:1500px;margin:0 auto 38px;padding:0 28px;color:var(--bp-muted);font-size:13px;text-align:right}
-.print-hint{position:fixed;right:22px;bottom:22px;background:var(--baopu-teal-dark);color:#fff;border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:10px 15px;font-size:14px;text-decoration:none;box-shadow:0 10px 25px rgba(10,78,89,.24)}
-.print-hint:hover{background:var(--baopu-teal)}
-@media (max-width:1100px){.layout{grid-template-columns:1fr}.sidebar{position:relative;top:0;max-height:none}.quick-cards{grid-template-columns:repeat(2,1fr)}.hero{padding:42px 30px}.hero h1{font-size:32px}.content{padding:32px 26px}.print-hint{display:none}}
-@media (max-width:680px){body{font-size:16px}.layout{padding:14px}.quick-cards{grid-template-columns:1fr}.hero{padding:34px 22px}.hero h1{font-size:28px}.hero p{font-size:17px}.content{border-radius:18px;padding:24px 18px}table{font-size:14px;display:block;overflow-x:auto;white-space:nowrap}.content>h1{font-size:25px}h2{font-size:21px}}
-@media print{
-  body{background:#fff;font-size:12pt;color:#111}.hero{background:#fff;color:#111;border-bottom:2pt solid var(--baopu-teal-dark);padding:20pt 0}.hero h1,.hero p{color:#111}.hero:after,.sidebar,.print-hint{display:none}.layout{display:block;padding:0}.content{box-shadow:none;border:0;padding:0}.quick-cards{grid-template-columns:repeat(4,1fr);break-inside:avoid}.card{box-shadow:none}.visual-block{box-shadow:none;break-inside:avoid}h1,h2,h3{break-after:avoid}table{break-inside:auto}tr{break-inside:avoid}a{color:#111;text-decoration:none}
-}
+.tag-warn{display:inline-block;background:#FFF4F2;color:var(--red);border:1px solid #E8A99E;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700}
+.tag-ok{display:inline-block;background:#F0F8F5;color:#1F7040;border:1px solid #9BCFB4;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700}
+.tag-wait{display:inline-block;background:#F8F8F0;color:#8B7000;border:1px solid #D4C06A;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700}
+.tag-info{display:inline-block;background:#EEF5FF;color:#1a4f9c;border:1px solid #9ABDE0;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+.callout{margin:22px 0;padding:18px 22px;border-radius:14px;border:1px solid;font-size:15px;line-height:1.65}
+.callout.red{background:#FFF4F2;border-color:#E8B4AF;color:#5C2A24}
+.callout.green{background:#F0F8F5;border-color:#9BCFB4;color:#1A3D2A}
+.callout.blue{background:#EEF5FF;border-color:#9ABDE0;color:#1A2F5C}
+.callout.gold{background:#FBF7EE;border-color:#D4B97A;color:#4A3410}
+.callout strong{color:inherit}
+.decision-box{background:linear-gradient(135deg,#F7F3EA,#EAF3F1);border:2px solid var(--gold);border-radius:20px;padding:28px 32px;margin:24px 0}
+.decision-box h3{margin:0 0 16px;color:var(--teal-dark);font-size:20px}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.info-box{background:#F4FAF8;border:1px solid var(--line);border-left:4px solid var(--teal-light);border-radius:12px;padding:16px 18px;font-size:14.5px}
+.info-box strong{display:block;margin-bottom:6px;color:var(--teal-dark);font-size:15px}
+.info-box .row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px dashed #E3ECE9;font-size:14.5px}
+.info-box .row:last-child{border-bottom:0}
+.info-box .row .k{color:var(--muted)}
+.info-box .row .v{font-weight:700;color:var(--ink)}
+.hl{background:linear-gradient(180deg,transparent 60%,#FBE9B7 60%);padding:0 4px;color:var(--gold-dark);font-weight:900}
+.hl-red{background:linear-gradient(180deg,transparent 60%,#F7C9C2 60%);padding:0 4px;color:var(--red);font-weight:900}
+.hl-teal{background:linear-gradient(180deg,transparent 60%,#BCE0DC 60%);padding:0 4px;color:var(--teal-dark);font-weight:900}
+.hl-pending{background:#F8F8F0;color:#8B7000;border:1px dashed #D4C06A;border-radius:4px;padding:1px 6px;font-size:13px}
+.info-box .sub{font-size:12.5px;color:var(--muted);margin-top:8px;padding-top:8px;border-top:1px solid #E3ECE9}
+.cost-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+.cost-row:last-child{border-bottom:0}
+.cost-row .item{color:var(--ink)}
+.cost-row .amt{font-weight:700;color:var(--teal-dark)}
+.cost-row .amt.est{color:var(--muted);font-style:italic}
+.cost-subtotal{display:flex;justify-content:space-between;align-items:center;padding:11px 0 4px;margin-top:6px;font-size:15px;font-weight:700;border-top:2px solid var(--line)}
+.timeline{list-style:none;padding:0;margin:16px 0}
+.timeline li{display:flex;gap:16px;margin-bottom:18px}
+.timeline .dot{flex:0 0 14px;width:14px;height:14px;border-radius:50%;background:var(--teal);margin-top:6px}
+.timeline .dot.gold{background:var(--gold)}
+.timeline .dot.red{background:var(--red)}
+.timeline .date{font-size:13px;font-weight:700;color:var(--teal-dark);min-width:90px;margin-top:3px}
+.timeline .text{flex:1;font-size:14.5px;line-height:1.6}
+.footer{max-width:1500px;margin:0 auto 38px;padding:0 28px;color:var(--muted);font-size:13px;text-align:right}
+@media(max-width:1100px){.layout{grid-template-columns:1fr}.sidebar{position:relative;top:0;max-height:none}.qcards{grid-template-columns:repeat(3,1fr)}.hero{padding:42px 30px}.hero h1{font-size:30px}.content{padding:32px 26px}.twocol{grid-template-columns:1fr}}
+@media(max-width:680px){body{font-size:16px}.layout{padding:14px}.qcards{grid-template-columns:repeat(2,1fr)}.hero{padding:34px 22px}.hero h1{font-size:26px}.content{padding:24px 18px}table{font-size:13px;display:block;overflow-x:auto;white-space:nowrap}.content>h1{font-size:23px}h2{font-size:19px}}
+@media print{body{background:#fff;font-size:11pt;color:#111}.hero{background:#fff;color:#111;border-bottom:2pt solid var(--teal-dark);padding:18pt 0}.hero h1,.hero p{color:#111}.hero:after,.sidebar{display:none}.layout{display:block;padding:0}.content{box-shadow:none;border:0;padding:0}.qcards{grid-template-columns:repeat(5,1fr);break-inside:avoid}h1,h2,h3{break-after:avoid}table{break-inside:auto}tr{break-inside:avoid}a{color:#111;text-decoration:none}}
 </style>
 </head>
 <body>
 <header class="hero">
-  <div class="kicker">BAOPU Internal Management Report</div>
+  <div class="kicker">BAOPU · Internal Management Report · 不對外使用</div>
   <h1>臥龍357不續行案檢討與土地開發閉環管理系統建置報告</h1>
-  <p>從高投入低轉化，建立土地開發案件全流程閉環管理系統</p>
+  <p>從高投入低轉化，建立土地開發案件全流程閉環管理系統 — 含財務數據、住戶分類細化與資源成本量化</p>
   <div class="meta">
-    <span class="badge">內部管理檢討報告</span>
-    <span class="badge">V9｜2026/05/03</span>
+    <span class="badge">V15｜2026/05/03</span>
+    <span class="badge">內部管理檢討</span>
+    <span class="badge">資料來源：原始財務模型＋人工確認表</span>
     <span class="badge">不對外使用</span>
   </div>
 </header>
 <div class="layout">
   <aside class="sidebar">
     <div class="toc-title">目錄</div>
-    <a class="toc-h1" href="#臥龍357不續行案檢討與土地開發閉環管理系統建置報告">臥龍357不續行案檢討與土地開發閉環管理系統建置報告</a>
-<a class="toc-h1" href="#0｜老闆摘要">0｜老闆摘要</a>
-<a class="toc-h2" href="#一核心結論">一、核心結論</a>
-<a class="toc-h2" href="#二本案暴露的核心問題">二、本案暴露的核心問題</a>
-<a class="toc-h2" href="#三未來要建立的系統">三、未來要建立的系統</a>
-<a class="toc-h2" href="#四30日內落地方式">四、30日內落地方式</a>
-<a class="toc-h2" href="#五需董事長決策">五、需董事長決策</a>
-<a class="toc-h2" href="#一報告目的與總結論">一、報告目的與總結論</a>
-<a class="toc-h2" href="#二本案不續行的核心判斷">二、本案不續行的核心判斷</a>
-<a class="toc-h2" href="#三本案推進歷程與關鍵數據">三、本案推進歷程與關鍵數據</a>
-<a class="toc-h2" href="#四資源投入與機會成本盤點">四、資源投入與機會成本盤點</a>
-<a class="toc-h2" href="#五投入未有效轉化的原因">五、投入未有效轉化的原因</a>
-<a class="toc-h2" href="#六業務靈魂與寶舖土地開發文化">六、業務靈魂與寶舖土地開發文化</a>
-<a class="toc-h2" href="#七六大檢討面向">七、六大檢討面向</a>
-<a class="toc-h2" href="#八未來土地開發閉環管理系統">八、未來土地開發閉環管理系統</a>
-<a class="toc-h2" href="#九30日內落地執行計畫">九、30日內落地執行計畫</a>
-<a class="toc-h2" href="#十董事長需決策事項">十、董事長需決策事項</a>
-<a class="toc-h2" href="#十一待補資料與附件">十一、待補資料與附件</a>
-<a class="toc-h2" href="#十二執行任務拆解與驗收標準">十二、執行任務拆解與驗收標準</a>
+    <a class="toc-h1" href="#s0">0｜老闆摘要</a>
+    <a class="toc-h1" href="#s1">一｜本案事實與不續行判斷</a>
+    <a class="toc-h2" href="#s1a">簽署狀況</a>
+    <a class="toc-h2" href="#s1b">財務評估摘要</a>
+    <a class="toc-h2" href="#s1c">不續行複合依據</a>
+    <a class="toc-h1" href="#s2">二｜住戶全貌分析</a>
+    <a class="toc-h2" href="#s2a">未簽戶細化分類</a>
+    <a class="toc-h2" href="#s2b">住戶樣態分類</a>
+    <a class="toc-h2" href="#s2c">群組覆蓋率</a>
+    <a class="toc-h2" href="#s2d">各類應對策略</a>
+    <a class="toc-h1" href="#s3">三｜推進歷程</a>
+    <a class="toc-h1" href="#s4">四｜資源投入與成本盤點</a>
+    <a class="toc-h2" href="#s4a">現金支出明細</a>
+    <a class="toc-h2" href="#s4b">業務時間量化</a>
+    <a class="toc-h2" href="#s4c">機會成本</a>
+    <a class="toc-h1" href="#s5">五｜投入未轉化的根因</a>
+    <a class="toc-h1" href="#s5b">五之一｜住戶歷次問題總表</a>
+    <a class="toc-h2" href="#s5b1">問題來源與總覽</a>
+    <a class="toc-h2" href="#s5b2">高頻問題分類</a>
+    <a class="toc-h2" href="#s5b3">代表性問題明細</a>
+    <a class="toc-h2" href="#s5b4">未閉環問題清單</a>
+    <a class="toc-h2" href="#s5b5">需主管／法務確認</a>
+    <a class="toc-h1" href="#s6">六｜銷售賣點與投報深化</a>
+    <a class="toc-h2" href="#s6a">三問牛肉與銷售賣點</a>
+    <a class="toc-h2" href="#s6b">財務模型深化分析</a>
+    <a class="toc-h2" href="#s6c">防災型獎勵落日試算</a>
+    <a class="toc-h1" href="#s7">七｜業務靈魂與寶舖文化</a>
+    <a class="toc-h1" href="#s8">八｜閉環管理系統</a>
+    <a class="toc-h1" href="#s9">九｜30日落地計畫</a>
+    <a class="toc-h1" href="#s9b">九之一｜住戶退場執行計畫</a>
+    <a class="toc-h2" href="#s9b1">退場目標與原則</a>
+    <a class="toc-h2" href="#s9b2">退場時間軸</a>
+    <a class="toc-h2" href="#s9b3">分群退場策略</a>
+    <a class="toc-h2" href="#s9b4">文件返還SOP</a>
+    <a class="toc-h2" href="#s9b5">退場話術範本</a>
+    <a class="toc-h1" href="#s10">十｜待補資料與附件</a>
   </aside>
   <main class="content">
-    
-<div class="quick-cards">
-  <div class="card"><div class="label">全案簽署</div><div class="num">34/52</div><div class="desc">65.38%，未達續行條件</div></div>
-  <div class="card"><div class="label">縮小基地</div><div class="num">28/37</div><div class="desc">75.68%，仍差2人、49.23坪</div></div>
-  <div class="card"><div class="label">推進期間</div><div class="num">14個月</div><div class="desc">2025/03 至 2026/05</div></div>
-  <div class="card"><div class="label">閉環系統</div><div class="num">5模組</div><div class="desc">案件判斷、資源、住戶、牛肉、退場</div></div>
+
+<div class="qcards">
+  <div class="card warn"><div class="label">全案簽署</div><div class="num">34/52</div><div class="desc">65.38%，未達雙80%</div></div>
+  <div class="card warn"><div class="label">縮小基地</div><div class="num">28/37</div><div class="desc">75.68%，仍差2人49.23坪</div></div>
+  <div class="card"><div class="label">推進期間</div><div class="num">14個月</div><div class="desc">2025/03－2026/05</div></div>
+  <div class="card gold"><div class="label">業務投入工時</div><div class="num">≥1,000h</div><div class="desc">不含後勤行政</div></div>
+  <div class="card gold"><div class="label">現金可量化成本</div><div class="num">≥11萬</div><div class="desc">不含人力，待補完整金額</div></div>
 </div>
 
-    <h1 id="臥龍357不續行案檢討與土地開發閉環管理系統建置報告">臥龍357不續行案檢討與土地開發閉環管理系統建置報告</h1>
+<!-- ─────────────────────────────────────────── -->
+<h1 id="s0">0｜老闆摘要</h1>
+
+<div class="callout red">
+<strong>核心定義：本案為「高投入低轉化」的綜合停損案例。</strong><br>
+不是因為公司沒有投入，而是在全案與縮小基地兩種口徑下均未達安全續行條件，且14個月大量資源投入後仍未有效轉化成住戶信任與簽署成果。
+</div>
+
+<h2>需董事長決策</h2>
+<table>
+<thead><tr><th>決策事項</th><th>建議</th><th>若同意，下一步</th><th>期限</th></tr></thead>
+<tbody>
+<tr><td>是否建立土地開發全流程閉環管理系統</td><td>建議同意</td><td>啟動六項工具模板製作，莊穎霖主責</td><td>7日內</td></tr>
+<tr><td>是否選一案30天試跑</td><td>建議同意，建議從敦化686、忠孝199、復興623擇一</td><td>莊穎霖執行，主管指定案件</td><td>14日內</td></tr>
+<tr><td>是否將臥龍357退場列為專案任務</td><td>建議同意</td><td>文件返還、收執、支持戶交代、歸檔</td><td>3日內啟動</td></tr>
+<tr><td>是否導入Asana追蹤六項制度</td><td>建議同意</td><td>每項制度轉任務＋期限</td><td>30日內</td></tr>
+<tr><td>是否轉成業務訓練教材</td><td>建議同意</td><td>三問牛肉、住戶閉環、退場SOP訓練材料</td><td>30日內</td></tr>
+</tbody>
+</table>
+
+<h2>30日行動計畫（一覽）</h2>
+<table>
+<thead><tr><th>時間</th><th>任務</th><th>主責</th><th>產出</th></tr></thead>
+<tbody>
+<tr><td>3日內</td><td>臥龍357退場資料補齊</td><td>陳俞安＋莊穎霖</td><td>文件返還追蹤、支持戶說明紀錄</td></tr>
+<tr><td>7日內</td><td>六項制度模板V1</td><td>莊穎霖</td><td>可套用到真實案件的六份模板</td></tr>
+<tr><td>14日內</td><td>選一案試跑</td><td>莊穎霖（主管決定案件）</td><td>試跑案件紀錄</td></tr>
+<tr><td>30日內</td><td>回收試跑結果並修正</td><td>莊穎霖＋團隊</td><td>制度V1修正版、Asana任務化、業務訓練初稿</td></tr>
+</tbody>
+</table>
+
+<!-- ─────────────────────────────────────────── -->
+<h1 id="s1">一｜本案事實與不續行判斷</h1>
+
+<h2 id="s1a">1.1 簽署狀況</h2>
+<p>本案簽署統計需同時呈現「全案口徑」與「縮小基地口徑」。全案採2026年4月28日最終附件二口徑，縮小基地採172巷側（敦化南路二段172巷，不含臥龍街側）。</p>
+
+<table>
+<thead><tr><th>判斷口徑</th><th>總人數</th><th>已簽</th><th>未簽</th><th>簽署率</th><th>距雙80%</th><th>判斷</th></tr></thead>
+<tbody>
+<tr><td><strong>全案</strong></td><td>52人</td><td>34人</td><td>18人</td><td><strong>65.38%</strong></td><td>差8人、83.01坪</td><td><span class="tag-warn">未達續行條件</span></td></tr>
+<tr><td><strong>縮小基地｜172巷側</strong></td><td>37人</td><td>28人</td><td>9人</td><td><strong>75.68%</strong></td><td>差2人、49.23坪</td><td><span class="tag-warn">最接近達標但仍未達</span></td></tr>
+<tr><td>臥龍街側（僅供參考）</td><td>15人</td><td>6人</td><td>9人</td><td>40.00%</td><td>差6人、33.78坪</td><td><span class="tag-warn">不具單獨續行條件</span></td></tr>
+</tbody>
+</table>
+
+<div class="callout blue">
+<strong>補充說明：</strong>172巷13號3樓為原統計時間點後補簽戶，因此早期出現32簽(61.54%)、33簽(63.46%)版本差異，均屬統計時間點差異。本報告採<strong>34人／52人、65.38%</strong>為全案最終口徑（來源：最終通知信附件二，民國115年04月28日）。
+</div>
+
+<h2 id="s1b">1.2 財務評估摘要</h2>
+<p>本案先後產生多版財務模型，最終決策參考以縮小基地（不含臥龍街）版本為主。以下數據均來自原始財務試算Excel，為評估用假設值，非實際執行數字。</p>
+
+<div class="twocol">
+<div class="info-box">
+  <strong>縮小基地版（2026/04/09，172巷側不含臥龍街）</strong>
+  <div class="row"><span class="k">基地面積</span><span class="v">423 坪</span></div>
+  <div class="row"><span class="k">地上層數</span><span class="v"><span class="hl-pending">待補｜C.建築規劃</span></span></div>
+  <div class="row"><span class="k">地下層數</span><span class="v"><span class="hl-pending">待補｜C.建築規劃</span></span></div>
+  <div class="row"><span class="k">結構形式（RC／SRC／SS）</span><span class="v"><span class="hl-pending">待補｜C.建築規劃</span></span></div>
+  <div class="row"><span class="k">合建分配比例（地主／實施者）</span><span class="v"><span class="hl-teal">64.14% / 35.86%</span></span></div>
+  <div class="row"><span class="k">平均房屋售價</span><span class="v"><span class="hl">160 萬／坪</span></span></div>
+  <div class="row"><span class="k">車位售價（平面）</span><span class="v">400 萬／席</span></div>
+  <div class="row"><span class="k">全案營建坪數</span><span class="v"><span class="hl">3,672 坪</span></span></div>
+  <div class="row"><span class="k">全案銷售坪數（總銷坪）</span><span class="v"><span class="hl">3,192 坪</span></span></div>
+  <div class="row"><span class="k">銷容比（銷售面積／允建容積）</span><span class="v"><span class="hl-pending">待補｜C.建築規劃</span></span></div>
+  <div class="row"><span class="k">全案車位總數</span><span class="v">85 席</span></div>
+  <div class="row"><span class="k"><strong>全案總銷</strong></span><span class="v"><span class="hl-teal">544,663 萬（約 54.5 億）</span></span></div>
+  <div class="row"><span class="k">營建單價</span><span class="v">28 萬／坪</span></div>
+  <div class="row"><span class="k">營建成本</span><span class="v">102,805 萬</span></div>
+  <div class="row"><span class="k"><strong>全案總成本</strong></span><span class="v"><span class="hl-teal">146,350 萬</span></span></div>
+  <div class="row"><span class="k">所需自有資金</span><span class="v">56,269 萬</span></div>
+  <div class="row"><span class="k"><strong>獲利</strong></span><span class="v"><span class="hl-red">48,954 萬（約 4.9 億）</span></span></div>
+  <div class="row"><span class="k"><strong>獲利率</strong></span><span class="v"><span class="hl-red">25.07%</span></span></div>
+  <div class="row"><span class="k">自有資金報酬</span><span class="v"><span class="hl-red">87.00%</span></span></div>
+  <div class="row"><span class="k">回算全案單坪成本</span><span class="v">128 萬／坪（扣車位 117 萬／坪）</span></div>
+  <div class="row"><span class="k">營建／銷售比</span><span class="v">1.150</span></div>
+  <div class="row"><span class="k">獎金／個人獎金</span><span class="v">3,916 萬／1,958 萬</span></div>
+  <div class="row"><span class="k">施工工期</span><span class="v">4 年（48 個月）</span></div>
+  <div class="sub">
+    <strong style="display:inline;color:var(--gold-dark);font-size:13px">分回明細（按合建比例核算）</strong><br>
+    ・地主分回：<span class="hl">2,048 坪</span>＋車位 <span class="hl">54.52 席</span>，分回總銷約 349,359 萬<br>
+    ・實施者（寶舖）分回：1,144 坪＋車位 30.48 席，分回總銷 195,304 萬（含車位收入 12,192 萬）
+  </div>
+</div>
+<div class="info-box">
+  <strong>14筆基地版（2026/04/28，含臥龍街側）</strong>
+  <div class="row"><span class="k">基地面積</span><span class="v">502.8 坪</span></div>
+  <div class="row"><span class="k">地上層數</span><span class="v"><span class="hl-pending">待補｜C.建築規劃</span></span></div>
+  <div class="row"><span class="k">地下層數</span><span class="v"><span class="hl-pending">待補｜C.建築規劃</span></span></div>
+  <div class="row"><span class="k">結構形式（RC／SRC／SS）</span><span class="v"><span class="hl-pending">待補｜C.建築規劃</span></span></div>
+  <div class="row"><span class="k">合建分配比例（地主／實施者）</span><span class="v"><span class="hl-teal">64.14% / 35.86%</span></span></div>
+  <div class="row"><span class="k">平均房屋售價</span><span class="v"><span class="hl">160 萬／坪</span></span></div>
+  <div class="row"><span class="k">車位售價（平面）</span><span class="v">400 萬／席</span></div>
+  <div class="row"><span class="k">全案營建坪數</span><span class="v"><span class="hl">4,275.9 坪</span></span></div>
+  <div class="row"><span class="k">全案銷售坪數（總銷坪）</span><span class="v"><span class="hl">3,519.4 坪</span></span></div>
+  <div class="row"><span class="k">銷容比（銷售面積／允建容積）</span><span class="v"><span class="hl-pending">待補｜C.建築規劃</span></span></div>
+  <div class="row"><span class="k">全案車位總數</span><span class="v">116 席</span></div>
+  <div class="row"><span class="k"><strong>全案總銷</strong></span><span class="v"><span class="hl-teal">609,509 萬（約 61 億）</span></span></div>
+  <div class="row"><span class="k">營建單價</span><span class="v">28 萬／坪</span></div>
+  <div class="row"><span class="k">營建成本</span><span class="v">119,726 萬</span></div>
+  <div class="row"><span class="k"><strong>全案總成本</strong></span><span class="v"><span class="hl-teal">165,324 萬</span></span></div>
+  <div class="row"><span class="k">所需自有資金</span><span class="v">63,654 萬</span></div>
+  <div class="row"><span class="k"><strong>獲利</strong></span><span class="v"><span class="hl-red">49,010 萬（約 4.9 億）</span></span></div>
+  <div class="row"><span class="k"><strong>獲利率</strong></span><span class="v"><span class="hl-red">22.42%</span></span></div>
+  <div class="row"><span class="k">自有資金報酬</span><span class="v"><span class="hl-red">83.70%</span></span></div>
+  <div class="row"><span class="k">回算全案單坪成本</span><span class="v"><span class="hl-pending">待補</span></span></div>
+  <div class="row"><span class="k">營建／銷售比</span><span class="v"><span class="hl-pending">待補</span></span></div>
+  <div class="row"><span class="k">獎金／個人獎金</span><span class="v"><span class="hl-pending">待補</span></span></div>
+  <div class="row"><span class="k">施工工期</span><span class="v">4 年（48 個月）</span></div>
+  <div class="sub">
+    <strong style="display:inline;color:var(--gold-dark);font-size:13px">分回明細（按合建比例核算）</strong><br>
+    ・地主分回：<span class="hl">2,257.2 坪</span>＋車位 <span class="hl">74.4 席</span>，分回總銷約 390,914 萬<br>
+    ・實施者（寶舖）分回：1,262.2 坪＋車位 41.6 席，分回總銷 218,596 萬
+  </div>
+</div>
+</div>
+
+<p style="font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.65">
+<strong>顏色說明：</strong><span class="hl">金色標示</span>＝面積與售價關鍵假設；<span class="hl-teal">綠色標示</span>＝合建比例與全案規模；<span class="hl-red">紅色標示</span>＝獲利與報酬指標。<br>
+<strong>資料來源：</strong>縮小基地版採 2026/04/09《全案評估總覽表》原始數據；地主分回欄位依合建比例（地主 64.14%／實施者 35.86%）核算；實施者分回採原表「分配銷坪 1,144／分回總銷 195,304 萬／分回車位 30.48 輛」直接欄位。<br>
+<strong>銷容比待補：</strong>正式銷容比應為「銷售面積／允建容積」，須取自財務模型 <code>C.建築規劃</code> 分頁，目前資料抽取尚未涵蓋此欄位，標為待補。
+</p>
+
+<h3>縮小基地版財務敏感度分析（2026/05/01版）</h3>
+<p>決策摘要已明載：縮小基地版即使排除臥龍街側後，仍因<strong>單面臨路、6m巷道、鄰棟遮蔽、車位與產品賣相受限，加上轉約穩定度不足，財務安全邊際偏弱。</strong></p>
+
+<table>
+<thead><tr><th>情境</th><th>售價調整</th><th>成本調整</th><th>地主比例</th><th>獲利（萬元）</th><th>獲利率</th><th>自有資金報酬</th></tr></thead>
+<tbody>
+<tr><td><span class="tag-ok">基準情境</span></td><td>基準（160萬/坪）</td><td>基準</td><td>基準</td><td><strong>48,954</strong></td><td>25.07%</td><td>87.0%</td></tr>
+<tr><td><span class="tag-wait">壓力情境一</span></td><td>售價 -5%（156.75萬）</td><td>—</td><td>—</td><td><strong>45,605</strong></td><td>23.15%</td><td>—</td></tr>
+<tr><td><span class="tag-wait">壓力情境二</span></td><td>售價 -10%（148.5萬）</td><td>—</td><td>—</td><td><strong>37,249</strong></td><td>20.45%</td><td>66.8%</td></tr>
+<tr><td><span class="tag-warn">高壓情境</span></td><td>售價 -10%</td><td>成本 +10%</td><td>地主 +2%</td><td><strong>17,568</strong></td><td>10.22%</td><td>29.6%</td></tr>
+<tr><td><span class="tag-warn">極端情境</span></td><td>售價 -15%（140.25萬）</td><td>成本 +15%</td><td>地主 +3%</td><td><strong class="tag-warn">71</strong></td><td>0.04%</td><td>0.12%（幾乎歸零）</td></tr>
+</tbody>
+</table>
+
+<div class="callout red">
+<strong>財務安全邊際判斷：</strong>基準情境獲利看似充足（5.4億），但在高壓情境下獲利銳降至1.76億，極端情境下幾乎歸零（71萬）。考量本案基地條件（6m巷道、單面臨路、車位受限）對售價的不確定性，財務安全邊際確實偏弱，不足以支撐高信心的續行判斷。
+</div>
+
+<h2 id="s1c">1.3 不續行複合依據</h2>
+<p>不續行不是單一原因，而是以下四個條件同時成立的綜合停損：</p>
+<table>
+<thead><tr><th>面向</th><th>判斷依據</th><th>結論</th></tr></thead>
+<tbody>
+<tr><td><strong>簽署門檻</strong></td><td>全案65.38%、縮小基地75.68%，均未達雙80%</td><td><span class="tag-warn">未達</span></td></tr>
+<tr><td><strong>縮小基地後仍未達標</strong></td><td>172巷側仍差2人、49.23坪；臥龍街側40%，不具條件</td><td><span class="tag-warn">未達</span></td></tr>
+<tr><td><strong>財務安全邊際</strong></td><td>基準獲利率26.8%，但高壓情境幾乎歸零；決策摘要明載「安全邊際偏弱」</td><td><span class="tag-warn">偏弱</span></td></tr>
+<tr><td><strong>資源投入效益</strong></td><td>14個月、≥1,000工時、≥11萬現金，高壓比下轉化不足</td><td><span class="tag-warn">不划算繼續</span></td></tr>
+<tr><td><strong>機會成本</strong></td><td>排擠復興623、復興632、敦化686、忠孝199、信義364、廣州75共6案</td><td><span class="tag-warn">明確存在</span></td></tr>
+</tbody>
+</table>
+
 <blockquote>
-<p>版本：V9<br/>
-日期：2026/05/03<br/>
-文件性質：內部管理檢討報告，不對外使用<br/>
-主要來源：V7 老闆版正式檢討總結、V8.1
-董事長簡報大綱、附件01、附件05、附件06<br/>
-使用限制：本報告不新增檢討題，不作為對外住戶說法；涉及財務、法律、退場與公司決策事項，仍需主管確認。</p>
+本案不續行決策由董事長於2026年4月30日正式確認，通知日期為2026年5月3日。正式決策紀錄目前未存在，為待補資料。
 </blockquote>
-<h1 id="0｜老闆摘要">0｜老闆摘要</h1>
-<h2 id="一核心結論">一、核心結論</h2>
-<p>臥龍357案不續行，不是因為公司沒有投入，而是本案在全案與縮小基地兩種口徑下均未達安全續行條件，且14個月內投入大量住戶整合、說明會、導覽、圖面、財務試算與對外資料後，仍未有效轉化成足夠的住戶信任、簽署成果與案件成熟度。</p>
-<p>因此，本案應定義為「高投入低轉化」的綜合停損案例。</p>
-<h2 id="二本案暴露的核心問題">二、本案暴露的核心問題</h2>
-<ol type="1">
-<li>開案與續行判斷缺少明確門檻。</li>
-<li>住戶問題沒有完整閉環。</li>
-<li>業務端沒有先想清楚 Why，就投入大量 How。</li>
-<li>客戶牛肉與寶舖品牌價值沒有充分轉成住戶利益。</li>
-<li>高資源投入未被即時盤點，也未及時轉成停損判斷。</li>
-<li>不續行後的文件返還、支持戶交代、收執與歸檔需制度化。</li>
+
+<!-- ─────────────────────────────────────────── -->
+<h1 id="s2">二｜住戶全貌分析</h1>
+
+<h2 id="s2a">2.1 未簽戶細化分類</h2>
+<p>本案全案18位未簽戶（縮小基地172巷側9位），各有不同原因，應分類管理而非統一處理。以下根據管制表（58筆權利/持分/所有權人紀錄）與人工確認整理，不含完整門牌地址，僅作內部管理盤點。</p>
+
+<table>
+<thead><tr><th>類型</th><th>戶數</th><th>代表情形（去識別化摘要）</th><th>公司既有處理</th><th>後續應對策略</th></tr></thead>
+<tbody>
+<tr>
+  <td><strong>明確反對</strong></td>
+  <td>7人</td>
+  <td>不願都更；1樓現況營業不願搬遷；拜訪時強烈情緒反彈；明確拒絕接觸</td>
+  <td>已有拜訪紀錄片段，部分有多次嘗試</td>
+  <td>① 分類反對原因（情緒、利益、信任、制度各不同）<br>② 設定一次主管或關鍵人介入拜訪<br>③ 評估是否影響雙80%，不影響者不無限投入<br>④ 進入風險表，列明突破條件</td>
+</tr>
+<tr>
+  <td><strong>聯絡不到/失聯</strong></td>
+  <td>7-8人</td>
+  <td>找不到人；人在海外（英國、香港）；關鍵決策者無法聯繫；地主已過世，繼承未完成</td>
+  <td>已有「找不到人或無法聯繫」的拜訪紀錄，處理閉環待補</td>
+  <td>① 確認戶籍地址與所有權人現況<br>② 掛號+親訪+鄰里協詢+地政查址<br>③ 繼承未完成者先查繼承狀態，接觸法定繼承人<br>④ 設定失聯戶處理期限，超期列入停損評估</td>
+</tr>
+<tr>
+  <td><strong>條件疑慮</strong></td>
+  <td>5人</td>
+  <td>1樓特殊條件談判；後棟加蓋補償；分回條件認知落差；逾期才表示願意簽署；消極回覆</td>
+  <td>已有拜訪與條件溝通紀錄，完整閉環待補</td>
+  <td>① 明確記錄具體疑慮（坪數、車位、租金、分配）<br>② 指派對應專業負責人回覆並標示資料版本<br>③ 未解除則升級主管確認口徑<br>④ 以一戶一張牛肉表追蹤條件談判進度</td>
+</tr>
+<tr>
+  <td><strong>決策鏈未明</strong></td>
+  <td>5人</td>
+  <td>高齡家屬搬遷顧慮（母親意見）；子女在海外（英國）無法代表決策；地主死亡、現居者無代表性；實際決策者待確認</td>
+  <td>部分有接觸記錄，決策鏈梳理待補</td>
+  <td>① 先找出每戶的實際決策者是誰（不只聯絡人）<br>② 建立家族決策鏈記錄<br>③ 遠端說明+授權流程（海外戶）<br>④ 高齡戶需家屬陪同，放慢節奏</td>
+</tr>
+<tr>
+  <td><strong>信任疑慮</strong></td>
+  <td>1人</td>
+  <td>認為需要上市櫃公司才可信；認為未來可能有更好的方案；前期曾錯失建立好印象的機會</td>
+  <td>部分有接觸，信任未建立</td>
+  <td>① 由主管介入，以制度與案例建立信任<br>② 提供信託、履約、品牌、交屋紀錄作為依據<br>③ 主動說明寶舖與上市公司在服務品質上的差異<br>④ 若信任無法建立，誠實評估是否為可突破的阻力</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="s2b">2.2 住戶樣態分類</h2>
+<p>土地開發的住戶管理不只是「簽或不簽」，不同樣態需要完全不同的流程、溝通節奏與協助方式。</p>
+
+<table>
+<thead><tr><th>樣態類型</th><th>本案概況</th><th>主要風險</th><th>必備作法</th></tr></thead>
+<tbody>
+<tr><td><strong>高度支持戶</strong></td><td>約2人（管制表標記高度支持）；感謝名單含柯淑惠、陳君逸、張文琳</td><td>支持戶被過度倚重或感到被冷落</td><td>優先交代退場原因；個別感謝；不讓支持戶承擔公司該扛的壓力</td></tr>
+<tr><td><strong>明確反對戶</strong></td><td>約7人（含重複持分）</td><td>情緒反彈擴散；影響其他觀望戶</td><td>一次明確的主管拜訪；分類情緒/利益/信任型反對；設定突破條件</td></tr>
+<tr><td><strong>失聯戶</strong></td><td>約7-8人</td><td>無法推進；未入群且資訊落差大</td><td>啟動失聯戶SOP；雙掛號＋親訪＋地政查址</td></tr>
+<tr><td><strong>高齡戶/高齡家屬顧慮</strong></td><td>約2戶</td><td>理解速度慢；需家屬同意；簽署程序風險</td><td>家屬陪同；文字簡化；增加說明次數；不急於當天簽署</td></tr>
+<tr><td><strong>海外決策鏈</strong></td><td>約2-3人（英國、香港）</td><td>聯絡困難；授權與公證繁瑣；時差問題</td><td>建立授權流程；遠端說明套件；及早準備公證文件</td></tr>
+<tr><td><strong>繼承未完成/權利未明</strong></td><td>約1戶</td><td>無法確認簽署主體；可能有繼承爭議</td><td>先查地政；接觸法定繼承人；不急於推進簽署</td></tr>
+<tr><td><strong>1樓特殊條件戶</strong></td><td>明確存在</td><td>分配期待高於一般住戶；難標準化</td><td>獨立說明會；主管參與條件討論；建立1樓分配說明模板</td></tr>
+<tr><td><strong>關鍵影響戶</strong></td><td>待補（尚未正式標記）</td><td>若反對，可能帶動觀望戶倒向</td><td>開案即識別；設定主管拜訪；專案策略</td></tr>
+</tbody>
+</table>
+
+<h2 id="s2c">2.3 群組覆蓋率與未入群管理</h2>
+<p>以58筆權利/持分/所有權人紀錄計，已入群41筆、未入群17筆，<strong>覆蓋率約70.69%</strong>。所有未入群者均為未簽戶，且高度集中於失聯、反對與決策鏈未明類型，顯示群組不只是通訊工具，更是住戶整合狀態的鏡子。</p>
+
+<table>
+<thead><tr><th>項目</th><th>數量</th><th>比例</th><th>說明</th></tr></thead>
+<tbody>
+<tr><td>全案總筆數（含持分）</td><td>58筆</td><td>100%</td><td>含同一所有權人對應多筆</td></tr>
+<tr><td>已入群</td><td>41筆</td><td>70.69%</td><td>已簽34筆全部已入群</td></tr>
+<tr><td>未入群</td><td>17筆</td><td>29.31%</td><td>全數為未簽戶</td></tr>
+<tr><td>未簽且未入群</td><td>17筆</td><td>—</td><td>未入群與未簽100%重疊</td></tr>
+<tr><td>未簽但已入群</td><td>7筆</td><td>—</td><td>已接觸但有疑慮</td></tr>
+</tbody>
+</table>
+
+<div class="twocol">
+<div class="info-box">
+  <strong>臥龍街側群組覆蓋</strong>
+  總人數：15人 / 已入群：10人<br>
+  覆蓋率：<strong>66.67%</strong>（較低）
+</div>
+<div class="info-box">
+  <strong>172巷側群組覆蓋</strong>
+  總人數：37人 / 已入群：30人<br>
+  覆蓋率：<strong>81.08%</strong>
+</div>
+</div>
+
+<h2 id="s2d">2.4 各類住戶未來執行辦法</h2>
+<table>
+<thead><tr><th>類型</th><th>執行目標</th><th>具體辦法</th><th>是否需主管介入</th></tr></thead>
+<tbody>
+<tr><td>高度支持戶</td><td>從自己支持→協助共識形成</td><td>個別感謝與維繫；提供簡明一致說法；邀請轉達會議資訊；不讓支持戶承擔公司壓力；不續行時優先交代</td><td>建議有</td></tr>
+<tr><td>觀望戶</td><td>拆清楚觀望原因，轉成可解決問題</td><td>判斷是利益不清、制度不懂、家人未討論或信任不足；補一戶一張牛肉表；安排小型說明或個別拜訪；設定下次確認時間</td><td>視情況</td></tr>
+<tr><td>條件疑慮戶</td><td>條件具體化，避免泛化成不信任</td><td>明確記錄坪數、車位、租金、分配、稅務等疑慮；指派對應專業負責人；回覆時標示資料來源與版本；未解除則升級</td><td>視條件複雜度</td></tr>
+<tr><td>信任疑慮戶</td><td>讓住戶理解公司能力、履約機制與保障方式</td><td>用信託、履約、品牌、案例與保險機制說明；由主管介入；以制度與證據建立信任</td><td>必須</td></tr>
+<tr><td>制度不理解戶</td><td>降低都更、權變、協議合建理解門檻</td><td>使用標準QA、圖解與比較表；避免一次給過多法規；先講住戶會遇到什麼，再補制度依據</td><td>否</td></tr>
+<tr><td>明確反對戶</td><td>判斷反對原因是否可突破或應納入停損</td><td>分類反對原因；設定一次主管或關鍵人介入；評估是否影響雙80%；若無法突破，進入風險表，不無限投入</td><td>必須</td></tr>
+<tr><td>失聯戶</td><td>建立找不到人的閉環機制</td><td>確認戶籍、所有權人、聯絡人；記錄每次聯絡方式與結果；啟動掛號、親送、鄰里詢問；設定失聯戶處理期限</td><td>視個案</td></tr>
+</tbody>
+</table>
+
+<!-- ─────────────────────────────────────────── -->
+<h1 id="s3">三｜推進歷程</h1>
+
+<ul class="timeline">
+  <li><span class="dot"></span><span class="date">2025/03</span><div class="text"><strong>案件啟動</strong>｜開始住戶整合與初步評估。啟動拜訪、陌生拜訪、製作開發資料。</div></li>
+  <li><span class="dot"></span><span class="date">2025/04/19</span><div class="text"><strong>第一次說明會</strong>｜臺北市大安區復興南路二段291號。邀請25戶，實際出席42人（地主代表3人＋住戶39人），出席率50%。<strong>當天簽署：0戶</strong>（待補會後補簽資料）。</div></li>
+  <li><span class="dot"></span><span class="date">2025/05/26</span><div class="text"><strong>第二次說明會</strong>｜持續推進簽署，回應住戶問題。第二場QA記錄：若擴大至和平東路，執行方式改採「權利變換」。</div></li>
+  <li><span class="dot"></span><span class="date">2025/12/29</span><div class="text"><strong>對外議題回覆</strong>｜針對群組熱議「為何不能採取權利變換」，發布《協議合建與權變差異說明》PDF。說明地主分配比例61.25%、實施者38.75%。</div></li>
+  <li><span class="dot"></span><span class="date">2026/01/08</span><div class="text"><strong>第三次說明會</strong>｜回應權變、分配、規劃等問題。住戶詢問是否可參考冠德成功段都更案分配比例；公司回覆兩案比較基準不同。</div></li>
+  <li><span class="dot"></span><span class="date">2026/02/04</span><div class="text"><strong>最新都更狀況說明</strong>｜對外簡報發布（260204 final版）。</div></li>
+  <li><span class="dot"></span><span class="date">2026/02/07</span><div class="text"><strong>第四次說明會</strong>｜持續回應住戶疑慮與推進共識。</div></li>
+  <li><span class="dot"></span><span class="date">2026/02/26</span><div class="text"><strong>第五次說明會</strong>｜最後一次大型說明會，推進縮小基地方案共識。</div></li>
+  <li><span class="dot gold"></span><span class="date">2026/04/09</span><div class="text"><strong>縮小基地財務模型定版</strong>｜《172巷側不含臥龍街詳細評估V2》，基地423.2坪，獲利率26.84%。</div></li>
+  <li><span class="dot gold"></span><span class="date">2026/04/28</span><div class="text"><strong>最後通知寄出</strong>｜發布《整合進度與最後確認通知》。附件一：防災型落日試算；附件二：全案34人/52人統計；附件三：ANLB住戶價值說明。安排4月30日19:00-20:30現場最後確認服務。</div></li>
+  <li><span class="dot gold"></span><span class="date">2026/05/01</span><div class="text"><strong>縮小基地敏感度分析</strong>｜決策摘要明載「財務安全邊際偏弱」。極端情境獲利僅71萬元。</div></li>
+  <li><span class="dot red"></span><span class="date">2026/04/30</span><div class="text"><strong>確認不續行</strong>｜4月30日當天仍未完成整合，董事長正式確認不續行。無正式決策紀錄（待補）。</div></li>
+  <li><span class="dot red"></span><span class="date">2026/05/03</span><div class="text"><strong>通知住戶</strong>｜發布不續行聲明（聲明原文待補）。</div></li>
+  <li><span class="dot"></span><span class="date">2026/05/04</span><div class="text"><strong>文件返還</strong>｜預計寄出雙掛號共33件。05/06確認回執；05/08前完成未收件親送。</div></li>
+</ul>
+
+<p><strong>整體推進密度</strong>：5場大型說明會、6場小型會議、10次策展導覽、約20次圖面會議、至少8種財務試算情境、4版對外簡報、9版說明資料、約8次主管/董事長決策參與。</p>
+
+<!-- ─────────────────────────────────────────── -->
+<h1 id="s4">四｜資源投入與成本盤點</h1>
+
+<h2 id="s4a">4.1 現金可量化成本明細</h2>
+<p>以下為整合階段已發生或可估算的直接現金支出，不含人力成本。數據來源：附件05、人工確認表。</p>
+
+<div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 24px;margin:16px 0">
+  <div class="cost-row"><span class="item"><strong>兆碩建築師規劃費</strong>｜主要建築師費用</span><span class="amt">50,000元</span></div>
+  <div class="cost-row"><span class="item">元創建築｜協助規劃（無收費）</span><span class="amt">0元<br><small style="color:var(--muted)">但有無形時間與關係資源消耗</small></span></div>
+  <div class="cost-row"><span class="item">徐兆立建築師｜約3版圖面協助（無收費）</span><span class="amt">0元<br><small style="color:var(--muted)">實際投入工時待補</small></span></div>
+  <div class="cost-row"><span class="item"><strong>5場大型說明會</strong>｜場租、設備、印刷、茶水（粗估每場10,000元以內）</span><span class="amt est">約50,000元以內</span></div>
+  <div class="cost-row"><span class="item"><strong>6場小型會議</strong>｜每場約1,000-2,000元</span><span class="amt est">約6,000-12,000元</span></div>
+  <div class="cost-row"><span class="item"><strong>說明資料印製</strong>｜說明手冊約300元/本；彩色約5元/面</span><span class="amt est">待補（本數未知）</span></div>
+  <div class="cost-row"><span class="item">痛點手冊｜約300元/本</span><span class="amt est">待補（本數未知）</span></div>
+  <div class="cost-row"><span class="item">通知信件印製與寄送（多輪）</span><span class="amt est">待補</span></div>
+  <div class="cost-row"><span class="item"><strong>退場雙掛號</strong>｜33件，整批作業估（含資料列印、裝封）</span><span class="amt est">約2,000元</span></div>
+  <div class="cost-subtotal"><span>可量化現金小計（不含印刷待補項）</span><span>約11-12萬元以上</span></div>
+</div>
+
+<div class="callout gold">
+<strong>注意：</strong>上述「可量化現金成本」不含建築圖面費（投報評估中預估人事行政管理費2,170萬，但此為整個開發案落地後的預算，非整合階段實際支出）。整合階段實際現金支出中，印刷與郵寄費用仍待逐筆盤點。
+</div>
+
+<h2 id="s4b">4.2 業務時間投入量化</h2>
+<p>業務時間是本案被低估的最大成本。以下根據附件05的投入密度粗估，並嘗試首次量化業務總時數。</p>
+
+<table>
+<thead><tr><th>投入類型</th><th>數量／頻率</th><th>單次估算</th><th>合計估算工時</th><th>備註</th></tr></thead>
+<tbody>
+<tr><td><strong>一般住戶拜訪</strong></td><td>52人 × 平均5次 = 260次</td><td>含往返約 1.5 小時／次</td><td><strong>約 390 小時</strong></td><td>實際次數待核實</td></tr>
+<tr><td>找不到人撲空</td><td><strong>約 30 次</strong></td><td><strong>往返約 0.5 小時／次</strong></td><td><strong>約 15 小時</strong></td><td>多為現場無人應答</td></tr>
+<tr><td>熱心住戶深度互動</td><td>約 10 次</td><td>約 2 小時／次</td><td>約 20 小時</td><td></td></tr>
+<tr><td><strong>電話／LINE 追蹤</strong></td><td>52 位住戶 × 約 1.5 小時／人 × 達成率 80%</td><td>含初訪邀約、問題回覆、策展邀請等</td><td><strong>約 62.4 小時</strong></td><td>達成率 80% 反映非全數住戶皆能順利接觸</td></tr>
+<tr><td><strong>5 場大型說明會</strong></td><td>5 場 × 每場 4 位人員出席</td><td>準備 4H + 執行 3H = 7H／場</td><td>約 140 人時（單人約 35 小時）</td><td></td></tr>
+<tr><td><strong>大型說明會假日補休</strong></td><td><strong>3 次假日場 × 4 位人員 × 4 小時</strong></td><td>—</td><td><strong>應申請補休 48 人時</strong></td><td></td></tr>
+<tr><td>6 場小型會議</td><td>6 場</td><td>約 2-3 小時／場</td><td>約 15 小時</td><td></td></tr>
+<tr><td>10 次策展導覽</td><td>10 次</td><td>約 2 小時／次（含陪同）</td><td>約 20 小時</td><td></td></tr>
+<tr><td><strong>約 20 次圖面會議</strong></td><td>20 次</td><td>約 2 小時／次</td><td>約 40 小時</td><td></td></tr>
+<tr><td><strong>資料製作</strong>（4 版簡報 + 9 版說明資料）</td><td>—</td><td>—</td><td>粗估約 150 小時</td><td>每版平均 10 小時估算</td></tr>
+<tr><td><strong>群組經營</strong>（LINE 群組管理）</td><td><strong>14 個月 × 每週約 1 小時</strong></td><td>—</td><td><strong>約 60 小時</strong></td><td>含訊息回覆、轉發、住戶提問追蹤</td></tr>
+<tr><td>退場作業（文件返還、收執、親送）</td><td>—</td><td>—</td><td>粗估約 20-30 小時</td><td>仍在進行中</td></tr>
+</tbody>
+</table>
+
+<div class="decision-box">
+  <h3>業務投入總時數估算</h3>
+  <p><strong>前主辦業務（單人口徑）合計：約 850-900 小時（14 個月）</strong></p>
+  <p>若加計大型說明會其他 3 位人員投入（每人 35 小時 × 3 人 = 105 人時），<strong>團隊總投入約 950-1,000 人時</strong>。</p>
+  <p>折合人月：約 <strong>5-6 個人月</strong>（以每月 176 工時計算）。</p>
+  <p>人力成本估算（若以月薪 60,000 元計算）：</p>
+  <ul>
+    <li>月薪 6 萬 ÷ 22 工作天 × 約 130 工作天 = <strong>約 35-40 萬元</strong></li>
+    <li>另含 <strong>應申請補休 48 人時</strong>（大型說明會假日場）</li>
+    <li>加上接手期間莊穎霖補資料、補閉環、退場執行工時（待補）</li>
+    <li>加上其他同仁協助拜訪、文件製作、寄送工時（待補）</li>
+  </ul>
+  <p><strong>人力＋現金總成本估算：至少 45-50 萬元以上</strong>（完整數字仍待盤點）</p>
+  <hr style="margin:12px 0;border-color:var(--line)">
+  <p style="font-size:14px;color:var(--muted)"><strong>補休申請說明：</strong>5 場大型說明會中有 3 場為假日舉辦，每場 4 位人員出席，每人應申請補休 4 小時，合計 48 人時（即 6 個工作天）。具體補休申請與是否落實，待人資確認。</p>
+</div>
+
+<h2 id="s4c">4.3 機會成本</h2>
+<table>
+<thead><tr><th>被排擠案件</th><th>性質說明</th><th>可能影響</th><th>量化狀態</th></tr></thead>
+<tbody>
+<tr><td>復興623</td><td>進行中開發案</td><td>主辦注意力與主管決策資源</td><td>待量化</td></tr>
+<tr><td>復興632</td><td>進行中開發案</td><td>同上</td><td>待量化</td></tr>
+<tr><td>敦化686</td><td>進行中，建議試跑案件之一</td><td>住戶問題閉環進度可能延誤</td><td>待量化</td></tr>
+<tr><td>忠孝199</td><td>進行中，建議試跑案件之一</td><td>合約與關鍵戶判斷資源</td><td>待量化</td></tr>
+<tr><td>信義364</td><td>進行中開發案</td><td>團隊注意力與主管時間</td><td>待量化</td></tr>
+<tr><td>廣州75</td><td>進行中開發案</td><td>同上</td><td>待量化</td></tr>
+</tbody>
+</table>
+
+<!-- ─────────────────────────────────────────── -->
+<h1 id="s5">五｜投入未有效轉化的根因</h1>
+<p>本案問題不在於「做了多少事」，而在於「這些事是否有效達成目標」。以下7項根因，各對應到後續閉環管理系統的改善方向：</p>
+
+<table>
+<thead><tr><th>#</th><th>根因</th><th>本案現象</th><th>對應改善工具</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><strong>主責端未掌握案件狀態</strong></td><td>進度回報不足以支撐決策；未能判斷「可推/卡關/縮小/停損」</td><td>案件狀態判斷表</td></tr>
+<tr><td>2</td><td><strong>沒先想清楚Why就處理How</strong></td><td>製作資料、調整圖面、辦說明會之前，未必先確認這些行動要解決什麼問題</td><td>三問牛肉＋一戶一張牛肉表</td></tr>
+<tr><td>3</td><td><strong>住戶問題沒有閉環</strong></td><td>問題有出現、有些有回覆，但缺少負責人、期限、回覆狀態與追蹤</td><td>住戶問題閉環表</td></tr>
+<tr><td>4</td><td><strong>群組沒有成為共識管理平台</strong></td><td>群組只作為通知工具；未入群17筆全數為未簽戶</td><td>住戶分類模組＋未入群替代通知SOP</td></tr>
+<tr><td>5</td><td><strong>客戶牛肉與利益論述未標準化</strong></td><td>素材很多（牛肉分析XMind已有），但未充分轉成「為何都更、為何寶舖、為何現在」的住戶聽得懂說法</td><td>三問牛肉表＋一戶一張牛肉表</td></tr>
+<tr><td>6</td><td><strong>建築師需求不清造成專業資源浪費</strong></td><td>圖面與建築師投入多（3家建築師、約20次圖面會議），但若用途、對象、決策點不清，容易重做</td><td>建築需求任務單制度</td></tr>
+<tr><td>7</td><td><strong>實驗型行動未完整落地</strong></td><td>痛點調查、策展互動、小型說明會、樓長制度等若沒有目標、負責人、檢核方式與結果追蹤，就難以複製</td><td>各類行動需納入案件狀態判斷表追蹤</td></tr>
+</tbody>
+</table>
+
+<!-- ─────────────────────────────────────────── -->
+<h1 id="s5b">五之一｜住戶歷次問題總表與閉環狀態</h1>
+
+<div class="callout blue">
+<strong>本章定位：</strong>第五章診斷「為什麼投入沒轉化」，本章補上具體證據——14 個月期間住戶實際提出過哪些問題、公司回覆狀況、是否形成閉環。<strong>這份總表是後續『住戶問題閉環表』模板的原型</strong>，也是業務訓練、QA 制度化、法務確認的素材庫。
+</div>
+
+<h2 id="s5b1">5b.1 問題來源與總覽</h2>
+
+<table>
+<thead><tr><th>來源</th><th>檔案</th><th>抽取題數</th><th>備註</th></tr></thead>
+<tbody>
+<tr><td>第一次說明會 QA</td><td>1140419 第一次說明會 QA 紀錄表 V4</td><td>12 題</td><td>2025/04/19</td></tr>
+<tr><td>第二次說明會 QA</td><td>第二次地主說明會-QA-臥龍-1140529</td><td>27 題</td><td>2025/05/25</td></tr>
+<tr><td>第三次說明會紀錄</td><td>260111 第三次都更說明會會議記錄</td><td>24 題</td><td>2026/01/11</td></tr>
+<tr><td>業務拜訪紀錄</td><td>業務內部紀錄表 V5（拜訪紀錄9-15、權變比較表等）</td><td>多戶</td><td>含個別抗性、未聯絡、權變比較</td></tr>
+<tr><td>Ragic 拜訪紀錄</td><td>Ragic 拜訪紀錄表</td><td>2026/01/03 – 04/11 共 18 筆</td><td>含追蹤狀態</td></tr>
+<tr><td>對外狀況說明</td><td>260204 最新都更狀況說明（final）</td><td>—</td><td>分配調整、ANLB、對外說法</td></tr>
+<tr><td>最終通知與附件</td><td>1150428 最終通知信含附件</td><td>—</td><td>不續行、簽署統計、防災落日試算</td></tr>
+</tbody>
+</table>
+
+<div class="qcards" style="grid-template-columns:repeat(4,1fr);margin:18px 0 28px">
+  <div class="card"><div class="label">總題數</div><div class="num">39</div><div class="desc">經分類去重後</div></div>
+  <div class="card warn"><div class="label">未閉環</div><div class="num">11</div><div class="desc">公司有回覆、但住戶是否接受未追蹤</div></div>
+  <div class="card gold"><div class="label">需主管／法務確認</div><div class="num">10</div><div class="desc">涉及契約、條款、風險</div></div>
+  <div class="card"><div class="label">可回寫QA庫</div><div class="num">13</div><div class="desc">高頻、可標準化</div></div>
+</div>
+
+<h2 id="s5b2">5b.2 高頻問題分類（39 題分組統計）</h2>
+
+<table>
+<thead><tr><th>分類</th><th>題數</th><th>代表問題</th><th>標準回覆狀態</th><th>建議後續處理</th></tr></thead>
+<tbody>
+<tr><td><strong>分配比例</strong></td><td>9</td><td>分回比例太少；1.62 想調 1.65；1F 與 2F 價值 1.2:1 太少；道路用地 10/90；都更獎勵分配</td><td><span class="tag-warn">部分有</span></td><td>整理版本化分配說明，標示日期、係數、分配比例與適用口徑</td></tr>
+<tr><td><strong>合約條件</strong></td><td>6</td><td>退場機制、落日條款、合約授權、信託合約、意向書可否反悔</td><td><span class="tag-warn">部分有</span></td><td>需法務確認後建立標準 QA</td></tr>
+<tr><td><strong>公司信任</strong></td><td>6</td><td>不信任私人企業；公司不夠積極；資料錯誤；財力證明；ANLB 價值</td><td><span class="tag-warn">部分有</span></td><td>建立公司信任資料包與住戶回覆追蹤表</td></tr>
+<tr><td><strong>流程進度</strong></td><td>6</td><td>說明會時程；未聯絡戶；群組通知；單一窗口；決策鏈未明</td><td><span class="tag-warn">部分有</span></td><td>建立單一窗口、群組公告、未聯絡戶追蹤閉環表</td></tr>
+<tr><td><strong>建築規劃</strong></td><td>5</td><td>圖面何時提供；房型坪數；1F 規劃；採光面向；公設比</td><td><span class="tag-warn">部分有</span></td><td>補圖面 4 版清單、需求回收紀錄</td></tr>
+<tr><td><strong>權利變換／協議合建</strong></td><td>3</td><td>權變案例比較；冠德成功段；協議合建跑路疑慮</td><td><span class="tag-warn">部分有</span></td><td>建立權變與協議合建比較包；法務審閱</td></tr>
+<tr><td><strong>稅務／地政</strong></td><td>3</td><td>稅負；土增稅；房地合一稅；虛坪改革</td><td><span class="tag-warn">部分有</span></td><td>補個別試算與法規口徑確認</td></tr>
+<tr><td>租金補貼</td><td>2</td><td>每坪 1,000 元是否低於市場；是否協助找租屋</td><td><span class="tag-ok">是</span></td><td>對照不同版本補貼金額，確認最終口徑</td></tr>
+<tr><td>退場與文件返還</td><td>1</td><td>04/30 後是否不續行、後續是否仍服務</td><td><span class="tag-warn">部分有</span></td><td>補文件返還、收執保存、支持戶交代與退場歸檔</td></tr>
+<tr><td>其他（學區、防災試算等）</td><td>3</td><td>學籍是否保留；防災型獎勵落日影響</td><td><span class="tag-ok">是</span></td><td>納入生活配套 QA</td></tr>
+</tbody>
+</table>
+
+<h2 id="s5b3">5b.3 代表性問題明細（節選 12 題）</h2>
+<p>以下節選跨類別、跨會議、跨拜訪紀錄的代表性問題，作為閉環追蹤與業務訓練的具體素材。完整 39 題請見附件 01 原始檔。</p>
+
+<table>
+<thead><tr><th>編號</th><th>日期／來源</th><th>住戶／戶別</th><th>問題摘要</th><th>分類</th><th>公司回覆摘要</th><th>閉環狀態</th></tr></thead>
+<tbody>
+<tr>
+  <td>Q002</td><td>2025/04/19；2026/02/02 重複</td><td>1F 住戶</td>
+  <td>前方道路用地有容積率嗎？道路用地不能納入都更範圍是否說明不清？獎勵 10/90 太少</td>
+  <td>分配比例</td>
+  <td>道路用地本身沒有容積率，實施者額外購買容積移入並按土地比例回饋地主 10%；Ragic 紀錄顯示住戶仍認為過去說明不清</td>
+  <td><span class="tag-warn">未閉環</span></td>
+</tr>
+<tr>
+  <td>Q007</td><td>2025/04/19、05/25、2026 多次拜訪</td><td>頂樓戶、1F 店面、黃美珠、邱炎烘、林香薇＆劉正忠</td>
+  <td>頂樓加蓋／防火巷加蓋／店面底部加蓋／前後院違建如何分配、補償、補貼？</td>
+  <td>分配比例</td>
+  <td>違建依法不能分配產權，可依造價表或估價師估算提供補助；Ragic 紀錄顯示多戶仍要求更清楚補償方案</td>
+  <td><span class="tag-warn">未閉環</span></td>
+</tr>
+<tr>
+  <td>Q009</td><td>2025/04/19；2026/01/11；2026/02/04</td><td>全體</td>
+  <td>都更獎勵 50/50 太少？分回 58.33% 太少？全案分配比例可否調整？</td>
+  <td>分配比例</td>
+  <td>都更獎勵需反映成本與品質；第三次會議：全案綜合約 61/39，預計微調；2026/02/04 對外調整為 64/36</td>
+  <td><span class="tag-info">已回覆</span></td>
+</tr>
+<tr>
+  <td>Q014</td><td>2025/05/25</td><td>172 巷 21 號 1F</td>
+  <td>合建契約附件二第三項解釋權，基於誠信原則是否歸甲方？</td>
+  <td>合約條件</td>
+  <td>解釋權歸住戶；實施者不能超出蓋房必要範圍用印，違反需賠償</td>
+  <td><span class="tag-info">已回覆／需法務確認</span></td>
+</tr>
+<tr>
+  <td>Q018</td><td>2025/05/25；2026/01/11</td><td>172 巷 25 號 3F 等</td>
+  <td>本案分配比例與冠德成功段都更案或其他權變案例相比偏低？</td>
+  <td>權變／協議</td>
+  <td>第三次會議回覆 12/29 已於群組整理，兩案比較基準不同；本案較權變估算更高</td>
+  <td><span class="tag-warn">未閉環</span></td>
+</tr>
+<tr>
+  <td>Q020</td><td>2026/01/11</td><td>全體</td>
+  <td>契約能否加入退場機制、落日條款？</td>
+  <td>合約條件</td>
+  <td>未來契約會訂退場機制；通案列一年內未達門檻則本約作廢；115/02/28 前未達 80%，將不訂合約、不再進行</td>
+  <td><span class="tag-info">已回覆／需法務</span></td>
+</tr>
+<tr>
+  <td>Q022</td><td>2026/01/11</td><td>全體</td>
+  <td>房市不佳、爛尾樓風險增加，公司能否提供財力證明？</td>
+  <td>公司信任</td>
+  <td>以全健築點悅銷售達九成與過往建案銷售完成作為說明</td>
+  <td><span class="tag-warn">未閉環</span></td>
+</tr>
+<tr>
+  <td>Q024</td><td>2026/01/11</td><td>全體</td>
+  <td>簽同意書是否可以反悔？</td>
+  <td>合約條件</td>
+  <td>目前都更同意書類似意向書，未要求用印或簽合約，沒有法律約束力，可反悔但會影響進度</td>
+  <td><span class="tag-info">已回覆／需法務</span></td>
+</tr>
+<tr>
+  <td>Q030</td><td>2026/02/03</td><td>許欽星</td>
+  <td>對私人企業有不好經驗，不信任；只信任有政府把關的公辦都更；認為未必有迫切性</td>
+  <td>公司信任</td>
+  <td>說明都更流程公聽會、審議會把關；強調耐震 0.41G 與 120 年使用</td>
+  <td><span class="tag-warn">未閉環（拒簽、拒留聯絡）</span></td>
+</tr>
+<tr>
+  <td>Q032</td><td>2026/02/03</td><td>陳正宏</td>
+  <td>希望公司在群組統一通知；覺得公司不夠積極；希望單一窗口、不要一直更換窗口</td>
+  <td>流程進度</td>
+  <td>下一步邀請參加說明會，未見完整回覆</td>
+  <td><span class="tag-warn">未閉環</span></td>
+</tr>
+<tr>
+  <td>Q036</td><td>2026/04/11</td><td>林燈柳／楊大哥</td>
+  <td>前主辦資料錯誤與恐嚇式語言造成不信任；另含容積率、前後棟價值、陽台補登、利益共享條款、梯戶比等</td>
+  <td>公司信任</td>
+  <td>當下承認資料錯誤並核對；利益共享條款回覆需回公司討論</td>
+  <td><span class="tag-warn">未閉環</span></td>
+</tr>
+<tr>
+  <td>Q038</td><td>2026/04/28</td><td>全體</td>
+  <td>04/30 後是否續行？若未完成整合，公司是否仍服務？</td>
+  <td>退場與文件返還</td>
+  <td>04/30 19:00-20:30 提供最後確認服務，當天未完成則不再續行；未來仍可聯繫</td>
+  <td><span class="tag-info">已回覆／待退場閉環</span></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="s5b4">5b.4 未閉環問題清單（11 題）</h2>
+<p>以下 11 題雖有公司回覆，但<strong>住戶是否接受、是否再次追問、是否完成個別補件</strong>沒有完整紀錄。這正是『住戶問題閉環表』要解決的核心缺口。</p>
+
+<table>
+<thead><tr><th>編號</th><th>住戶／戶別</th><th>問題摘要</th><th>目前缺口</th></tr></thead>
+<tbody>
+<tr><td>Q002</td><td>1F 住戶</td><td>道路用地與容積移轉 10/90 是否說明清楚</td><td>Ragic 顯示住戶仍認為公司含糊帶過</td></tr>
+<tr><td>Q007</td><td>頂樓戶、1F 店面、林香薇＆劉正忠等</td><td>增建、違建、店面底部加蓋、防火巷使用補償</td><td>多戶重複提出，個別補償方案與閉環紀錄待確認</td></tr>
+<tr><td>Q008</td><td>全體</td><td>建築圖面、外觀、房型與住戶需求如何回收</td><td>圖面 4 版清單與需求是否回寫待確認</td></tr>
+<tr><td>Q013</td><td>陳秀蘭／林雅筑、1F 店面戶</td><td>1F 與 2F 以上價值差距、原位置、1F 規劃</td><td>新版 1F 圖面與估價依據是否提供待確認</td></tr>
+<tr><td>Q018</td><td>多戶</td><td>權變案例、冠德成功段與本案比較</td><td>比較表是否正式對外、是否法務確認待確認</td></tr>
+<tr><td>Q021</td><td>全體</td><td>住戶要求簽約前提供圖面、事業計畫、合約、排程</td><td>簽約前資料包是否提供待確認</td></tr>
+<tr><td>Q031</td><td>陳秀蘭女兒／林小姐</td><td>先前問題未回覆，導致對公司無信心</td><td>是否已回覆、回覆內容與日期待確認</td></tr>
+<tr><td>Q032</td><td>陳正宏</td><td>希望群組統一通知、單一窗口</td><td>單一窗口與群組公告機制是否建立待確認</td></tr>
+<tr><td>Q033</td><td>蔡金足／范紀彰</td><td>家庭決策鏈、海外兒子未決</td><td>替代聯絡方式、是否轉 LINE 待確認</td></tr>
+<tr><td>Q036</td><td>林燈柳／楊大哥</td><td>資料錯誤、利益共享條款、陽台補登、梯戶比</td><td>利益共享條款公司討論結果是否正式回覆待確認</td></tr>
+<tr><td>Q038</td><td>全體</td><td>不續行通知後支持戶交代與文件返還</td><td>支持戶說明、文件返還、收執、歸檔紀錄待確認</td></tr>
+</tbody>
+</table>
+
+<h2 id="s5b5">5b.5 需主管／法務確認問題（10 題）</h2>
+
+<table>
+<thead><tr><th>編號</th><th>問題摘要</th><th>確認類型</th><th>處理方式</th></tr></thead>
+<tbody>
+<tr><td>Q006</td><td>稅金、土地增值稅、稅負是否寫入契約</td><td><span class="tag-warn">法務</span></td><td>由法務確認標準稅務與契約說明口徑</td></tr>
+<tr><td>Q007</td><td>違建、頂樓加蓋、防火巷、店面加蓋補償</td><td><span class="tag-warn">主管＋法務</span></td><td>建立補償原則，保留個別戶紀錄與法務審閱</td></tr>
+<tr><td>Q014</td><td>合建契約附件授權解釋權是否歸甲方</td><td><span class="tag-warn">法務</span></td><td>由法務確認後納入合約 QA</td></tr>
+<tr><td>Q016</td><td>信託期間增貸抵押、信託合約是否可提供</td><td><span class="tag-warn">法務</span></td><td>補正式信託說明與可提供資料範圍</td></tr>
+<tr><td>Q018</td><td>權變案例、冠德成功段與本案比較</td><td><span class="tag-warn">主管＋法務</span></td><td>建立權變／協議合建標準說明包</td></tr>
+<tr><td>Q020</td><td>退場機制與落日條款</td><td><span class="tag-warn">法務</span></td><td>由法務確認合約文字與對外 QA</td></tr>
+<tr><td>Q023</td><td>舊制、新制、虛坪改革與重大政策變更</td><td><span class="tag-warn">法務</span></td><td>建立法規變動 QA 並標示需依正式公告</span></td></tr>
+<tr><td>Q024</td><td>意向書是否可反悔與法律約束力</td><td><span class="tag-warn">法務</span></td><td>由法務確認意向書對外說明</td></tr>
+<tr><td>Q036</td><td>利益共享條款、資料錯誤、恐嚇式語言造成信任疑慮</td><td><span class="tag-warn">主管＋法務</span></td><td>主管確認回覆策略，法務確認條款可行性</td></tr>
+<tr><td>Q038</td><td>不續行通知後是否仍服務、文件返還與退場</td><td><span class="tag-warn">主管</span></td><td>補退場完成清單與文件返還紀錄</td></tr>
+</tbody>
+</table>
+
+<div class="callout gold">
+<strong>後續處理建議：</strong><br>
+① 將本表 39 題逐題填入未來「住戶問題閉環表 V1」，補住戶／戶別、回覆日期、是否接受、後續追蹤等欄位。<br>
+② 高頻 9 大分類整理為標準 QA 包，作為下一個案件開案前的訓練教材。<br>
+③ 11 題未閉環、10 題需主管／法務確認的議題，作為敦化 686、忠孝 199、復興 623 三個試跑案件的<strong>檢查清單</strong>——確保下一個案件不再重複同樣的閉環缺口。<br>
+④ 完整明細與來源檔案位置詳見附件 01《住戶歷次問題總表》原始檔。
+</div>
+
+<!-- ─────────────────────────────────────────── -->
+<h1 id="s6">六｜銷售賣點與投報深化分析</h1>
+
+<h2 id="s6a">6.1 三問牛肉與銷售賣點</h2>
+<p>業務在拜訪前，至少要能用三句話講清楚：<strong>為什麼都更、為什麼寶舖、為什麼現在</strong>。若三問講不清楚，不應急著進入條件、表格與簽署。</p>
+
+<table>
+<thead><tr><th>三問</th><th>核心主張</th><th>臥龍357個案化說法</th><th>對應住戶恐懼</th></tr></thead>
+<tbody>
+<tr>
+  <td><strong>為什麼都更？</strong></td>
+  <td>老屋安全、健康、資產價值、生活品質、修繕成本與未來風險</td>
+  <td>本案建物屬X年老屋，耐震性能、消防與用電已有風險；不都更的修繕成本逐年累積；老屋估價與貸款成數將持續下降</td>
+  <td>「我的資產會不會吃虧」「未來修繕太貴」</td>
+</tr>
+<tr>
+  <td><strong>為什麼寶舖？</strong></td>
+  <td>健康建築、安全規格、透明溝通、履約制度與長期責任</td>
+  <td>ANLB AI原生建築生命體：120年生命週期設計、結構/消防/用電三安全、IDI瑞士再保、NVIDIA合作、WFR水過濾、BIM智慧建築履歷；非一般建商可比</td>
+  <td>「你們公司可不可信」「不選更好的公司」</td>
+</tr>
+<tr>
+  <td><strong>為什麼現在？</strong></td>
+  <td>時間成本、政策環境、整合機會、修繕壓力、資產折舊與家庭決策時機</td>
+  <td>防災型都更獎勵落日：118年3月前需完成掛件，錯過後每戶分回坪數大幅縮減（詳見6.3）；整合窗口可遇不可求</td>
+  <td>「能不能再等」「現在一定要嗎」</td>
+</tr>
+</tbody>
+</table>
+
+<h3>牛肉分類矩陣</h3>
+<p>每一個牛肉都應該講到住戶心裡。以下核心主張改寫為「對住戶說的話」，業務拜訪時可直接引用。</p>
+<table>
+<thead><tr><th>牛肉類型</th><th>核心主張（業務可直接對住戶說的話）</th><th>最適住戶類型</th></tr></thead>
+<tbody>
+<tr>
+  <td><strong>安全牛肉</strong></td>
+  <td>
+    「您住的這棟房子超過 50 年，三大安全風險每天都在累積：<br>
+    ① <strong>地震安全</strong>｜現有老屋耐震係數遠低於 0.41G 的新法規標準，下一次有感地震，您家樑柱、牆面、隔戶牆還撐得住嗎？台北平均每 2-3 年就有一次有感地震，這不是運氣問題，是時間問題。<br>
+    ② <strong>消防安全</strong>｜老公寓無消防灑水、無排煙、無雙逃生動線、巷道狹窄消防車進不來；新建築有 AI 火災預警、自動灑水、防火毯、社區消防整合系統。<br>
+    ③ <strong>用電安全</strong>｜超過 30 年的線路、漏電、超載、老化電箱，是夏天冷氣季節最大的火災來源；新建築有智慧電箱、漏電自動斷電、單獨家電迴路、智慧插座監控。<br>
+    這三件事不是慢慢變舊，是<strong>一次出事就來不及</strong>。」
+  </td>
+  <td>自住戶、高齡戶、有小孩家庭、長期持有戶</td>
+</tr>
+<tr>
+  <td><strong>健康牛肉</strong></td>
+  <td>
+    「老屋影響健康的不是『感覺』，是<strong>每天 24 小時都在發生的事</strong>：<br>
+    ① <strong>水質</strong>｜30 年以上的鐵水管、儲水塔、生鏽管壁。寶舖的 WFR 全戶水過濾，從進水口到您家水龍頭都是直飲級。<br>
+    ② <strong>空氣</strong>｜壁癌、黴菌孢子、PM2.5 滲入；新建築有 Good For Baby 空氣標準、新風系統、AI 環境感測。<br>
+    ③ <strong>噪音</strong>｜薄牆、單層玻璃、樓上樓下對流管。新建築隔音牆、雙層 Low-E 玻璃，把外面的吵雜留在外面。<br>
+    ④ <strong>採光與通風</strong>｜老巷道採光不足、潮濕；新規劃放大採光面、智慧調光。<br>
+    ⑤ <strong>溫濕度</strong>｜老屋夏熱冬冷、冷氣電費爆表；新建築恆溫恆濕、節能控制。<br>
+    ⑥ <strong>無障礙</strong>｜老公寓沒電梯、樓梯陡峭，對長輩、孕婦、小孩都是每日風險；新建築電梯到家、無障礙設計。<br>
+    這些事，<strong>住得越久越知道差別</strong>。」
+  </td>
+  <td>自住戶、高齡戶、注重生活品質住戶、有小孩家庭</td>
+</tr>
+<tr>
+  <td><strong>資產牛肉</strong></td>
+  <td>
+    「講白話一點：很多住戶都更，<strong>不是為了自己住，是為了給家人交代</strong>。<br>
+    您現在這間舊公寓，未來只能留給一個小孩；但都更後分回的新成屋，<strong>一間可以變兩間（家人住一間、出租一間）</strong>，或是<strong>賣掉一間、換成兩到三間市區舊公寓收租</strong>，把『一份資產』變成『一個資產組合』。<br>
+    更直接的說法是：您現在住的這棟，未來小孩繼承後要處理的不是『財產』，是『修繕、漏水、改建、整合』的麻煩；都更後留給他們的，<strong>是真正能變現、能收租、能傳承的資產</strong>。<br>
+    這就是為什麼很多原本不想都更的長輩，最後簽下去的原因——<strong>不是為自己，是為了下一代不要再為這棟房子煩惱一次</strong>。」
+  </td>
+  <td>投資型住戶、多資產住戶、家族決策戶、長輩戶</td>
+</tr>
+<tr>
+  <td><strong>傳承牛肉</strong></td>
+  <td>「您現在留給孩子的是一棟<strong>需要他們去處理修繕、漏水、改建的老房子</strong>；都更後留給他們的是<strong>一棟新屋＋一份保值資產</strong>。差別不是這代住得好不好，是下一代要不要再為這棟房子煩惱一次。」</td>
+  <td>家族決策戶、多人共有戶、長輩戶</td>
+</tr>
+<tr>
+  <td><strong>信任牛肉</strong></td>
+  <td>「都更不是簽合約就結束，是接下來 5-7 年要一起走完整合、設計、施工、交屋的長路。寶舖有信託履約、IDI 瑞士再保、SGS 認證、上市公司財報透明度——<strong>不是承諾相信我們，是用制度逼我們把事情做到最後</strong>。」</td>
+  <td>信任疑慮戶、觀望戶、明確反對但可溝通戶</td>
+</tr>
+<tr>
+  <td><strong>透明牛肉</strong></td>
+  <td>「分配比例怎麼算、坪數怎麼換、車位怎麼分、稅怎麼處理——<strong>我們把每一個細節攤開給您看，包括我們的限制、我們不能保證的部分</strong>。其他建商可能只給您看好的那一面，我們連風險都先說清楚。」</td>
+  <td>條件疑慮戶、制度不理解戶、理性分析型住戶</td>
+</tr>
+<tr>
+  <td><strong>現在牛肉</strong></td>
+  <td>「您說『再等等』——但建築成本每年漲 5-10%、利率還在高檔、估價師對老屋的估價持續往下調。<strong>每等一年，您能換回的坪數就少一點，能拿到的條件就差一點</strong>。等不是免費的選項，等是有代價的選擇。」</td>
+  <td>觀望戶、家人尚未討論戶、等待比較戶</td>
+</tr>
+<tr>
+  <td><strong>防災牛肉</strong></td>
+  <td>「政府的防災型都更獎勵，<strong>118 年 3 月之後就沒了</strong>。現在每戶可以多分回的坪數，那時候完全拿不到。我們算過，172 巷側 32 戶若錯過這個窗口，<strong>整體損失約 4.87 億，平均一戶少 1,521 萬元的分回價值</strong>。這不是嚇您，是政策真的有落日期限。」</td>
+  <td>所有未簽戶，尤其觀望戶與條件疑慮戶</td>
+</tr>
+<tr>
+  <td><strong>複利牛肉</strong></td>
+  <td>
+    「我們用您家的數字算給您看：<br>
+    都更後您分回的新成屋，市值大約是<strong>新台幣 8,000 萬</strong>。同樣 8,000 萬的不動產，台北蛋黃區每年保守估算 5% 的複利成長，<strong>一年增值 400 萬</strong>。<br>
+    換句話說：<strong>每晚一天完成都更，您就少賺 400 萬 ÷ 365 ≈ 1 萬 1 千元</strong>。<br>
+    您現在的老公寓不只沒在複利，<strong>估價還每年往下走、貸款成數每年下降</strong>。等於是雙重虧損：別人的房子在複利、您的房子在折舊。<br>
+    這就是為什麼都更不能再等——<strong>不是要不要做的問題，是早一年做、就多賺一年複利的問題</strong>。」
+  </td>
+  <td>投資型住戶、資產配置戶、家族決策戶、長期持有戶</td>
+</tr>
+<tr>
+  <td><strong>管委會牛肉<br>（未來生活成本）</strong></td>
+  <td>
+    「您可能沒想過：<strong>都更後的管委會，會比現在老公寓還省錢、還省心</strong>。原因是寶舖的新社區是『AI 智慧管理 + 全透明財務』。<br>
+    ① <strong>AI 幫您管</strong>｜社區設備（電梯、水塔、機電、消防、停車場）由 AI 自動巡檢、預警、報修，<strong>不需要養大量管理員工</strong>，人事費直接砍一半。能源（電費、水費、空調）由 AI 動態調控，<strong>公共電費比一般社區省 30-40%</strong>。<br>
+    ② <strong>全透明財務</strong>｜每一筆管理費收支、每一個工程報價、每一張發票都上鏈、上 App，<strong>住戶手機隨時可查，沒有黑箱、沒有圍標</strong>。其他社區常見的『主委亂花錢、廠商綁標、修繕費用浮報』在我們這裡發生不了。<br>
+    ③ <strong>長期維護成本透明</strong>｜BIM 智慧建築履歷把每一支水管、每一條電線都建檔，<strong>什麼時候該換、換多少錢，事先都知道</strong>，不會像老公寓一樣突然漏水才花大錢。<br>
+    結論：管理費可能跟現在差不多甚至更低，但<strong>住的品質、財務透明度、未來維護壓力，差一個世代</strong>。買新成屋不是只買房子，是買<strong>一套未來 30 年都不用擔心的管理系統</strong>。」
+  </td>
+  <td>所有住戶（尤其在意管理費、長期持有與信任公開透明的住戶）</td>
+</tr>
+<tr>
+  <td><strong>關係牛肉</strong></td>
+  <td>「都更是整棟住戶共同決策——您不是只在簽自己的決定，您也在幫鄰居決定要不要做。<strong>多一戶簽、整棟就多一份機會；少一戶不簽、所有人都重來</strong>。您要不要當那個推一把的人？」</td>
+  <td>支持戶、關鍵影響戶、樓長、社群核心戶</td>
+</tr>
+</tbody>
+</table>
+
+<div class="callout gold">
+<strong>業務使用提醒：</strong>核心主張不是「文宣」，是<strong>業務在現場可以直接說的話</strong>。每次拜訪前，業務應該先選 2-3 個最對應這位住戶的牛肉，講具體、講數字、講家人，<strong>不要只講『寶舖很好、都更很重要』這種誰都會說的話</strong>。
+</div>
+
+<h2 id="s6b">6.2 財務模型深化分析</h2>
+
+<h3>本案工程成本結構（縮小基地版，開發落地後預算）</h3>
+<p>以下為財務試算中的成本結構，係假設成功整合並落地後的開發全案預算，非整合階段已發生成本。</p>
+
+<table>
+<thead><tr><th>成本類型</th><th>縮小基地版（172巷側）</th><th>14筆基地版（含臥龍街）</th></tr></thead>
+<tbody>
+<tr><td>基地面積</td><td>423 坪</td><td>502.8 坪</td></tr>
+<tr><td>總銷坪數</td><td>3,192 坪</td><td>3,519.4 坪</td></tr>
+<tr><td>車位總數</td><td>85 席（實施者分回 30.48 席）</td><td>116 席（實施者分回 41.6 席）</td></tr>
+<tr><td>平均售價假設</td><td>160 萬/坪</td><td>160 萬/坪</td></tr>
+<tr><td>車位售價</td><td>400 萬/席（平面車位）</td><td>400 萬/席</td></tr>
+<tr><td><strong>全案總銷</strong></td><td><strong>544,663 萬</strong></td><td><strong>609,509 萬</strong></td></tr>
+<tr><td>營建單價</td><td>28 萬/坪</td><td>28 萬/坪</td></tr>
+<tr><td>營建坪數</td><td>3,672 坪</td><td>4,275.9 坪</td></tr>
+<tr><td>營建成本</td><td>102,805 萬</td><td>119,726 萬</td></tr>
+<tr><td>人事行政管理費（預估）</td><td>2,170 萬</td><td>2,318 萬</td></tr>
+<tr><td>規劃設計費（預估）</td><td>2,697 萬</td><td>2,975 萬</td></tr>
+<tr><td>顧問費（都更、估價、綠建築、智慧等）</td><td>2,613 萬</td><td>2,498 萬</td></tr>
+<tr><td>特殊認證費（WFR、IDI、SGS、BIM等）</td><td>1,349 萬</td><td>1,458 萬</td></tr>
+<tr><td>地政士費</td><td>159 萬</td><td>80 萬</td></tr>
+<tr><td>容積移轉相關成本</td><td>約 14,777 萬</td><td>約 17,555 萬</td></tr>
+<tr><td><strong>全案總成本</strong></td><td><strong>146,350 萬</strong></td><td><strong>165,324 萬</strong></td></tr>
+<tr><td>所需自有資金</td><td>56,269 萬</td><td>63,654 萬</td></tr>
+<tr><td><strong>獲利</strong></td><td><strong>48,954 萬</strong></td><td><strong>49,010 萬</strong></td></tr>
+<tr><td><strong>獲利率</strong></td><td><strong>25.07%</strong></td><td><strong>22.42%</strong></td></tr>
+<tr><td>自有資金報酬</td><td>87.00%</td><td>83.7%</td></tr>
+<tr><td>回算全案單坪成本</td><td>128 萬/坪（扣車位 117 萬/坪）</td><td>—</td></tr>
+<tr><td>獎金／個人獎金</td><td>3,916 萬／1,958 萬</td><td>—</td></tr>
+<tr><td>其他成本佔比</td><td>42.36%</td><td>—</td></tr>
+<tr><td>營建／銷售比</td><td>1.150</td><td>—</td></tr>
+<tr><td>土融時程</td><td>7 年</td><td>7.75 年</td></tr>
+<tr><td>施工工期</td><td>4 年（48 個月）</td><td>4 年（48 個月）</td></tr>
+</tbody>
+</table>
+
+<div class="callout blue">
+<strong>開發案成本的不可逆性：</strong>以上預算是假設整合成功後的全案成本，但整合失敗（如本案）後，已發生的整合成本（業務人力、建築師費、說明會、資料製作等）均無法回收。這是「高投入低轉化」案件的核心管理風險。
+</div>
+
+<h2 id="s6c">6.3 防災型獎勵落日試算</h2>
+<p>依最終通知附件一試算，防災型都更獎勵若未在118年3月前完成掛件，每位住戶可分回坪數將大幅縮減。以下為172巷側32戶（非簽署人數口徑）的整體影響：</p>
+
+<div class="callout red">
+<strong>172巷側整體差距（32戶估算）：</strong><br>
+防災型獎勵落日前後，總損失約<strong>4.87億元</strong>，平均每戶約<strong>1,521萬元</strong>。<br>
+（屬估算值，正式版需以政策正式公告為準；資料來源：最終通知附件一）
+</div>
+
+<p>對業務說法的意義：防災型牛肉是所有未簽戶共用的「為什麼現在」論述。每次拜訪觀望戶，都應主動說明這個數字，讓住戶理解「繼續觀望不是沒有代價，而是可能每戶損失1,521萬的分回價值」。</p>
+
+<h3>地主分配條件演變</h3>
+<table>
+<thead><tr><th>時期/版本</th><th>對外口徑</th><th>備註</th></tr></thead>
+<tbody>
+<tr><td>早期（1140419版）</td><td>換坪比1.62；50/50說法；10/90說法</td><td>舊版，不再採用</td></tr>
+<tr><td>2026/02/04版</td><td>地主/建商 64/36；都更獎勵上調</td><td>最終正式對外口徑之一</td></tr>
+<tr><td><strong>最終確認口徑</strong></td><td>換坪比<strong>1.68</strong>；採縮小基地版；<strong>64/36</strong></td><td>人工確認為最終版本</td></tr>
+<tr><td>樓上1.65</td><td>不採用</td><td>人工確認不採</td></tr>
+</tbody>
+</table>
+
+<!-- ─────────────────────────────────────────── -->
+<h1 id="s7">七｜業務靈魂與寶舖文化</h1>
+
+<h2>7.1 三個信心</h2>
+<p>業務要有靈魂，第一步是建立三個信心：</p>
+
+<div class="twocol">
+<div class="info-box">
+  <strong>對產品有信心</strong>
+  相信寶舖的規劃、建築品質、健康安全與未來價值，是真正能幫助住戶的方案。<br><br>
+  業務才能把產品價值講成住戶聽得懂的利益，而不是只背規格。
+</div>
+<div class="info-box">
+  <strong>對公司有信心</strong>
+  相信寶舖的履約能力、品牌理念、透明度與長期責任。<br><br>
+  面對住戶質疑時，能穩定說明公司為何值得信任。
+</div>
+</div>
+<div class="info-box" style="margin-top:16px">
+  <strong>對自己有信心</strong>
+  相信自己不是在推銷合約，而是在協助住戶做正確判斷。<br>
+  面對拒絕、反問與質疑時，不逃避、不模糊、不失去節奏。
+</div>
+
+<h2>7.2 同理心：住戶表面在問什麼，真正擔心什麼</h2>
+<div class="twocol">
+<div class="info-box">
+  <strong>住戶表面問的</strong>
+  ・我可以分多少？<br>
+  ・車位怎麼配？<br>
+  ・權變會不會比較好？<br>
+  ・你們公司可不可信？<br>
+  ・我現在不簽會怎樣？
+</div>
+<div class="info-box">
+  <strong>住戶真正擔心的</strong>
+  ・我的資產會不會吃虧？<br>
+  ・我的家人會不會反對？<br>
+  ・我的權利會不會不安全？<br>
+  ・我會不會被騙？<br>
+  ・我現在做決定會不會太早？<br>
+  ・未來如果不成怎麼辦？
+</div>
+</div>
+
+<h2>7.3 五個文化態度</h2>
+<table>
+<thead><tr><th>文化態度</th><th>定義</th><th>臥龍357的檢討意義</th></tr></thead>
+<tbody>
+<tr><td>以住戶利益為出發點</td><td>不是先想怎麼簽，而是先想這個案子對住戶有什麼幫助</td><td>牛肉論述與利益說法沒有被充分說清楚</td></tr>
+<tr><td>對案件有Ownership</td><td>不只回報進度，而是對每戶狀態、下一步與結果負責</td><td>案件狀態與未簽原因未被即時掌握</td></tr>
+<tr><td>用專業建立信任</td><td>專業不是資料很多，而是能把複雜事情講清楚</td><td>部分簡單問題被複雜化，造成誤會</td></tr>
+<tr><td>用透明面對問題</td><td>不只透明優點，也要透明限制、風險、條件與退場</td><td>縮小基地、財務安全、權變比較與退場說明需更清楚</td></tr>
+<tr><td>用閉環證明靠譜</td><td>每件承諾、問題、資料、會議與退場都要有追蹤</td><td>住戶問題、群組回覆、文件返還與歸檔需制度化</td></tr>
+</tbody>
+</table>
+
+<!-- ─────────────────────────────────────────── -->
+<h1 id="s8">八｜閉環管理系統</h1>
+
+<p>這套系統的目的不是增加行政負擔，而是把土地開發案從「靠個人經驗」轉為「靠系統判斷」。</p>
+
+<table>
+<thead><tr><th>模組</th><th>工具</th><th>目的</th><th>使用時機</th><th>主責</th><th>驗收標準</th></tr></thead>
+<tbody>
+<tr><td><strong>住戶分類模組</strong></td><td>住戶分類與推進策略表</td><td>把住戶從名單變成可判斷、可推進、可追蹤的對象</td><td>開案初期、說明會前後、卡關時、不續行前</td><td>案件主責＋承辦</td><td>每戶都有支持度分類、樣態、決策者、疑慮、牛肉、下一步與閉環狀態</td></tr>
+<tr><td><strong>案件判斷模組</strong></td><td>案件狀態判斷表</td><td>每週判斷可推、卡關、縮小基地或停損</td><td>每週、重大節點前</td><td>案件主責</td><td>能明確標示案件狀態，不靠感覺判斷</td></tr>
+<tr><td><strong>資源控管模組</strong></td><td>資源投入盤點表</td><td>看清已投入、後續投入與機會成本</td><td>說明會後14天、縮小基地前、不續行前</td><td>案件主責＋主管</td><td>看得出已投入、後續投入是否值得繼續</td></tr>
+<tr><td><strong>住戶閉環模組</strong></td><td>住戶問題閉環表</td><td>確保每題都有回覆與追蹤</td><td>住戶提問後立即啟動</td><td>承辦＋案件主責</td><td>每題都有負責人、期限、回覆狀態與閉環狀態</td></tr>
+<tr><td><strong>牛肉論述模組</strong></td><td>三問牛肉＋一戶一張牛肉表</td><td>把品牌與產品轉成住戶利益</td><td>提案前、拜訪前、說明會前</td><td>案件主責＋業務</td><td>能說清楚三個Why，並對應每戶利益</td></tr>
+<tr><td><strong>退場閉環模組</strong></td><td>不續行退場SOP</td><td>確保不續行後仍完成信任與文件閉環</td><td>確認不續行後</td><td>接手承辦＋行政/法務</td><td>通知、返還、收執、親送與歸檔完整</td></tr>
+</tbody>
+</table>
+
+<!-- ─────────────────────────────────────────── -->
+<h1 id="s9">九｜30日落地計畫與驗收</h1>
+
+<h2>9.1 三日內｜臥龍357退場閉環</h2>
+<table>
+<thead><tr><th>子任務</th><th>主責</th><th>產出</th><th>完成標準</th></tr></thead>
+<tbody>
+<tr><td>確認33件文件返還狀態</td><td>陳俞安</td><td>臥龍357_已簽文件返還追蹤表</td><td>33件逐戶標示寄送/收件/收執狀態；未完成者標示原因</td></tr>
+<tr><td>確認05/01文件是否收取</td><td>陳俞安＋莊穎霖</td><td>05月01日文件確認紀錄</td><td>明確標示是否收取；若未收取，標示處理方式</td></tr>
+<tr><td>建立雙掛號收執保存紀錄</td><td>陳俞安</td><td>雙掛號收執保存紀錄</td><td>每件都有收據或追蹤編號；掃描集中歸檔</td></tr>
+<tr><td>支持戶個別說明</td><td>莊穎霖</td><td>支持戶個別說明紀錄</td><td>支持戶逐戶標示說明日期、方式、後續疑問</td></tr>
+<tr><td>退場完成清單</td><td>陳俞安＋莊穎霖</td><td>退場完成清單</td><td>通知/返還/收執/親送/支持戶說明/歸檔均有狀態</td></tr>
+</tbody>
+</table>
+
+<h2>9.2 七日內｜六項制度模板V1</h2>
+<table>
+<thead><tr><th>工具</th><th>主責</th><th>必備欄位</th></tr></thead>
+<tbody>
+<tr><td>住戶分類與推進策略表</td><td>莊穎霖</td><td>戶別、姓名、是否簽署、入群、支持度分類、住戶樣態、實際決策者、主要疑慮、本戶牛肉、下一步策略、負責人、期限、是否閉環</td></tr>
+<tr><td>案件狀態判斷表</td><td>莊穎霖</td><td>案件名稱、簽署率、雙80%、關鍵戶、未簽原因、財務安全、資源投入、機會成本、下一步判斷、是否需主管</td></tr>
+<tr><td>資源投入盤點表</td><td>莊穎霖＋陳俞安</td><td>推進期間、拜訪、會議、導覽、圖面、財務試算、簡報、行政成本、主管時間、機會成本</td></tr>
+<tr><td>住戶問題閉環表</td><td>陳俞安</td><td>提問日期、住戶/戶別、問題分類、摘要、負責人、期限、回覆內容、是否需主管/法務、是否閉環、是否回寫QA</td></tr>
+<tr><td>三問牛肉＋一戶一張牛肉表</td><td>莊穎霖＋業務</td><td>為何都更、為何寶舖、為何現在、每戶利益、每戶疑慮、反對理由、下一步、負責人</td></tr>
+<tr><td>不續行退場SOP</td><td>陳俞安＋行政/法務</td><td>決策確認、通知、支持戶說明、文件造冊、雙掛號、收執保存、未收件親送、退場完成清單、歸檔、回寫檢討</td></tr>
+</tbody>
+</table>
+
+<h2>9.3 十四日內｜選一案試跑</h2>
+<table>
+<thead><tr><th>候選案件</th><th>建議套用工具</th><th>試跑目標</th></tr></thead>
+<tbody>
+<tr><td>敦化686（建議優先）</td><td>住戶問題閉環表、案件狀態判斷表</td><td>檢查住戶問題、產品規劃與群組經營是否能形成閉環</td></tr>
+<tr><td>忠孝199</td><td>三問牛肉＋一戶一張牛肉表、案件狀態判斷表</td><td>合約、華廈/公寓整合與關鍵戶接觸是否有明確利益論述</td></tr>
+<tr><td>復興623</td><td>案件狀態判斷表、資源投入盤點表</td><td>外部競爭與開案判斷壓力，判斷是否值得持續投入</td></tr>
+</tbody>
+</table>
+
+<!-- ─────────────────────────────────────────── -->
+<h1 id="s9b">九之一｜住戶退場執行計畫</h1>
+
+<div class="callout red">
+<strong>退場核心原則：不續行不是結束，是公司信任資產的最後一場考驗。</strong><br>
+退場不是把文件寄出去就好，而是要讓<strong>支持戶覺得被尊重、未簽戶覺得被誠實對待、失聯戶仍被認真處理、群組住戶能體面收尾、寶舖品牌能被住戶記得是『誠信負責的公司』</strong>。
+</div>
+
+<h2 id="s9b1">9b.1 退場目標與原則</h2>
+<table>
+<thead><tr><th>目標</th><th>內容</th><th>關鍵指標</th></tr></thead>
+<tbody>
+<tr><td><strong>權益閉環</strong></td><td>已簽住戶的意向書、附件、個資文件全數返還或正式歸檔</td><td>33 件雙掛號 100% 寄出，回執率達 100%（含親送）</td></tr>
+<tr><td><strong>信任閉環</strong></td><td>支持戶、感謝名單戶（柯淑惠、陳君逸、張文琳等）逐戶個別說明</td><td>每位支持戶都有一次面對面或電話的個別致意紀錄</td></tr>
+<tr><td><strong>關係閉環</strong></td><td>未簽戶、失聯戶、反對戶都收到正式通知，不留疑問</td><td>群組公告完整、通知信寄達確認、親送紀錄完備</td></tr>
+<tr><td><strong>制度閉環</strong></td><td>所有退場文件、紀錄、決策依據完整歸檔，可作為未來案件教材</td><td>退場完成清單逐項打勾、檔案進入正式歸檔系統</td></tr>
+<tr><td><strong>未來閉環</strong></td><td>不關閉未來重啟的可能性，但不過度承諾</td><td>聲明文字保留「公司會完整歸檔，後續若有正式評估會主動聯繫」的開口</td></tr>
+</tbody>
+</table>
+
+<h3>五個退場禁忌</h3>
+<ol>
+<li><strong>禁忌一：用模糊語言交代支持戶</strong>。「以後可能還會做」這種話會讓支持戶覺得被欺騙。要明確說明「現在不續行」與「未來如有正式評估會主動告知」。</li>
+<li><strong>禁忌二：把退場做成只發群組訊息</strong>。群組通知是輔助，正式通知必須有書面、雙掛號、親送與簽收。</li>
+<li><strong>禁忌三：把已簽文件當廢紙處理</strong>。每一份意向書都是住戶的個資與信任，必須清楚返還或正式歸檔。</li>
+<li><strong>禁忌四：對反對戶報復或冷處理</strong>。即使對方曾激烈反對，退場時仍要禮貌、完整通知。</li>
+<li><strong>禁忌五：留下待辦事項給接手案件</strong>。退場必須在 30 日內完成所有閉環，不要把臥龍357的尾巴拖到下一個案件。</li>
 </ol>
-<h2 id="三未來要建立的系統">三、未來要建立的系統</h2>
-<p>建議建立「土地開發案件全流程閉環管理系統」，包含五個模組：</p>
+
+<h2 id="s9b2">9b.2 退場時間軸（Day 0 ~ Day 30）</h2>
 <table>
-<thead>
-<tr class="header">
-<th>模組</th>
-<th>工具</th>
-<th>目的</th>
-</tr>
-</thead>
+<thead><tr><th>時程</th><th>日期</th><th>關鍵動作</th><th>主責</th><th>產出／驗收</th></tr></thead>
 <tbody>
-<tr class="odd">
-<td>案件判斷模組</td>
-<td>案件狀態判斷表</td>
-<td>判斷可推、卡關、縮小基地或停損</td>
+<tr><td><strong>Day -3</strong></td><td>2026/04/30</td><td>董事長確認不續行；內部決策紀錄留底</td><td>董事長／主管</td><td>正式決策紀錄（待補）</td></tr>
+<tr><td><strong>Day 0</strong></td><td>2026/05/03</td><td>對全體住戶發布不續行聲明（群組公告＋通知信草稿確認）</td><td>莊穎霖</td><td>聲明原文＋群組公告截圖</td></tr>
+<tr><td><strong>Day 0</strong></td><td>2026/05/03</td><td>支持戶個別致電／親訪預約（不可只丟群組）</td><td>莊穎霖＋陳俞安</td><td>支持戶個別說明預約表</td></tr>
+<tr><td><strong>Day +1</strong></td><td>2026/05/04</td><td>33 件雙掛號寄出（已簽意向書與附件返還）；同步啟動失聯戶親送或地政查址</td><td>陳俞安＋行政</td><td>雙掛號寄送清單、收據編號</td></tr>
+<tr><td><strong>Day +1~3</strong></td><td>2026/05/04~06</td><td>支持戶個別說明（面對面為主）；感謝信＋小禮（如有公司預算）</td><td>莊穎霖</td><td>支持戶個別說明紀錄表</td></tr>
+<tr><td><strong>Day +3</strong></td><td>2026/05/06</td><td>確認雙掛號回執；未收件戶清單建立</td><td>陳俞安</td><td>回執追蹤表＋未收件名單</td></tr>
+<tr><td><strong>Day +3~5</strong></td><td>2026/05/06~08</td><td>未收件戶親送；現場簽收＋拍照存證</td><td>陳俞安＋業務</td><td>親送紀錄表（含簽名與時間戳）</td></tr>
+<tr><td><strong>Day +5</strong></td><td>2026/05/08</td><td>退場完成檢核會議（主管參與）</td><td>陳俞安＋莊穎霖</td><td>退場完成清單（每項打勾或註明原因）</td></tr>
+<tr><td><strong>Day +7</strong></td><td>2026/05/10</td><td>群組正式封存或轉為「公司聯絡窗口」群（依董事長決定）</td><td>莊穎霖</td><td>群組處理決策紀錄</td></tr>
+<tr><td><strong>Day +14</strong></td><td>2026/05/17</td><td>正式歸檔；建立臥龍357退場專案檔案夾</td><td>陳俞安＋行政</td><td>正式歸檔紀錄、檔案位置編號</td></tr>
+<tr><td><strong>Day +30</strong></td><td>2026/06/02</td><td>退場後 30 日回訪：對支持戶與關鍵戶一次關心電話（不談都更，只關心生活）</td><td>莊穎霖</td><td>關係維護紀錄</td></tr>
+</tbody>
+</table>
+
+<h2 id="s9b3">9b.3 分群退場策略</h2>
+<p>不同群體的住戶，退場時的訊息、語氣、管道都不一樣。以下五個分群處理：</p>
+
+<table>
+<thead><tr><th>對象群體</th><th>本案人數</th><th>退場目標</th><th>必備動作</th><th>不可省略的細節</th></tr></thead>
+<tbody>
+<tr>
+  <td><strong>① 支持戶／感謝名單</strong><br>（柯淑惠、陳君逸、張文琳等）</td>
+  <td>約 3-5 戶</td>
+  <td>讓支持戶覺得被尊重、不被利用、不被遺忘</td>
+  <td>① 個別電話預約面訪（不可群發訊息）<br>② 主管或莊穎霖親自說明<br>③ 致歉：「未能把支持轉化為成案」<br>④ 留下未來聯絡窗口<br>⑤ 退場 30 日後追蹤關心電話</td>
+  <td>絕對不可只用群組或制式信件交代；致歉要具體、不要套話</td>
 </tr>
-<tr class="even">
-<td>資源控管模組</td>
-<td>資源投入盤點表</td>
-<td>判斷投入是否值得繼續</td>
+<tr>
+  <td><strong>② 已簽未列感謝名單戶</strong></td>
+  <td>約 29-31 戶<br>（合計已簽 34 戶 - 支持戶）</td>
+  <td>感謝參與、清楚返還文件、保持品牌印象</td>
+  <td>① 雙掛號退回意向書與附件<br>② 通知信附公司聲明<br>③ 不主動承諾未來，但保留聯絡可能<br>④ 雙掛號未收件者改親送</td>
+  <td>意向書必須以正本返還或正式歸檔；不可口頭交代</td>
 </tr>
-<tr class="odd">
-<td>住戶閉環模組</td>
-<td>住戶問題閉環表</td>
-<td>讓每個問題有負責人、期限與回覆</td>
+<tr>
+  <td><strong>③ 未簽但有接觸／群組內</strong></td>
+  <td>約 7 戶</td>
+  <td>正式告知不續行；不留模糊空間</td>
+  <td>① 群組公告＋個別訊息確認讀取<br>② 提供正式通知 PDF<br>③ 若曾有條件談判紀錄，正式回應「條件已不適用」</td>
+  <td>不可讓住戶以為「公司還在等他簽」</td>
 </tr>
-<tr class="even">
-<td>牛肉論述模組</td>
-<td>三問牛肉＋一戶一張牛肉表</td>
-<td>先想清楚 Why，再執行 How</td>
+<tr>
+  <td><strong>④ 未簽且明確反對</strong></td>
+  <td>約 7 戶</td>
+  <td>禮貌正式通知，不挑起情緒</td>
+  <td>① 不主動電話、避免再起爭執<br>② 雙掛號正式通知<br>③ 若曾有衝突，由主管署名通知<br>④ 不要求任何回覆</td>
+  <td>通知信語氣中性、感謝參與；不要試圖再次說服</td>
 </tr>
-<tr class="odd">
-<td>退場閉環模組</td>
-<td>不續行退場SOP</td>
-<td>停止也要完成通知、返還、收執、歸檔</td>
+<tr>
+  <td><strong>⑤ 失聯戶／找不到人</strong></td>
+  <td>約 7-8 戶</td>
+  <td>盡到通知義務、留下完整紀錄</td>
+  <td>① 雙掛號寄戶籍地與通訊地址<br>② 退回件改親送、地政查址、鄰里協詢<br>③ 留下「已盡通知義務」的書面紀錄（拍照、見證）<br>④ 海外戶用 Email 或家屬轉達</td>
+  <td>每次嘗試都要有日期、方式、結果紀錄；未來案件再起若涉及同一住戶，紀錄可調閱</td>
 </tr>
 </tbody>
 </table>
-<h2 id="四30日內落地方式">四、30日內落地方式</h2>
+
+<h2 id="s9b4">9b.4 文件返還 SOP</h2>
+
+<h3>應返還文件清單（每戶）</h3>
 <table>
-<thead>
-<tr class="header">
-<th>時間</th>
-<th>任務</th>
-<th>負責人</th>
-<th>產出</th>
-</tr>
-</thead>
+<thead><tr><th>文件類型</th><th>返還形式</th><th>備註</th></tr></thead>
 <tbody>
-<tr class="odd">
-<td>3日內</td>
-<td>臥龍357退場資料補齊</td>
-<td>陳俞安＋莊穎霖</td>
-<td>文件返還追蹤、支持戶說明紀錄、財務待補清單</td>
-</tr>
-<tr class="even">
-<td>7日內</td>
-<td>五項制度模板V1</td>
-<td>莊穎霖主責</td>
-<td>五項模板</td>
-</tr>
-<tr class="odd">
-<td>14日內</td>
-<td>選一案試跑</td>
-<td>董事長／主管決定，莊穎霖執行</td>
-<td>試跑案件紀錄</td>
-</tr>
-<tr class="even">
-<td>30日內</td>
-<td>回收試跑結果並修正</td>
-<td>莊穎霖＋團隊</td>
-<td>制度V1修正版、Asana任務化、業務訓練題材</td>
-</tr>
+<tr><td>意向書正本</td><td>雙掛號退回</td><td>每戶 1 份</td></tr>
+<tr><td>個資同意書</td><td>雙掛號退回或正式銷毀</td><td>依個資法處理，不可留存超過必要期間</td></tr>
+<tr><td>身分證影本／戶籍謄本</td><td>正式銷毀</td><td>銷毀紀錄留底（碎紙＋見證簽名）</td></tr>
+<tr><td>分配資料表（業務製作）</td><td>視住戶要求</td><td>住戶要求才返還</td></tr>
+<tr><td>公司聲明信＋附件</td><td>隨雙掛號附上</td><td>含不續行說明、文件返還清單、聯絡窗口</td></tr>
 </tbody>
 </table>
-<h2 id="五需董事長決策">五、需董事長決策</h2>
-<ol type="1">
-<li>是否同意建立土地開發案件全流程閉環管理系統。</li>
-<li>是否同意7日內完成五項制度模板V1。</li>
-<li>是否同意先選一案試跑30天。</li>
-<li>是否同意臥龍357退場列為專案任務。</li>
-<li>是否同意後續轉成Asana任務與業務教育訓練。</li>
+
+<h3>雙掛號流程</h3>
+<ol>
+<li><strong>造冊</strong>：33 件逐戶列出（戶別、姓名、地址、文件清單、寄送日期）。</li>
+<li><strong>裝封</strong>：每戶獨立信封、文件清單一式兩份（一份隨件、一份留底簽收）。</li>
+<li><strong>寄送</strong>：05/04 統一寄出，留下郵局收據、追蹤編號。</li>
+<li><strong>追蹤</strong>：05/06 線上查詢回執狀態，未送達者列入未收件清單。</li>
+<li><strong>未收件親送</strong>：05/06~08，由業務或行政親送，現場簽收＋拍照＋時間戳。</li>
+<li><strong>歸檔</strong>：所有收據、回執、簽名、拍照、見證紀錄，集中歸檔。</li>
 </ol>
-<h2 id="一報告目的與總結論">一、報告目的與總結論</h2>
-<h3 id="已確認事實">已確認事實</h3>
-<p>臥龍357案已於2026/04/30確認不續行，2026/05/03通知，並預計於2026/05/04啟動文件返還作業。依附件06與V7整理，本案全案口徑為52人、34人已簽、18人未簽，簽署率65.38%；縮小基地172巷側為37人、28人已簽、9人未簽，簽署率75.68%，尚差2人、49.23坪達雙80%；臥龍街側為15人、6人已簽、9人未簽，簽署率40.00%。</p>
-<p>本案自2025/03推進至2026/05，約14個月，投入包含5場大型說明會、6場小型會議、10次導覽、約20次圖面會議、至少8種財務試算情境、4版對外簡報、9版說明資料，以及約8次主管或董事長決策參與。</p>
-<h3 id="檢討判斷">檢討判斷</h3>
-<p>本報告不是單純檢討臥龍357為何不續行，而是要把本案暴露出的問題，轉化成土地開發部未來的閉環管理系統。核心結論是：本案不續行不是因為公司沒有投入，而是投入未有效轉化成住戶信任、簽署成果與案件成熟度。</p>
-<p>臥龍357案的管理意義在於提醒公司：土地開發案件不能只靠熱度、努力與個別執行動作推進，而必須建立從開案判斷、資源控管、住戶問題閉環、牛肉論述，到退場閉環的完整系統。</p>
-<h3 id="待補資料">待補資料</h3>
+
+<h3>退場完成檢核清單（30 日內須全部達成）</h3>
+<div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:14px 0">
+☐ 33 件雙掛號全部寄出<br>
+☐ 雙掛號回執全部追蹤完成（送達或退回）<br>
+☐ 未收件戶全部完成親送與簽收紀錄<br>
+☐ 所有支持戶（感謝名單）完成個別說明<br>
+☐ 群組正式公告不續行聲明<br>
+☐ 群組封存或轉聯絡窗口的處理決策完成<br>
+☐ 退場完成清單逐項打勾<br>
+☐ 文件、收據、回執、親送紀錄正式歸檔<br>
+☐ 個資文件依法銷毀並留下銷毀紀錄<br>
+☐ 退場後 30 日回訪支持戶與關鍵戶<br>
+☐ 退場檢討會議紀錄（含經驗回寫）
+</div>
+
+<h2 id="s9b5">9b.5 退場話術範本</h2>
+
+<h3>對全體住戶聲明（群組公告草案重點）</h3>
+<div class="callout blue">
+「臥龍357都市更新案，自 114 年 04 月推動以來，承蒙各位住戶參與說明會、意向討論與多次溝通。<br><br>
+公司已就全案與縮小基地兩種方案進行完整評估，<strong>目前仍未達安全續行條件</strong>，因此公司決定<strong>不再續行本案之服務</strong>。<br><br>
+此一決定不是否定各位住戶的支持，而是基於簽署門檻、後續風險與資源投入的綜合判斷。<br><br>
+已簽住戶的意向書與相關文件，將於 05/04 起以雙掛號逐戶返還，05/06 確認回執，05/08 前完成必要親送。<br><br>
+公司會完整歸檔本案資料，未來若有正式重新評估或相關都市更新方向，會主動聯繫各位住戶。<br><br>
+最後，特別感謝在過程中曾協助溝通的住戶，您們的支持公司會記得。」
+</div>
+
+<h3>對支持戶個別說明（口語版）</h3>
+<div class="callout green">
+「○○姊／哥，這次特別來找您，是因為公司昨天確認，臥龍357不續行。<br><br>
+我想第一時間跟您面對面說，<strong>不是給您一份制式通知</strong>。<br><br>
+這個決定不是因為您支持不夠，是公司評估縮小基地後，財務與簽署都還是沒辦法達到能安全續行的條件。<br><br>
+我代表公司向您致歉，<strong>我們沒有把您的支持轉化為一個成功的案子</strong>。這份歉意是真心的，因為您一路上幫了我們非常多。<br><br>
+您之前簽的文件，我們會在這幾天用雙掛號退回給您。如果您之後對都更還有任何問題，或是未來有新的方向，我會主動聯繫您。<br><br>
+今天主要是想跟您說一聲：<strong>謝謝您的信任，公司不會忘記</strong>。」
+</div>
+
+<h3>對未簽戶（曾接觸）通知（書面版）</h3>
+<div class="callout gold">
+「○○先生／女士您好，<br><br>
+本公司就『臥龍357都市更新案』之整合作業，經完整評估後，於 115 年 04 月 30 日確認<strong>不再續行本案服務</strong>。<br><br>
+過往拜訪與說明過程中，曾就分配條件、權利變換等項目進行討論。在此正式說明，<strong>原討論之條件均不再適用</strong>，本案整合作業已全數結束。<br><br>
+若您過往提供之個資文件需返還或銷毀，請於 05/15 前回覆本公司聯絡窗口（莊穎霖，電話 XX-XXXXXXXX），公司將協助辦理。<br><br>
+感謝您對本案的關注與時間，未來若您對都市更新有任何疑問，仍歡迎隨時聯繫。<br><br>
+寶舖建設股份有限公司　敬啟」
+</div>
+
+<h3>對失聯戶（書面留底）</h3>
+<div class="callout red">
+「本公司已多次嘗試與 ○○○ 先生／女士聯繫，包括：<br>
+・電話：(列日期、號碼、結果)<br>
+・親訪：(列日期、地址、結果)<br>
+・地政查址：(列日期、查得內容)<br>
+・鄰里協詢：(列日期、結果)<br><br>
+經多次未果後，本公司於 115/05/04 以雙掛號寄送不續行通知至戶籍地與通訊地址，<strong>盡到法律與道義上之通知義務</strong>。<br><br>
+本紀錄保留於臥龍357退場專案檔案夾，供未來查詢。」
+</div>
+
+<div class="decision-box">
+<h3>退場執行的核心精神</h3>
+<p>退場是公司面對住戶的<strong>最後一個機會</strong>——讓住戶記得「寶舖是一家負責、誠實、體面收尾的公司」。<br><br>
+做得好，未來案件碰到同樣的住戶或鄰里時，公司不會被當成「曾經跑掉的建商」；做得不好，臥龍357會變成寶舖在大安區的長期負評。<br><br>
+<strong>退場做的不是這個案子，是寶舖的下一個十年。</strong></p>
+</div>
+
+<!-- ─────────────────────────────────────────── -->
+<h1 id="s10">十｜待補資料與附件</h1>
+
+<table>
+<thead><tr><th>待補資料</th><th>重要性</th><th>說明</th><th>建議負責人</th></tr></thead>
+<tbody>
+<tr><td>財務安全邊際正式結論</td><td><span class="tag-warn">影響定論</span></td><td>補前不可寫成財務不足已定論；敏感度已有「偏弱」判斷，但董事長可判斷摘要仍待補</td><td>待確認</td></tr>
+<tr><td>正式決策紀錄</td><td><span class="tag-warn">影響定論</span></td><td>支撐不續行決策完整性；目前僅有人工確認，無正式文件</td><td>董事長/主管</td></tr>
+<tr><td>已簽文件返還完成紀錄</td><td><span class="tag-warn">影響定論</span></td><td>支撐退場是否閉環；雙掛號/親送/收執/歸檔均需完整</td><td>陳俞安</td></tr>
+<tr><td>支持戶個別說明紀錄</td><td><span class="tag-warn">影響定論</span></td><td>支撐信任維護與退場交代；柯淑惠、陳君逸、張文琳等需個別確認</td><td>莊穎霖</td></tr>
+<tr><td>說明會申請補休紀錄</td><td><span class="tag-wait">補強佐證</span></td><td>量化人力成本的一部分；具體補休申請日數待人資確認</td><td>行政/人資</td></tr>
+<tr><td>印刷與雙掛號實際費用</td><td><span class="tag-wait">補強佐證</span></td><td>現金成本量化；各說明會印製本數與實際郵資</td><td>陳俞安/行政</td></tr>
+<tr><td>圖面版本清單（4版）</td><td><span class="tag-wait">補強佐證</span></td><td>支撐建築師資源投入與版本管理檢討；各版日期/調整內容/是否對外</td><td>待確認</td></tr>
+<tr><td>被排擠案件實際影響量化</td><td><span class="tag-wait">補強佐證</span></td><td>機會成本是否可量化；需評估6案受到的實際延誤或資源排擠</td><td>主管</td></tr>
+<tr><td>各說明會出席/簽署情形</td><td><span class="tag-info">可延後</span></td><td>支撐「第一場說明會是否形成集中簽署節點」的完整判斷</td><td>陳俞安/莊穎霖</td></tr>
+<tr><td>Line群組原始紀錄</td><td><span class="tag-info">可延後</span></td><td>補強群組是否形成共識管理，非只通知工具</td><td>莊穎霖</td></tr>
+</tbody>
+</table>
+
+<h2>引用附件</h2>
 <ul>
-<li>正式採用財務模型檔名。</li>
-<li>財務安全邊際明確數字。</li>
-<li>正式決策紀錄。</li>
-<li>文件返還、收執保存、未收件親送與正式歸檔紀錄。</li>
+  <li><strong>附件01｜住戶歷次問題總表</strong>：支撐住戶問題閉環不足、權變與協議合建說明需標準化、客戶牛肉論述需收斂。</li>
+  <li><strong>附件05｜資源投入盤點表</strong>：支撐高資源投入、資源未有效轉化、資源投入盤點制度。</li>
+  <li><strong>附件06｜續行/縮小基地/不續行決策依據表</strong>：支撐不續行是綜合停損判斷，而非單純簽署率不足。</li>
 </ul>
-<h3 id="後續行動">後續行動</h3>
-<p>以臥龍357為內部案例，建立「土地開發案件全流程閉環管理系統」，並於30日內完成五項工具初版、選定一案試跑、回收試跑結果並修正。</p>
-<h2 id="二本案不續行的核心判斷">二、本案不續行的核心判斷</h2>
-<section class="visual-block" aria-label="不續行判斷漏斗圖">
-  <h3>圖表｜不續行判斷漏斗圖</h3>
-  <p>用全案、縮小基地與臥龍街側三種口徑，呈現本案不續行的綜合停損邏輯。</p>
-  <img src="assets/visuals/02_不續行判斷漏斗圖.svg" alt="不續行判斷漏斗圖">
-  <div class="visual-source">圖表來源：依據 V9 報告與附件整理。</div>
-</section>
-<h3 id="已確認事實-1">已確認事實</h3>
-<table>
-<thead>
-<tr class="header">
-<th>判斷口徑</th>
-<th style="text-align: right;">總數</th>
-<th style="text-align: right;">已簽</th>
-<th style="text-align: right;">未簽</th>
-<th style="text-align: right;">簽署率</th>
-<th>雙80%狀態</th>
-<th>判斷</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>全案口徑</td>
-<td style="text-align: right;">52人</td>
-<td style="text-align: right;">34人</td>
-<td style="text-align: right;">18人</td>
-<td style="text-align: right;">65.38%</td>
-<td>未達</td>
-<td>未達續行條件</td>
-</tr>
-<tr class="even">
-<td>縮小基地｜172巷側</td>
-<td style="text-align: right;">37人</td>
-<td style="text-align: right;">28人</td>
-<td style="text-align: right;">9人</td>
-<td style="text-align: right;">75.68%</td>
-<td>尚差2人、49.23坪</td>
-<td>最接近達標，但仍未達</td>
-</tr>
-<tr class="odd">
-<td>臥龍街側</td>
-<td style="text-align: right;">15人</td>
-<td style="text-align: right;">6人</td>
-<td style="text-align: right;">9人</td>
-<td style="text-align: right;">40.00%</td>
-<td>未達</td>
-<td>不具單獨續行條件</td>
-</tr>
-</tbody>
-</table>
-<p>172巷13號3樓為期限後補簽戶，因此早期32簽、33簽與34簽差異屬統計時間點差異。本報告採34人／52人、65.38%作為全案最後簽署口徑。</p>
-<h3 id="檢討判斷-1">檢討判斷</h3>
-<p>本案不續行的核心，不是單純簽署率不足，而是三個條件同時成立：</p>
-<ol type="1">
-<li>全案與縮小基地均未達雙80%。</li>
-<li>財務安全邊際仍需補明確數字，不可將財務不足寫成既定結論。</li>
-<li>本案已投入大量資源，且機會成本明確存在，若繼續投入，需有更高把握與更明確續行依據。</li>
-</ol>
-<p>因此，不續行應定義為「簽署門檻、縮小基地後仍未達標、財務安全、資源投入效益與機會成本」的綜合停損，而不是主觀放棄。</p>
-<h3 id="待補資料-1">待補資料</h3>
-<ul>
-<li>財務安全邊際數字。</li>
-<li>正式採用財務模型檔名。</li>
-<li>後續成功率或續行成功機率評估。</li>
-<li>正式決策紀錄。</li>
-</ul>
-<h3 id="後續行動-1">後續行動</h3>
-<p>後續所有土地開發案應建立「案件狀態判斷表」，同時檢查簽署率、雙80%、財務安全、住戶結構、資源投入與機會成本，避免只看單一進度數字。</p>
-<h2 id="三本案推進歷程與關鍵數據">三、本案推進歷程與關鍵數據</h2>
-<h3 id="已確認事實-2">已確認事實</h3>
-<p>本案推進期間約為2025/03至2026/05。重要節點如下：</p>
-<table>
-<thead>
-<tr class="header">
-<th>時間</th>
-<th>事件</th>
-<th>資料狀態</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>2025/03</td>
-<td>案件啟動推進</td>
-<td>已確認</td>
-</tr>
-<tr class="even">
-<td>2025/04/19</td>
-<td>第一場說明會</td>
-<td>已確認</td>
-</tr>
-<tr class="odd">
-<td>2025/05/25</td>
-<td>第二次地主說明會</td>
-<td>已確認</td>
-</tr>
-<tr class="even">
-<td>2026/01/11</td>
-<td>第三次都更說明會</td>
-<td>已確認</td>
-</tr>
-<tr class="odd">
-<td>2026/02/04</td>
-<td>最新都更狀況說明</td>
-<td>已確認</td>
-</tr>
-<tr class="even">
-<td>2026/04/30</td>
-<td>確認不續行</td>
-<td>已確認，正式決策紀錄待補</td>
-</tr>
-<tr class="odd">
-<td>2026/05/03</td>
-<td>不續行通知</td>
-<td>已確認</td>
-</tr>
-<tr class="even">
-<td>2026/05/04</td>
-<td>預計啟動文件返還</td>
-<td>待補完成紀錄</td>
-</tr>
-</tbody>
-</table>
-<p>推進過程包含大型說明會、小型會議、策展導覽、圖面與財務版本調整、縮小基地評估、最後確認通知與文件返還安排。</p>
-<h3 id="檢討判斷-2">檢討判斷</h3>
-<p>本案不是短期試探案，而是已投入長周期、高密度管理資源的整合案。問題不在於沒有行動，而在於每一輪行動是否有明確目標、是否能轉化成住戶信任、是否有回收成判斷資料。</p>
-<h3 id="待補資料-2">待補資料</h3>
-<ul>
-<li>各重大節點正式會議紀錄。</li>
-<li>圖面4版清單與對外提供狀態。</li>
-<li>說明資料9版各版日期、用途與對外對象。</li>
-</ul>
-<h3 id="後續行動-2">後續行動</h3>
-<p>未來案件應建立「重大節點紀錄表」，每次說明會、圖面更新、財務更新、縮小基地評估與不續行判斷，都要留下目的、產出、負責人與下一步。</p>
-<h2 id="四資源投入與機會成本盤點">四、資源投入與機會成本盤點</h2>
-<section class="visual-block" aria-label="高投入低轉化圖">
-  <h3>圖表｜高投入低轉化圖</h3>
-  <p>整理本案14個月投入的會議、導覽、圖面、財務與對外資料，對照未有效轉化的管理結果。</p>
-  <img src="assets/visuals/01_高投入低轉化圖.svg" alt="高投入低轉化圖">
-  <div class="visual-source">圖表來源：依據 V9 報告與附件整理。</div>
-</section>
-<h3 id="已確認事實-3">已確認事實</h3>
-<table>
-<thead>
-<tr class="header">
-<th>類型</th>
-<th>已知投入</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>推進期間</td>
-<td>約14個月</td>
-</tr>
-<tr class="even">
-<td>大型說明會</td>
-<td>5場</td>
-</tr>
-<tr class="odd">
-<td>小型會議</td>
-<td>6場</td>
-</tr>
-<tr class="even">
-<td>策展導覽</td>
-<td>10次</td>
-</tr>
-<tr class="odd">
-<td>圖面會議</td>
-<td>約20次</td>
-</tr>
-<tr class="even">
-<td>財務試算</td>
-<td>至少8種版本或情境</td>
-</tr>
-<tr class="odd">
-<td>對外簡報</td>
-<td>4版</td>
-</tr>
-<tr class="even">
-<td>說明資料</td>
-<td>9版</td>
-</tr>
-<tr class="odd">
-<td>主管／董事長決策參與</td>
-<td>約8次</td>
-</tr>
-<tr class="even">
-<td>建築師費用</td>
-<td>兆碩建築師費用50,000元</td>
-</tr>
-<tr class="odd">
-<td>雙掛號</td>
-<td>33件，整批作業暫估約2,000元含資料，實際郵資、列印、裝封與收執保存費用仍待補</td>
-</tr>
-<tr class="even">
-<td>可能被排擠案件</td>
-<td>復興623、復興632、敦化686、忠孝199、信義364、廣州75</td>
-</tr>
-</tbody>
-</table>
-<h3 id="檢討判斷-3">檢討判斷</h3>
-<p>本案屬於高資源投入案件，但高投入沒有有效轉化為高簽署率、高住戶信任或高案件成熟度。這代表公司不能只管理「做了多少事」，還要管理「做這些事是否有效」。</p>
-<p>本案的低轉化不是單一原因造成，而是主責判斷、住戶問題閉環、群組經營、牛肉論述、專業資源管理與退場制度共同不足所形成的結果。</p>
-<h3 id="待補資料-3">待補資料</h3>
-<ul>
-<li>團隊實際總工時。</li>
-<li>各類拜訪總戶數與每次工時。</li>
-<li>團隊會議總場次。</li>
-<li>印刷與行政成本。</li>
-<li>被排擠案件實際影響量化。</li>
-</ul>
-<h3 id="後續行動-3">後續行動</h3>
-<p>建立「資源投入盤點表」，在開案前、第一次說明會後14天、縮小基地前與不續行前盤點已投入資源、後續投入與機會成本。</p>
-<h2 id="五投入未有效轉化的原因">五、投入未有效轉化的原因</h2>
-<h3 id="已確認事實-4">已確認事實</h3>
-<p>附件01整理出39項住戶歷次問題，問題分類包含分配比例、建築規劃、合約條件、稅務／地政、權利變換／協議合建、公司信任、流程進度、租金補貼、退場與文件返還等。附件01也顯示多數問題雖有部分回覆，但是否閉環仍待確認。</p>
-<p>附件05顯示本案投入多場會議、導覽、圖面會議、財務試算、簡報與說明資料版本。V7與V8均指出本案存在「投入多但轉化不足」問題。</p>
-<h3 id="檢討判斷-4">檢討判斷</h3>
-<p>本案投入未有效轉化，主要原因如下：</p>
-<ol type="1">
-<li>主責端未掌握案件狀態：進度回報不足以支撐決策，應能判斷案件是可推進、卡關、需主管介入、需縮小基地或應停損。</li>
-<li>沒先想清楚 Why 就處理
-How：製作資料、調整圖面、辦會議與安排導覽之前，未必先確認這些行動要解決哪個問題。</li>
-<li>住戶問題沒有閉環：問題有出現、有些有回覆，但缺少負責人、期限、回覆狀態與是否閉環的完整追蹤。</li>
-<li>群組沒有成為共識管理平台：群組若只作為通知工具，無法形成理解、回應與共識。</li>
-<li>客戶牛肉與利益論述不足：素材很多，但未充分轉成住戶可理解的「為何要都更、為何是寶舖、為何是現在」。</li>
-<li>建築師需求不清造成專業資源浪費：圖面與建築師投入多，但若用途、對象、決策點不清，就容易重做。</li>
-<li>實驗型行動未完整落地：痛點調查、策展互動、小型說明會、樓長制度等若沒有目標、負責人、檢核方式與結果追蹤，就難以複製。</li>
-</ol>
-<h3 id="待補資料-4">待補資料</h3>
-<ul>
-<li>各階段簽署轉化率。</li>
-<li>Line群組原始紀錄與重大訊息個別確認紀錄。</li>
-<li>住戶問題最終回覆與閉環狀態。</li>
-<li>圖面版本清單與各版用途。</li>
-</ul>
-<h3 id="後續行動-4">後續行動</h3>
-<p>將上述原因分別對應到五個管理工具：案件狀態判斷表、資源投入盤點表、住戶問題閉環表、三問牛肉＋一戶一張牛肉表、不續行退場SOP。</p>
-<h2 id="六業務靈魂與寶舖土地開發文化">六、業務靈魂與寶舖土地開發文化</h2>
-<h3 id="已確認事實-5">已確認事實</h3>
-<p>V8.1已補入「業務要有靈魂：寶舖土地開發的正確態度」與「寶舖土地開發的五個文化態度」。其核心是：土地開發不能只靠資料、流程與表格推進，業務必須有信念、有態度、有
-ownership，能說清楚為什麼住戶要做、為什麼是寶舖、為什麼現在該做，並對住戶問題負責到底。</p>
-<h3 id="檢討判斷-5">檢討判斷</h3>
-<p>土地開發不是推銷合約，而是協助住戶做正確判斷。業務若只等待資料、製作表格、轉達問題，就無法帶動住戶往下一步走。業務需要把公司品牌、住戶利益、案件可行性與執行閉環連在一起。</p>
-<p>業務要有五種基本能力：</p>
-<ol type="1">
-<li>有 ownership：把案件、住戶、問題與結果視為自己的責任。</li>
-<li>有信念與態度：相信案件對住戶有幫助，並能面對質疑。</li>
-<li>先想清楚 Why，再處理 How：知道每個行動要解決什麼問題。</li>
-<li>把品牌靈魂轉成住戶利益：不是講公司多好，而是講這一戶得到什麼。</li>
-<li>用閉環證明靠譜：回覆、期限、版本、紀錄、承諾與退場都要追蹤。</li>
-</ol>
-<h3 id="寶舖土地開發的五個文化態度">寶舖土地開發的五個文化態度</h3>
-<table>
-<thead>
-<tr class="header">
-<th>文化態度</th>
-<th>定義</th>
-<th>在本案的檢討意義</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>以住戶利益為出發點</td>
-<td>不是先想怎麼簽，而是先想這個案子對住戶有什麼幫助</td>
-<td>客戶牛肉與利益論述沒有被充分說清楚</td>
-</tr>
-<tr class="even">
-<td>對案件有 ownership</td>
-<td>不只回報進度，而是對每戶狀態、下一步與結果負責</td>
-<td>案件狀態與未簽原因未被即時掌握</td>
-</tr>
-<tr class="odd">
-<td>用專業建立信任</td>
-<td>專業不是資料很多，而是能把複雜事情講清楚</td>
-<td>部分簡單問題被複雜化，造成誤會</td>
-</tr>
-<tr class="even">
-<td>用透明面對問題</td>
-<td>不只透明優點，也要透明限制、風險、條件與退場</td>
-<td>縮小基地、財務安全、權變比較與退場說明都需更清楚</td>
-</tr>
-<tr class="odd">
-<td>用閉環證明靠譜</td>
-<td>每件承諾、問題、資料、會議與退場都要有追蹤</td>
-<td>住戶問題、群組回覆、文件返還與歸檔需制度化</td>
-</tr>
-</tbody>
-</table>
-<h3 id="待補資料-5">待補資料</h3>
-<ul>
-<li>業務訓練題材與案例化教材。</li>
-<li>三問牛肉正式模板。</li>
-<li>一戶一張牛肉表正式模板。</li>
-</ul>
-<h3 id="後續行動-5">後續行動</h3>
-<p>將「業務要有靈魂」轉成訓練與驗收：每個案件提案前，必須完成三問牛肉與一戶一張牛肉表；每次住戶問題，都必須進入閉環表；每個重大承諾，都必須有負責人與期限。</p>
-<h2 id="七六大檢討面向">七、六大檢討面向</h2>
-<h3 id="已確認事實與檢討判斷">已確認事實與檢討判斷</h3>
-<table>
-<thead>
-<tr class="header">
-<th>面向</th>
-<th>核心問題</th>
-<th>本案現象</th>
-<th>改善方向</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>開案判斷面</td>
-<td>缺少立案紅旗與續行門檻</td>
-<td>全案未達標後進入縮小基地，縮小基地仍未達雙80%</td>
-<td>建立案件狀態判斷表，納入簽署、雙80%、財務、住戶結構與資源投入</td>
-</tr>
-<tr class="even">
-<td>住戶整合面</td>
-<td>未簽、未入群、決策鏈與失聯未完整分類</td>
-<td>群組覆蓋率約70.69%，重大訊息個別確認待補</td>
-<td>建立住戶整合管理表與住戶問題閉環表</td>
-</tr>
-<tr class="odd">
-<td>溝通論述面</td>
-<td>權變／協議合建與牛肉論述未標準化</td>
-<td>住戶問題集中在分配、權變、公司信任、流程等</td>
-<td>建立權變／協議合建標準說明包與三問牛肉表</td>
-</tr>
-<tr class="even">
-<td>組織文化面</td>
-<td>靠譜、創新、全透明未完全落到行為標準</td>
-<td>回覆期限、資料版本、群組節奏與退場閉環不足</td>
-<td>建立土地開發行為準則與閉環管理要求</td>
-</tr>
-<tr class="odd">
-<td>管理決策面</td>
-<td>缺少續行、縮小基地、不續行門檻</td>
-<td>財務安全邊際待補、資源投入高、機會成本存在</td>
-<td>建立案件狀態判斷表與資源投入盤點表</td>
-</tr>
-<tr class="even">
-<td>退場制度面</td>
-<td>不續行後仍需完成文件與信任閉環</td>
-<td>文件返還、雙掛號、收執、支持戶交代、歸檔待補</td>
-<td>建立不續行退場SOP</td>
-</tr>
-</tbody>
-</table>
-<h3 id="待補資料-6">待補資料</h3>
-<ul>
-<li>群組內住戶與未入群住戶名單。</li>
-<li>重大訊息個別確認紀錄。</li>
-<li>權變／協議合建法務確認版。</li>
-<li>退場完成清單。</li>
-</ul>
-<h3 id="後續行動-6">後續行動</h3>
-<p>六大面向不再分別產出獨立檢討題，而是回收進「土地開發案件全流程閉環管理系統」的五大模組。</p>
-<section class="visual-block" aria-label="住戶分類與推進策略矩陣">
-  <h3>圖表｜住戶分類與推進策略矩陣</h3>
-  <p>建議對應「八之一、住戶分類與推進策略」，用支持度與住戶樣態整理不同住戶的推進方法。</p>
-  <img src="assets/visuals/04_住戶分類與推進策略矩陣.svg" alt="住戶分類與推進策略矩陣">
-  <div class="visual-source">圖表來源：依據 V9 報告與附件整理。</div>
-</section>
-<h2 id="八未來土地開發閉環管理系統">八、未來土地開發閉環管理系統</h2>
-<section class="visual-block" aria-label="土地開發全流程閉環管理系統圖">
-  <h3>圖表｜土地開發全流程閉環管理系統圖</h3>
-  <p>呈現未來土地開發閉環管理系統的六大模組，以及從判斷、分類、回覆到退場的循環關係。</p>
-  <img src="assets/visuals/03_土地開發全流程閉環管理系統圖.svg" alt="土地開發全流程閉環管理系統圖">
-  <div class="visual-source">圖表來源：依據 V9 報告與附件整理。</div>
-</section>
-<h3 id="系統名稱">系統名稱</h3>
-<p>土地開發案件全流程閉環管理系統</p>
-<h3 id="已確認事實-6">已確認事實</h3>
-<p>V8.1已將系統整理為五大模組：案件判斷、資源控管、住戶閉環、牛肉論述、退場閉環。此系統不是多做表格，而是讓每個案子能回答：現在能不能推、為什麼推、投入值不值得、住戶問題有沒有閉環、什麼時候該退場。</p>
-<h3 id="系統模組">系統模組</h3>
-<table>
-<thead>
-<tr class="header">
-<th>模組</th>
-<th>對應工具</th>
-<th>目的</th>
-<th>使用時機</th>
-<th>負責人</th>
-<th>產出</th>
-<th>驗收標準</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>案件判斷模組</td>
-<td>案件狀態判斷表</td>
-<td>避免只靠感覺判斷續行或停損</td>
-<td>每週、重大節點前</td>
-<td>案件主責</td>
-<td>每週案件判斷表</td>
-<td>能明確標示可推、卡關、縮小基地或停損</td>
-</tr>
-<tr class="even">
-<td>資源控管模組</td>
-<td>資源投入盤點表</td>
-<td>看清已投入、後續投入與機會成本</td>
-<td>說明會後14天、縮小基地前、不續行前</td>
-<td>案件主責＋主管</td>
-<td>資源投入盤點表</td>
-<td>看得出已投入、後續投入與是否值得繼續</td>
-</tr>
-<tr class="odd">
-<td>住戶閉環模組</td>
-<td>住戶問題閉環表</td>
-<td>確保每題都有回覆與追蹤</td>
-<td>住戶提問後立即啟動</td>
-<td>承辦＋案件主責</td>
-<td>住戶問題閉環表</td>
-<td>每題都有負責人、期限、回覆狀態與閉環狀態</td>
-</tr>
-<tr class="even">
-<td>牛肉論述模組</td>
-<td>三問牛肉＋一戶一張牛肉表</td>
-<td>把品牌與產品轉成住戶利益</td>
-<td>提案前、拜訪前、說明會前</td>
-<td>案件主責＋業務</td>
-<td>牛肉論述表</td>
-<td>能說清楚三個Why，並對應每戶利益</td>
-</tr>
-<tr class="odd">
-<td>退場閉環模組</td>
-<td>不續行退場SOP</td>
-<td>確保不續行後仍完成信任與文件閉環</td>
-<td>確認不續行後</td>
-<td>接手承辦＋行政／法務</td>
-<td>退場完成清單</td>
-<td>通知、返還、收執、親送與歸檔完整</td>
-</tr>
-</tbody>
-</table>
-<h3 id="檢討判斷-6">檢討判斷</h3>
-<p>這套系統的目的不是增加行政負擔，而是把土地開發案從「靠個人經驗」轉為「靠系統判斷」。每個模組都必須有負責人、期限、產出與驗收標準，否則仍會停留在檢討文字。</p>
-<h3 id="待補資料-7">待補資料</h3>
-<ul>
-<li>五項工具正式模板版本。</li>
-<li>各模組正式負責人。</li>
-<li>試跑案件與試跑紀錄格式。</li>
-</ul>
-<h3 id="後續行動-7">後續行動</h3>
-<p>先做最小可用版本，不做大型制度工程。7日內完成五項模板V1，14日內選一案試跑，30日內回收試跑結果並修正。</p>
-<h2 id="九30日內落地執行計畫">九、30日內落地執行計畫</h2>
-<section class="visual-block" aria-label="30日落地甘特圖">
-  <h3>圖表｜30日落地甘特圖</h3>
-  <p>將3日、7日、14日與30日內的落地任務、負責人、產出與驗收方式視覺化。</p>
-  <img src="assets/visuals/05_30日落地甘特圖.svg" alt="30日落地甘特圖">
-  <div class="visual-source">圖表來源：依據 V9 報告與附件整理。</div>
-</section>
-<h3 id="後續行動-8">後續行動</h3>
-<table>
-<thead>
-<tr class="header">
-<th>時間</th>
-<th>任務</th>
-<th>負責人</th>
-<th>產出</th>
-<th>驗收標準</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>3日內</td>
-<td>完成臥龍357退場資料補齊</td>
-<td>陳俞安＋莊穎霖</td>
-<td>文件返還追蹤、支持戶說明紀錄、財務待補清單</td>
-<td>可回報退場是否閉環</td>
-</tr>
-<tr class="even">
-<td>7日內</td>
-<td>五項制度模板初版</td>
-<td>莊穎霖主責</td>
-<td>五項模板V1</td>
-<td>可套用到一個真實案件</td>
-</tr>
-<tr class="odd">
-<td>14日內</td>
-<td>選一個進行中案件試跑</td>
-<td>董事長／主管決定，莊穎霖執行</td>
-<td>試跑案件紀錄</td>
-<td>能看出制度是否有助於判斷</td>
-</tr>
-<tr class="even">
-<td>30日內</td>
-<td>回收試跑結果並修正</td>
-<td>莊穎霖＋團隊</td>
-<td>制度V1修正版、Asana任務化、QA回寫、業務訓練題材</td>
-<td>可正式推廣到其他案件</td>
-</tr>
-</tbody>
-</table>
-<h3 id="已確認事實-7">已確認事實</h3>
-<p>V8.1已建議試跑案件包含敦化686、忠孝199、復興623，原因分別與住戶問題閉環、合約與關鍵戶判斷、外部競爭與開案判斷壓力有關。</p>
-<h3 id="檢討判斷-7">檢討判斷</h3>
-<p>制度不應一次全面導入。先選一案試跑30天，才能確認這套系統是否真的幫助判斷，而不是增加行政負擔。</p>
-<h3 id="待補資料-8">待補資料</h3>
-<ul>
-<li>董事長／主管指定試跑案件。</li>
-<li>各制度負責人最終確認。</li>
-<li>Asana任務編號。</li>
-</ul>
-<h2 id="十董事長需決策事項">十、董事長需決策事項</h2>
-<table>
-<thead>
-<tr class="header">
-<th>決策事項</th>
-<th>建議決策</th>
-<th>若同意後下一步</th>
-<th>負責人</th>
-<th>期限</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>是否建立土地開發案件全流程閉環管理系統</td>
-<td>建議同意</td>
-<td>啟動五項工具模板製作</td>
-<td>莊穎霖</td>
-<td>7日內</td>
-</tr>
-<tr class="even">
-<td>是否先選一案試跑30天</td>
-<td>建議同意</td>
-<td>建議從敦化686、忠孝199、復興623擇一</td>
-<td>莊穎霖＋主管決定</td>
-<td>14日內</td>
-</tr>
-<tr class="odd">
-<td>是否將臥龍357退場列為專案任務</td>
-<td>建議同意</td>
-<td>完成文件返還、收執、支持戶交代與歸檔</td>
-<td>陳俞安＋莊穎霖</td>
-<td>3日內啟動</td>
-</tr>
-<tr class="even">
-<td>是否導入Asana追蹤</td>
-<td>建議同意</td>
-<td>將五項制度拆成任務與期限</td>
-<td>莊穎霖</td>
-<td>30日內</td>
-</tr>
-<tr class="odd">
-<td>是否轉成業務訓練教材</td>
-<td>建議同意</td>
-<td>建立三問牛肉、住戶閉環、退場SOP訓練材料</td>
-<td>莊穎霖</td>
-<td>30日內</td>
-</tr>
-</tbody>
-</table>
-<h2 id="十一待補資料與附件">十一、待補資料與附件</h2>
-<h3 id="待補資料-9">待補資料</h3>
-<table>
-<thead>
-<tr class="header">
-<th>待補資料</th>
-<th>影響定論或補強佐證</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>正式採用財務模型檔名</td>
-<td>影響定論</td>
-<td>支撐財務判斷依據與試算版本盤點</td>
-</tr>
-<tr class="even">
-<td>財務安全邊際數字</td>
-<td>影響定論</td>
-<td>未補前不可寫成財務不足已定論</td>
-</tr>
-<tr class="odd">
-<td>正式決策紀錄</td>
-<td>影響定論</td>
-<td>支撐不續行決策完整性</td>
-</tr>
-<tr class="even">
-<td>已簽文件返還紀錄</td>
-<td>影響定論</td>
-<td>支撐退場是否閉環</td>
-</tr>
-<tr class="odd">
-<td>雙掛號寄送與收執</td>
-<td>影響定論</td>
-<td>支撐文件返還與收執保存</td>
-</tr>
-<tr class="even">
-<td>支持戶個別說明紀錄</td>
-<td>影響定論</td>
-<td>支撐信任維護與退場交代</td>
-</tr>
-<tr class="odd">
-<td>正式歸檔紀錄</td>
-<td>影響定論</td>
-<td>支撐案件退場完整性</td>
-</tr>
-<tr class="even">
-<td>圖面版本清單</td>
-<td>補強佐證</td>
-<td>支撐建築師投入與版本管理檢討</td>
-</tr>
-<tr class="odd">
-<td>團隊會議總場次</td>
-<td>補強佐證</td>
-<td>支撐管理成本量化</td>
-</tr>
-<tr class="even">
-<td>印刷與雙掛號實際費用</td>
-<td>補強佐證</td>
-<td>支撐現金成本量化</td>
-</tr>
-<tr class="odd">
-<td>被排擠案件實際影響</td>
-<td>補強佐證</td>
-<td>釐清機會成本是否可量化</td>
-</tr>
-<tr class="even">
-<td>Line群組原始紀錄</td>
-<td>補強佐證</td>
-<td>補強群組是否形成共識管理</td>
-</tr>
-<tr class="odd">
-<td>Ragic個別問題最終回覆狀態</td>
-<td>補強佐證</td>
-<td>補強住戶問題是否閉環</td>
-</tr>
-</tbody>
-</table>
-<h3 id="引用附件">引用附件</h3>
-<ul>
-<li>附件01｜住戶歷次問題總表：支撐住戶問題閉環不足、權變與協議合建說明需標準化、客戶牛肉論述需收斂。</li>
-<li>附件05｜資源投入盤點表：支撐高資源投入、資源未有效轉化、資源投入盤點制度。</li>
-<li>附件06｜續行／縮小基地／不續行決策依據表：支撐不續行是綜合停損判斷，而非單純簽署率不足。</li>
-</ul>
-<h3 id="結語">結語</h3>
-<p>臥龍357的價值不只在於確認不續行，而在於把一次高投入但未續行的案件，轉成公司土地開發管理能力。寶舖土地開發的文化，不是把合約簽回來，而是用專業、同理、透明與閉環，讓住戶相信公司是在協助他做一個正確的未來選擇。</p>
-<p>未來土地開發團隊要先想清楚 Why，再決定
-How；先建立態度，再建立流程；先對住戶負責，再追求簽署成果。</p>
-<h2 id="十二執行任務拆解與驗收標準">十二、執行任務拆解與驗收標準</h2>
-<p>本章將第九章30日內落地執行計畫拆解為可派工、可追蹤、可驗收的任務表。以下任務僅作為內部執行拆解，不新增檢討題；涉及財務、法律、退場完成狀態與公司決策者，仍依前章待補資料與主管確認為準。</p>
-<h3 id="121-三日內臥龍357退場閉環">12.1 三日內｜臥龍357退場閉環</h3>
-<table>
-<thead>
-<tr class="header">
-<th>子任務</th>
-<th>主責</th>
-<th>協助</th>
-<th>產出檔案</th>
-<th>完成標準</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>確認33件文件返還狀態</td>
-<td>陳俞安</td>
-<td>行政</td>
-<td>臥龍357_已簽文件返還追蹤表</td>
-<td>33件逐戶標示寄送狀態、收件狀態、收執狀態；未完成者標示原因與下一步</td>
-</tr>
-<tr class="even">
-<td>確認05/01文件是否收取</td>
-<td>陳俞安</td>
-<td>莊穎霖</td>
-<td>臥龍357_05月01日文件確認紀錄</td>
-<td>明確標示05/01簽署文件是否收取；若未收取，標示不納入返還或後續處理方式</td>
-</tr>
-<tr class="odd">
-<td>建立雙掛號收執保存紀錄</td>
-<td>陳俞安</td>
-<td>行政</td>
-<td>臥龍357_雙掛號收執保存紀錄</td>
-<td>每件雙掛號都有收據、收執或追蹤編號；掃描或拍照後集中歸檔</td>
-</tr>
-<tr class="even">
-<td>支持戶個別說明</td>
-<td>莊穎霖</td>
-<td>陳俞安</td>
-<td>臥龍357_支持戶個別說明紀錄</td>
-<td>支持戶逐戶標示是否已說明、說明日期、說明方式、後續疑問與負責人</td>
-</tr>
-<tr class="odd">
-<td>退場完成清單</td>
-<td>陳俞安</td>
-<td>莊穎霖、行政</td>
-<td>臥龍357_退場完成清單</td>
-<td>通知、返還、收執、親送、支持戶說明、歸檔均有狀態；未完成項目不得標示完成</td>
-</tr>
-</tbody>
-</table>
-<h3 id="122-七日內五項制度模板-v1">12.2 七日內｜五項制度模板 V1</h3>
-<table>
-<thead>
-<tr class="header">
-<th>工具</th>
-<th>主責</th>
-<th>產出檔案</th>
-<th>必備欄位</th>
-<th>完成標準</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>案件狀態判斷表</td>
-<td>莊穎霖</td>
-<td>土地開發_案件狀態判斷表_V1</td>
-<td>案件名稱、簽署率、雙80%、關鍵戶、未簽原因、財務安全、資源投入、機會成本、下一步判斷、是否需主管決策</td>
-<td>可用於每週判斷案件為可推、卡關、縮小基地或停損</td>
-</tr>
-<tr class="even">
-<td>資源投入盤點表</td>
-<td>莊穎霖＋陳俞安</td>
-<td>土地開發_資源投入盤點表_V1</td>
-<td>推進期間、拜訪、會議、導覽、圖面、財務試算、簡報、行政成本、主管時間、機會成本、待補資料</td>
-<td>可看出已投入、後續投入與是否值得繼續</td>
-</tr>
-<tr class="odd">
-<td>住戶問題閉環表</td>
-<td>陳俞安</td>
-<td>土地開發_住戶問題閉環表_V1</td>
-<td>提問日期、住戶／戶別、問題分類、問題摘要、負責人、回覆期限、回覆內容、是否需主管／法務確認、是否閉環、是否回寫QA</td>
-<td>每一題都有負責人、期限、回覆狀態與閉環狀態</td>
-</tr>
-<tr class="even">
-<td>三問牛肉＋一戶一張牛肉表</td>
-<td>莊穎霖＋業務</td>
-<td>土地開發_三問牛肉與一戶一張牛肉表_V1</td>
-<td>為何要都更、為何是寶舖、為何是現在、每戶利益、每戶疑慮、反對理由、下一步行動、負責人</td>
-<td>能說清楚三個Why，並能對應每戶住戶利益與下一步</td>
-</tr>
-<tr class="odd">
-<td>不續行退場SOP</td>
-<td>陳俞安＋行政／法務</td>
-<td>土地開發_不續行退場SOP_V1</td>
-<td>決策確認、通知、支持戶說明、文件造冊、雙掛號、收執保存、未收件親送、退場完成清單、歸檔、回寫檢討</td>
-<td>可依SOP完成通知、返還、收執、親送與歸檔，不把待補事項寫成完成</td>
-</tr>
-</tbody>
-</table>
-<h3 id="123-十四日內選一案試跑">12.3 十四日內｜選一案試跑</h3>
-<table>
-<thead>
-<tr class="header">
-<th>候選案件</th>
-<th>建議套用工具</th>
-<th>試跑目標</th>
-<th>決策需求</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>敦化686</td>
-<td>住戶問題閉環表、案件狀態判斷表</td>
-<td>檢查住戶問題、產品規劃與群組經營是否能形成閉環，並判斷案件下一步</td>
-<td>董事長／主管確認是否列為第一個試跑案件，並指定案件承辦</td>
-</tr>
-<tr class="even">
-<td>忠孝199</td>
-<td>三問牛肉＋一戶一張牛肉表、案件狀態判斷表</td>
-<td>檢查合約、華廈／公寓整合與關鍵戶接觸是否有明確利益論述與下一步</td>
-<td>董事長／主管確認是否優先處理關鍵戶與合約口徑</td>
-</tr>
-<tr class="odd">
-<td>復興623</td>
-<td>案件狀態判斷表、資源投入盤點表</td>
-<td>檢查外部競爭與開案判斷壓力，判斷是否值得持續投入資源</td>
-<td>董事長／主管確認資源投入上限與下一階段判斷門檻</td>
-</tr>
-</tbody>
-</table>
-<h3 id="124-三十日內回收試跑結果">12.4 三十日內｜回收試跑結果</h3>
-<table>
-<thead>
-<tr class="header">
-<th>任務</th>
-<th>主責</th>
-<th>產出</th>
-<th>完成標準</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>試跑檢討</td>
-<td>莊穎霖</td>
-<td>試跑案件檢討紀錄</td>
-<td>明確列出試跑案件使用哪些工具、解決哪些問題、哪些欄位不足、是否有助於案件判斷</td>
-</tr>
-<tr class="even">
-<td>模板修正</td>
-<td>莊穎霖＋團隊</td>
-<td>五項制度模板V1修正版</td>
-<td>修正後模板可直接套用下一個案件，並保留版本日期與修改重點</td>
-</tr>
-<tr class="odd">
-<td>Asana任務化</td>
-<td>莊穎霖＋陳俞安</td>
-<td>Asana任務清單</td>
-<td>每項制度都有任務名稱、負責人、期限、產出檔案與驗收標準</td>
-</tr>
-<tr class="even">
-<td>業務訓練整理</td>
-<td>莊穎霖</td>
-<td>業務訓練題材初稿</td>
-<td>至少包含三問牛肉、住戶問題閉環、群組管理、不續行退場與案件判斷案例</td>
-</tr>
-</tbody>
-</table>
+
+<hr>
+<blockquote>
+<strong>結語</strong>：臥龍357的價值不只在於確認不續行，而在於把一次高投入但未續行的案件，轉成公司土地開發管理能力。<br>
+未來土地開發團隊要先想清楚 Why，再決定 How；先建立態度，再建立流程；先對住戶負責，再追求簽署成果。
+</blockquote>
 
   </main>
 </div>
-<a class="print-hint" href="javascript:window.print()">列印 / 匯出 PDF</a>
-<div class="footer">本 HTML 由 Markdown 報告轉製；如需品牌色精準版，可替換 CSS 變數。</div>
+<footer class="footer">
+  臥龍357不續行案檢討報告 V15 ｜ 2026/05/03 ｜ 寶舖建設｜內部管理文件，不對外使用
+</footer>
 </body>
 </html>
