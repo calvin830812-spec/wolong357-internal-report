@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>臥龍357｜任務矩陣與知識圖譜 V2</title>
+<style>
+:root{
+  --teal:#0F5F6D;
+  --teal-dark:#0A4E59;
+  --teal-light:#1F7885;
+  --cream:#F7F3EA;
+  --gold:#B89A5E;
+  --gold-dark:#8E7444;
+  --ink:#173137;
+  --paper:#fffdf8;
+  --line:#D8E2DF;
+  --muted:#5E6E6F;
+  --red:#9b4d3f;
+  --green:#1F7040;
+  --blue:#1a4f9c;
+  --purple:#6B4E8B;
+  --shadow:0 20px 58px rgba(10,78,89,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,var(--cream) 0%,#EAF3F1 100%);line-height:1.7;font-size:16px}
+.hero{position:relative;overflow:hidden;background:radial-gradient(circle at 15% 15%,rgba(184,154,94,.28),transparent 30%),linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 72%);color:#fff;padding:48px 56px 40px;border-bottom:8px solid var(--gold)}
+.hero .kicker{font-size:13px;letter-spacing:.2em;color:#E9D6A6;text-transform:uppercase;margin-bottom:12px;font-weight:700}
+.hero h1{font-size:34px;line-height:1.25;margin:0 0 14px;font-weight:800;color:#fff}
+.hero p{font-size:17px;max-width:900px;margin:0;color:#EAF3F1}
+.hero .meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid rgba(255,255,255,.28);border-radius:999px;color:#fff;background:rgba(255,255,255,.10);font-size:13px}
+.layout{max-width:1500px;margin:0 auto;padding:28px}
+.content{background:var(--paper);border:1px solid var(--line);border-top:5px solid var(--teal);border-radius:24px;box-shadow:var(--shadow);padding:36px 44px 60px}
+h1.sec{font-size:26px;color:var(--teal-dark);margin:36px 0 18px;padding:14px 0 10px;border-bottom:2px solid var(--gold);position:relative}
+h1.sec:before{content:"";display:inline-block;width:8px;height:24px;background:var(--teal);border-radius:5px;margin-right:12px;vertical-align:-4px}
+h2{font-size:20px;margin:24px 0 12px;color:var(--teal-dark)}
+h3{font-size:17px;margin:20px 0 10px;color:var(--gold-dark)}
+p{margin:0 0 12px}
+table{border-collapse:separate;border-spacing:0;width:100%;margin:12px 0 22px;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:14.5px}
+th{background:linear-gradient(180deg,var(--teal),var(--teal-dark));color:#fff;font-weight:800;text-align:left;padding:11px 13px;border-right:1px solid rgba(255,255,255,.16)}
+td{padding:10px 13px;border-top:1px solid var(--line);border-right:1px solid #E3ECE9;vertical-align:top}
+th:last-child,td:last-child{border-right:0}
+tr:nth-child(even) td{background:#F7FBFA}
+.callout{margin:18px 0;padding:16px 20px;border-radius:14px;border:1px solid;font-size:14.5px;line-height:1.65}
+.callout.red{background:#FFF4F2;border-color:#E8B4AF;color:#5C2A24}
+.callout.green{background:#F0F8F5;border-color:#9BCFB4;color:#1A3D2A}
+.callout.blue{background:#EEF5FF;border-color:#9ABDE0;color:#1A2F5C}
+.callout.gold{background:#FBF7EE;border-color:#D4B97A;color:#4A3410}
+
+/* Eisenhower matrix */
+.matrix{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:0;margin:18px 0 30px;border:2px solid var(--ink);border-radius:18px;overflow:hidden;background:#fff}
+.matrix-axis-x{grid-column:1/3;display:grid;grid-template-columns:1fr 1fr;background:var(--ink);color:#fff;font-weight:800;font-size:13px;text-align:center}
+.matrix-axis-x div{padding:8px;border-right:1px solid rgba(255,255,255,.15)}
+.matrix-axis-x div:last-child{border-right:0}
+.matrix-cell{padding:18px 20px;min-height:240px;position:relative;border-right:2px solid var(--line);border-bottom:2px solid var(--line)}
+.matrix-cell:nth-child(odd){border-right:2px solid var(--line)}
+.matrix-cell.q1{background:linear-gradient(135deg,#FFE6E0,#FFF4F2);border-right:2px solid var(--ink)}
+.matrix-cell.q2{background:linear-gradient(135deg,#E6F0EE,#F0F8F5)}
+.matrix-cell.q3{background:linear-gradient(135deg,#FBF7EE,#FEFAF0);border-right:2px solid var(--ink);border-bottom:0}
+.matrix-cell.q4{background:linear-gradient(135deg,#F1ECF6,#F8F5FB);border-bottom:0}
+.matrix-cell .qhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;border-bottom:1px solid rgba(0,0,0,.1);padding-bottom:8px}
+.matrix-cell .qhead .qlabel{font-size:18px;font-weight:900}
+.matrix-cell .qhead .qaction{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:6px}
+.matrix-cell.q1 .qaction{background:var(--red);color:#fff}
+.matrix-cell.q2 .qaction{background:var(--green);color:#fff}
+.matrix-cell.q3 .qaction{background:var(--gold);color:#fff}
+.matrix-cell.q4 .qaction{background:var(--purple);color:#fff}
+.matrix-cell .goal{font-size:13px;color:var(--muted);margin-bottom:10px;font-style:italic}
+.matrix-cell ul{margin:0;padding-left:1.2em;font-size:14px;line-height:1.7}
+.matrix-cell ul li{margin:4px 0}
+.matrix-cell ul li code{background:rgba(0,0,0,.05);padding:1px 5px;border-radius:4px;font-size:12px;font-family:monospace;font-weight:700}
+
+/* Task cards */
+.task-block{margin:18px 0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;box-shadow:0 4px 14px rgba(10,78,89,.05)}
+.task-block.q1{border-left:5px solid var(--red)}
+.task-block.q2{border-left:5px solid var(--green)}
+.task-block.q3{border-left:5px solid var(--gold)}
+.task-block.q4{border-left:5px solid var(--purple);opacity:.7}
+.task-block h4{margin:0 0 8px;font-size:16.5px;color:var(--ink);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.task-id{display:inline-block;padding:2px 9px;border-radius:6px;background:#EEF5FF;color:var(--blue);font-family:monospace;font-size:12px;font-weight:800;border:1px solid #9ABDE0}
+.task-block .tdesc{font-size:14px;color:var(--muted);line-height:1.65;margin:6px 0 10px}
+.task-block .tmeta{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;align-items:center;padding-top:8px;border-top:1px dashed var(--line)}
+.task-block .tmeta .item .lbl{color:var(--muted);font-weight:600;margin-right:5px}
+.due{padding:3px 9px;border-radius:6px;background:#F0F8F5;color:var(--green);border:1px solid #9BCFB4;font-size:12px;font-weight:700}
+.due.urgent{background:#FFF4F2;color:var(--red);border-color:#E8A99E}
+.due.soon{background:#FBF7EE;color:var(--gold-dark);border-color:#D4B97A}
+.assignee{padding:3px 9px;border-radius:6px;background:#E6F0EE;color:var(--teal-dark);font-size:12px;font-weight:700}
+
+/* Knowledge graph */
+.graph{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 28px;font-family:"SFMono-Regular",Consolas,"Noto Sans TC",monospace;font-size:13.5px;line-height:1.95;color:var(--ink);overflow-x:auto;white-space:pre;box-shadow:0 4px 14px rgba(10,78,89,.05)}
+.graph .root{color:var(--teal-dark);font-weight:800;font-size:16px}
+.graph .branch{color:var(--gold-dark);font-weight:800}
+.graph .leaf{color:var(--muted)}
+
+/* Stats grid */
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:30px}
+.scard{background:linear-gradient(180deg,#fff,#F4FAF8);border:1px solid var(--line);border-top:4px solid var(--teal-light);border-radius:14px;padding:14px 16px}
+.scard .label{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.05em}
+.scard .num{font-size:26px;font-weight:900;color:var(--teal-dark);margin:4px 0 2px;line-height:1.1}
+.scard .desc{font-size:12px;color:var(--muted)}
+.scard.gold{border-top-color:var(--gold)}
+.scard.gold .num{color:var(--gold-dark)}
+.scard.red{border-top-color:var(--red)}
+.scard.red .num{color:var(--red)}
+.scard.green{border-top-color:var(--green)}
+.scard.green .num{color:var(--green)}
+
+/* Decision box */
+.decision-box{background:linear-gradient(135deg,#F7F3EA,#EAF3F1);border:2px solid var(--gold);border-radius:18px;padding:22px 28px;margin:24px 0}
+.decision-box h3{margin:0 0 14px;color:var(--teal-dark);font-size:18px}
+.decision-box ol{margin:0;padding-left:1.4em}
+.decision-box li{margin:8px 0;font-size:15px}
+
+/* Gantt */
+.gantt{font-family:monospace;font-size:13px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;overflow-x:auto;line-height:1.85;white-space:pre;color:var(--ink)}
+
+@media(max-width:900px){
+  .layout{padding:14px}
+  .content{padding:24px 18px}
+  .matrix{grid-template-columns:1fr}
+  .matrix-axis-x{grid-template-columns:1fr;grid-column:1}
+  .matrix-cell{border-right:0 !important}
+  .summary{grid-template-columns:repeat(2,1fr)}
+  .hero{padding:36px 24px}
+  .hero h1{font-size:24px}
+  .task-block .tmeta{gap:10px}
+}
+@media print{
+  body{background:#fff;font-size:11pt;color:#111}
+  .hero{background:#fff;color:#111;border-bottom:2pt solid var(--teal-dark);padding:18pt 0}
+  .hero h1,.hero p{color:#111}
+  .layout{padding:0}
+  .content{box-shadow:none;border:0;padding:0}
+  .matrix-cell{break-inside:avoid}
+  .task-block{break-inside:avoid;box-shadow:none}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">BAOPU · Tasks Matrix & Knowledge Graph · 不對外使用</div>
+  <h1>臥龍357｜任務矩陣與知識圖譜 V2</h1>
+  <p>從 51 項分散任務簡化為 9 個整合任務 — 緊急／重要四矩陣、結案知識圖譜、AI 部門交付，把臥龍357變成公司的長期資產</p>
+  <div class="meta">
+    <span class="badge">V2 · 2026/05/03</span>
+    <span class="badge">取代 V1（51→9 項）</span>
+    <span class="badge">Eisenhower 四矩陣</span>
+    <span class="badge">含 AI 部門交付</span>
+  </div>
+</header>
+
+<div class="layout">
+  <main class="content">
+
+    <!-- Stats -->
+    <div class="summary">
+      <div class="scard red"><div class="label">Q1 緊急且重要</div><div class="num">2</div><div class="desc">退場＋6案改善</div></div>
+      <div class="scard green"><div class="label">Q2 重要但不緊急</div><div class="num">5</div><div class="desc">制度／訓練／文化／AI</div></div>
+      <div class="scard gold"><div class="label">Q3 緊急但不重要</div><div class="num">2</div><div class="desc">資料補齊＋知識庫</div></div>
+      <div class="scard"><div class="label">Q4 已移除</div><div class="num">5</div><div class="desc">不執行</div></div>
+    </div>
+
+    <!-- Section 1: Strategy -->
+    <h1 class="sec" id="strategy">一、思維重構：從「逐項列任務」到「結案＋知識資產化」</h1>
+
+    <table>
+      <thead><tr><th>面向</th><th>V1（51 項分散任務）</th><th>V2（簡化重構版）</th></tr></thead>
+      <tbody>
+        <tr><td>任務數</td><td>51 項</td><td><strong>9 個整合任務</strong>（合併 82%）</td></tr>
+        <tr><td>排序邏輯</td><td>7 個 Section、按時間</td><td><strong>緊急／重要四矩陣</strong>＋三優先序</td></tr>
+        <tr><td>住戶問題處理</td><td>11 題逐題溝通閉環</td><td><strong>改為知識庫盤點，不再對外溝通</strong></td></tr>
+        <tr><td>排擠 6 案</td><td>量化影響</td><td><strong>改為 6 案完成計畫</strong></td></tr>
+        <tr><td>待補資料</td><td>9 項分散</td><td><strong>合併為 1 項整合任務</strong></td></tr>
+        <tr><td>簽署文化制度</td><td>7 項</td><td><strong>4 項</strong>（移除反悔成本明示／版本鎖定儀式／Q024 法務口徑）</td></tr>
+        <tr><td>結案輸出</td><td>無</td><td><strong>新增結案＋知識圖譜＋AI 部門交付</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout gold">
+      <strong>三優先序：</strong>退場閉環 → 制度建立 → 業務教材 → 知識資產化
+    </div>
+
+    <!-- Section 2: Eisenhower Matrix -->
+    <h1 class="sec" id="matrix">二、緊急／重要四矩陣</h1>
+
+    <div class="matrix">
+      <div class="matrix-axis-x"><div>← 不重要　　　　　　　　重要 →</div><div></div></div>
+
+      <div class="matrix-cell q2">
+        <div class="qhead">
+          <span class="qlabel">Q2｜重要但不緊急</span>
+          <span class="qaction">SCHEDULE</span>
+        </div>
+        <p class="goal">目標：把臥龍357的經驗轉為制度、教材、AI 資產（5/10-6/30）</p>
+        <ul>
+          <li><code>W357-Q2-A</code> 六項制度模板 V1（5/10）</li>
+          <li><code>W357-Q2-B</code> 試跑＋V1.1 修正＋Asana 化（6/2）</li>
+          <li><code>W357-Q2-C</code> 業務訓練教材包（6/15）</li>
+          <li><code>W357-Q2-D</code> 簽署文化制度 4 項（6/30）</li>
+          <li><code>W357-Q2-E</code> AI 部門知識交付（6/30，新增）</li>
+        </ul>
+      </div>
+
+      <div class="matrix-cell q1">
+        <div class="qhead">
+          <span class="qlabel">Q1｜緊急且重要</span>
+          <span class="qaction">DO NOW</span>
+        </div>
+        <p class="goal">目標：把臥龍357收乾淨 + 把現有 6 案做好（5/3-5/17）</p>
+        <ul>
+          <li><code>W357-Q1-A</code> 33 件文件返還＋支持戶交代＋退場歸檔（5/8 主流程，5/17 全歸檔）</li>
+          <li><code>W357-Q1-B</code> 6 案完成計畫（復興623、復興632、敦化686、忠孝199、信義364、廣州75）（5/17）</li>
+        </ul>
+      </div>
+
+      <div class="matrix-cell q4">
+        <div class="qhead">
+          <span class="qlabel">Q4｜已從 V1 移除</span>
+          <span class="qaction">ELIMINATE</span>
+        </div>
+        <p class="goal">不執行（從 V1 簡化掉的項目）</p>
+        <ul>
+          <li>反悔成本明示條款（併入條件鎖定條款）</li>
+          <li>條件版本鎖定儀式（併入三事項說明 SOP）</li>
+          <li>Q024 法務口徑修正（併入訓練教材）</li>
+          <li>被排擠 6 案影響量化（改為 6 案完成計畫）</li>
+          <li>11 題住戶逐題溝通（改為知識庫盤點）</li>
+        </ul>
+      </div>
+
+      <div class="matrix-cell q3">
+        <div class="qhead">
+          <span class="qlabel">Q3｜緊急但不重要</span>
+          <span class="qaction">DELEGATE</span>
+        </div>
+        <p class="goal">目標：行政性資料一次補齊，授權各部門平行處理</p>
+        <ul>
+          <li><code>W357-Q3-A</code> 本案待補資料一次補齊（合併原 9 項）（5/30）</li>
+          <li><code>W357-Q3-B</code> 住戶問題知識庫盤點（不再溝通本案住戶）（6/15）</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Section 3: Task Details -->
+    <h1 class="sec" id="tasks">三、22 項任務明細（含子任務拆分）</h1>
+
+    <h2 style="color:var(--red)">第一象限｜緊急且重要</h2>
+
+    <div class="task-block q1">
+      <h4><span class="task-id">W357-Q1-A</span>臥龍357退場完整收尾</h4>
+      <p class="tdesc">33 件雙掛號寄送、回執追蹤、收執保存、支持戶面訪、未收件親送、退場檢核會議、LINE 群組封存、專案歸檔、30 日後關鍵戶回訪。<strong>合併原 V1 的 EXIT-01 ~ 09（9 項）為 1 個任務，內含 9 個子任務。</strong></p>
+      <div class="tmeta">
+        <span class="item"><span class="lbl">截止</span><span class="due urgent">5/8 主流程</span><span class="due soon">5/17 全歸檔</span><span class="due">6/2 30 日回訪</span></span>
+        <span class="item"><span class="lbl">主責</span><span class="assignee">陳俞安／莊穎霖</span></span>
+        <span class="item"><span class="lbl">驗收</span>退場完成清單 11 項全打勾</span>
+      </div>
+    </div>
+
+    <div class="task-block q1">
+      <h4><span class="task-id">W357-Q1-B</span>現有 6 案完成計畫（V2 新增）</h4>
+      <p class="tdesc">復興623、復興632、敦化686、忠孝199、信義364、廣州75 各案套用「案件狀態判斷表」，明確下一步（可推／卡關／縮小／停損），<strong>不再回頭量化過去被排擠的影響，而是把每案做好</strong>。</p>
+      <div class="tmeta">
+        <span class="item"><span class="lbl">截止</span><span class="due urgent">5/17</span></span>
+        <span class="item"><span class="lbl">主責</span><span class="assignee">莊穎霖＋各案承辦</span></span>
+        <span class="item"><span class="lbl">驗收</span>6 案各有狀態判斷表 V1 填寫完成</span>
+      </div>
+    </div>
+
+    <h2 style="color:var(--green)">第二象限｜重要但不緊急</h2>
+
+    <div class="task-block q2">
+      <h4><span class="task-id">W357-Q2-A</span>六項制度模板 V1</h4>
+      <p class="tdesc">建立六項可套用模板：住戶分類與推進策略表、案件狀態判斷表、資源投入盤點表、住戶問題閉環表、三問牛肉＋一戶一張牛肉表、不續行退場 SOP。<strong>合併原 SYS-01 ~ 06。</strong></p>
+      <div class="tmeta">
+        <span class="item"><span class="lbl">截止</span><span class="due urgent">5/10</span></span>
+        <span class="item"><span class="lbl">主責</span><span class="assignee">莊穎霖（主筆）</span><span class="assignee">陳俞安（住戶問題＋退場 SOP）</span></span>
+      </div>
+    </div>
+
+    <div class="task-block q2">
+      <h4><span class="task-id">W357-Q2-B</span>試跑＋制度修正＋Asana 化</h4>
+      <p class="tdesc">從敦化686／忠孝199／復興623 擇一案件試跑六項工具，30 天回收結果並修正為 V1.1，最後將所有制度任務化進入 Asana。<strong>合併原 PILOT-01 ~ 05。</strong></p>
+      <div class="tmeta">
+        <span class="item"><span class="lbl">截止</span><span class="due">5/24 套用</span><span class="due">5/30 檢討</span><span class="due">6/2 V1.1＋Asana 化</span></span>
+        <span class="item"><span class="lbl">主責</span><span class="assignee">莊穎霖＋指定承辦</span></span>
+      </div>
+    </div>
+
+    <div class="task-block q2">
+      <h4><span class="task-id">W357-Q2-C</span>業務訓練教材包</h4>
+      <p class="tdesc">三問牛肉、10 類牛肉話術、簽署三事項話術（含正反錯誤示範）、權變 vs 協議合建標準說明包、案件狀態判斷案例、Q024 意向書效力標準說法。<strong>合併原 TRAIN-01 ~ 04 ＋ CULTURE-07。</strong></p>
+      <div class="tmeta">
+        <span class="item"><span class="lbl">截止</span><span class="due">6/15</span></span>
+        <span class="item"><span class="lbl">主責</span><span class="assignee">莊穎霖＋業務主管＋法務</span></span>
+        <span class="item"><span class="lbl">驗收</span>每位業務通過情境演練</span>
+      </div>
+    </div>
+
+    <div class="task-block q2">
+      <h4><span class="task-id">W357-Q2-D</span>簽署文化制度（4 項，已從 7 項簡化）</h4>
+      <p class="tdesc">建立四項長期簽署文化制度：<br>
+        <strong>D1</strong> 意向書／同意書條件鎖定條款（含反悔成本警語，併入原 CULTURE-03）<br>
+        <strong>D2</strong> 簽署當下三事項說明 SOP（含版本鎖定原則，併入原 CULTURE-04）<br>
+        <strong>D3</strong> 早簽戶優先權制度（樓層、車位、戶型優先）<br>
+        <strong>D4</strong> 業務 KPI 結構調整（新增「簽後 30 日內未提條件重談維持率」指標）
+      </p>
+      <div class="tmeta">
+        <span class="item"><span class="lbl">截止</span><span class="due">D1、D2 → 6/2</span><span class="due">D3、D4 → 6/30</span></span>
+        <span class="item"><span class="lbl">主責</span><span class="assignee">莊穎霖＋法務＋業務主管＋人資</span></span>
+      </div>
+    </div>
+
+    <div class="task-block q2" style="border-left-color:var(--purple);background:linear-gradient(135deg,#fff,#FAF7FC)">
+      <h4><span class="task-id" style="background:#F1ECF6;color:var(--purple);border-color:#C9B8DD">W357-Q2-E</span>AI 部門知識交付（V2 新增）</h4>
+      <p class="tdesc">把臥龍357整個案例轉為 AI 部門可消化的資產，作為土地開發 AI 模型的<strong>第一個訓練案例</strong>。共四個交付物：<br>
+        <strong>E1</strong> 知識圖譜檔案（節點/關係/屬性，符合第四章圖譜架構）<br>
+        <strong>E2</strong> 住戶問題知識庫資料化（39 題結構化 CSV／JSON）<br>
+        <strong>E3</strong> 業務話術評分模型輸入（10 類牛肉、三事項話術、正反示範）<br>
+        <strong>E4</strong> 案件狀態判斷模型訓練資料（簽署率、財務、住戶分布 → 可推／卡關／縮小／停損）
+      </p>
+      <div class="tmeta">
+        <span class="item"><span class="lbl">截止</span><span class="due">E1、E2 → 5/30</span><span class="due">E3、E4 → 6/30</span></span>
+        <span class="item"><span class="lbl">主責</span><span class="assignee">AI 部門（建構）＋莊穎霖（提供素材）</span></span>
+      </div>
+    </div>
+
+    <h2 style="color:var(--gold-dark)">第三象限｜緊急但不重要</h2>
+
+    <div class="task-block q3">
+      <h4><span class="task-id">W357-Q3-A</span>本案待補資料一次補齊</h4>
+      <p class="tdesc">合併原 9 項分散待補資料為一個整合任務，由各對應部門平行處理：<br>
+        ・財務：銷容比（C.建築規劃）／財務安全邊際正式結論<br>
+        ・行政：印刷與雙掛號實際費用／補休申請紀錄盤點<br>
+        ・建築規劃：圖面 4 版清單<br>
+        ・業務：5 場說明會出席與簽署情形／LINE 群組原始紀錄歸檔<br>
+        ・主管：04/30 不續行正式決策書面紀錄</p>
+      <div class="tmeta">
+        <span class="item"><span class="lbl">截止</span><span class="due">5/30</span></span>
+        <span class="item"><span class="lbl">主責</span><span class="assignee">陳俞安（彙整）＋各部門</span></span>
+        <span class="item"><span class="lbl">驗收</span>補齊清單 8 項全打勾</span>
+      </div>
+    </div>
+
+    <div class="task-block q3">
+      <h4><span class="task-id">W357-Q3-B</span>住戶問題知識庫盤點（不再溝通，V2 變革）</h4>
+      <p class="tdesc"><strong>本案已不續行，不再對外溝通本案住戶</strong>。將 39 題住戶歷次問題（含 11 題未閉環、10 題需主管／法務確認）整理為結構化知識庫，作為：<br>
+        ① 未來案件 QA 預先準備庫<br>
+        ② AI 部門 QA 模型訓練資料（對應 W357-Q2-E E2）<br>
+        ③ 業務訓練教材的問題對照表<br>
+        <strong>取代原 V1 的 QA-01 ~ 11（11 項個別住戶溝通任務）。</strong></p>
+      <div class="tmeta">
+        <span class="item"><span class="lbl">截止</span><span class="due">6/15</span></span>
+        <span class="item"><span class="lbl">主責</span><span class="assignee">陳俞安（盤點）＋AI 部門（資料化）</span></span>
+        <span class="item"><span class="lbl">驗收</span>39 題以 CSV／JSON 形式輸出</span>
+      </div>
+    </div>
+
+    <!-- Section 4: Knowledge Graph -->
+    <h1 class="sec" id="graph">四、結案知識圖譜架構</h1>
+
+    <p>本案結案後，將以下列圖譜架構交付給 AI 部門，作為土地開發部第一個結構化案例知識資產。</p>
+
+    <div class="graph"><span class="root">臥龍357不續行案 (Case Node)</span>
+│
+├── <span class="branch">【案件事實】Facts</span>
+│   ├── <span class="leaf">簽署狀態：34/52, 65.38%</span>
+│   ├── <span class="leaf">縮小基地：28/37, 75.68%（差 2 人 49.23 坪）</span>
+│   ├── <span class="leaf">推進期間：14 個月（2025/03 - 2026/05）</span>
+│   ├── <span class="leaf">不續行決策日：2026/04/30</span>
+│   └── <span class="leaf">通知日：2026/05/03</span>
+│
+├── <span class="branch">【財務模型】Financial Models</span>
+│   ├── <span class="leaf">縮小基地版（2026/04/09）獲利 48,954 萬 / 25.07%</span>
+│   ├── <span class="leaf">14 筆基地版（2026/04/28）獲利 49,010 萬 / 22.42%</span>
+│   ├── <span class="leaf">敏感度分析（2026/05/01）5 情境</span>
+│   └── <span class="leaf">安全邊際結論：偏弱</span>
+│
+├── <span class="branch">【住戶分布】Residents</span>
+│   ├── <span class="leaf">已簽戶 34 → 含支持戶名單</span>
+│   ├── <span class="leaf">未簽戶 18 → 5 大類（明確反對 7、失聯 7-8、條件疑慮 5、決策鏈未明 5、信任疑慮 1）</span>
+│   └── <span class="leaf">群組覆蓋率 70.69%</span>
+│
+├── <span class="branch">【問題知識庫】Q-KB</span>
+│   ├── <span class="leaf">9 大類別（分配、合約、信任、流程、建築、權變、稅務、租金、退場）</span>
+│   ├── <span class="leaf">39 題完整紀錄</span>
+│   ├── <span class="leaf">11 題未閉環</span>
+│   └── <span class="leaf">10 題需主管／法務確認</span>
+│
+├── <span class="branch">【業務素材】Sales Material</span>
+│   ├── <span class="leaf">三問牛肉（為何都更／為何寶舖／為何現在）</span>
+│   ├── <span class="leaf">10 類牛肉（安全/健康/資產/傳承/信任/透明/現在/防災/複利/管委會）</span>
+│   └── <span class="leaf">簽署三事項話術（條件／意向書／我這個窗口）</span>
+│
+├── <span class="branch">【制度產出】System Outputs</span>
+│   ├── <span class="leaf">6 項模板</span>
+│   ├── <span class="leaf">4 項簽署文化制度</span>
+│   └── <span class="leaf">不續行退場 SOP</span>
+│
+├── <span class="branch">【教訓】Lessons</span>
+│   ├── <span class="leaf">高投入低轉化（≥1,000 工時、≥45 萬人力＋現金）</span>
+│   ├── <span class="leaf">意向書認知落差（先簽再談文化）</span>
+│   ├── <span class="leaf">條件反覆談判（1.62→1.65→1.68；50/50→64/36）</span>
+│   └── <span class="leaf">退場制度缺口</span>
+│
+└── <span class="branch">【AI 交付】AI Deliverables</span>
+    ├── <span class="leaf">知識圖譜檔（GraphML / Neo4j）</span>
+    ├── <span class="leaf">住戶問題庫（CSV / JSON）</span>
+    ├── <span class="leaf">業務話術評分輸入</span>
+    └── <span class="leaf">案件判斷模型訓練資料</span></div>
+
+    <h3>圖譜輸出檔案清單（W357-Q2-E 交付）</h3>
+    <table>
+      <thead><tr><th>檔案</th><th>格式</th><th>用途</th></tr></thead>
+      <tbody>
+        <tr><td><code>wolong357_graph.graphml</code></td><td>GraphML</td><td>知識圖譜主檔（節點＋關係）</td></tr>
+        <tr><td><code>wolong357_graph.json</code></td><td>JSON</td><td>圖譜結構化版本（API 餵食）</td></tr>
+        <tr><td><code>wolong357_residents.csv</code></td><td>CSV</td><td>住戶分類與屬性</td></tr>
+        <tr><td><code>wolong357_qkb.json</code></td><td>JSON</td><td>39 題問題知識庫</td></tr>
+        <tr><td><code>wolong357_sales_scripts.json</code></td><td>JSON</td><td>10 類牛肉＋三事項話術</td></tr>
+        <tr><td><code>wolong357_case_features.csv</code></td><td>CSV</td><td>案件判斷模型訓練欄位</td></tr>
+        <tr><td><code>wolong357_lessons.md</code></td><td>Markdown</td><td>結構化教訓記錄</td></tr>
+        <tr><td><code>wolong357_close_report.html</code></td><td>HTML</td><td>結案報告（V18 主檔）</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Section 5: AI Department Key Deliverables -->
+    <h1 class="sec" id="ai">五、AI 部門關鍵交付：「從這個案例，AI 部門要獲得什麼？」</h1>
+
+    <div class="callout blue">
+      <strong>核心命題：</strong>臥龍357不只是一個失敗案例，而是寶舖土地開發部 <strong>第一個結構化、可訓練、可學習的真實案例</strong>。AI 部門收到這個案例後，要回答五個核心問題，並產出五個對應的模型／資料集。
+    </div>
+
+    <table>
+      <thead><tr><th>#</th><th>問題</th><th>對應 AI 模型／資料集</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>如何預測一個案件最終會不續行？</strong></td><td>案件狀態判斷模型（XGBoost／DL）；訓練資料來自 W357-Q2-E E4</td></tr>
+        <tr><td>2</td><td><strong>如何判斷一個住戶是否會簽？</strong></td><td>住戶分類預測模型；訓練資料來自圖譜【住戶分布】節點</td></tr>
+        <tr><td>3</td><td><strong>如何回答住戶提出的問題？</strong></td><td>QA 對話模型／RAG；資料來自 W357-Q3-B 39 題知識庫</td></tr>
+        <tr><td>4</td><td><strong>如何評估業務話術品質？</strong></td><td>話術評分模型；資料來自 W357-Q2-E E3 業務素材＋正反示範</td></tr>
+        <tr><td>5</td><td><strong>如何即時偵測「先簽再談」風險訊號？</strong></td><td>異常偵測模型；資料來自圖譜【教訓】節點＋條件談判歷史軌跡</td></tr>
+      </tbody>
+    </table>
+
+    <h3>AI 部門 30 日內必須交付</h3>
+    <ol>
+      <li><strong>知識圖譜原型</strong>（W357-Q2-E E1）─ 5/30 前</li>
+      <li><strong>住戶問題庫結構化資料</strong>（W357-Q2-E E2 / W357-Q3-B）─ 6/15 前</li>
+      <li><strong>第一個 PoC 模型</strong>（建議從 #3 QA 模型開始，最容易驗證）─ 6/30 前</li>
+    </ol>
+
+    <h3>跨部門協作</h3>
+    <ul>
+      <li><strong>莊穎霖</strong>：提供原始素材＋業務知識</li>
+      <li><strong>AI 部門</strong>：建構知識圖譜＋訓練模型</li>
+      <li><strong>法務</strong>：審閱涉及對外口徑的訓練資料</li>
+      <li><strong>業務主管</strong>：驗證模型輸出在現場是否合用</li>
+    </ul>
+
+    <!-- Section 6: Gantt -->
+    <h1 class="sec" id="gantt">六、執行甘特圖（30 日視圖）</h1>
+
+    <div class="gantt">週次          5/3-5/9  5/10-5/16  5/17-5/23  5/24-5/30  5/31-6/6   6/7-6/13   6/14-6/20  6/21-6/30
+────────────────────────────────────────────────────────────────────────────────────────────
+[Q1] 退場     ████████ ███      ▓
+[Q1] 6案改善  ███████ ██████
+[Q2] 制度模板 █████
+[Q2] 試跑                    ████ ████ █████
+[Q2] 訓練教材                              ████ █████ ████
+[Q2] 簽署文化         ███ █████ █████ █████ █████ █████ █████
+[Q2] AI 交付                  ██ ████ ████ ████ ████ █████
+[Q3] 待補資料         ███ █████ ███
+[Q3] 知識庫                          ████ █████ ████
+
+關鍵里程碑：
+→ 5/8  退場主流程完成
+→ 5/10 六項模板 V1
+→ 5/17 6 案下一步明確、退場全歸檔
+→ 5/30 試跑檢討、待補資料補齊、知識圖譜原型
+→ 6/15 訓練教材、知識庫定版
+→ 6/30 全部交付完成、結案</div>
+
+    <!-- Section 7: Decisions -->
+    <h1 class="sec" id="decisions">七、給董事長的 5 項決策</h1>
+
+    <div class="decision-box">
+      <h3>請董事長確認以下 5 件事，正式啟動 V2 任務體系</h3>
+      <ol>
+        <li>☐ 是否同意建立土地開發全流程閉環管理系統？（→ 啟動 Q2-A 制度模板）</li>
+        <li>☐ 是否同意先選一案 30 天試跑？（→ 啟動 Q2-B 試跑，建議敦化686）</li>
+        <li>☐ 是否同意臥龍357退場列為專案任務？（→ 啟動 Q1-A 退場）</li>
+        <li>☐ <strong>是否同意把臥龍357案例交付 AI 部門建知識圖譜？</strong>（→ 啟動 Q2-E AI 交付，<em>V2 新增</em>）</li>
+        <li>☐ <strong>是否同意 6 案改善計畫納入土地開發部正式追蹤？</strong>（→ 啟動 Q1-B 6 案改善，<em>V2 新增</em>）</li>
+      </ol>
+    </div>
+
+    <hr style="margin:36px 0;border:0;border-top:1px solid var(--line)">
+
+    <p style="font-size:13px;color:var(--muted);text-align:center">
+      文件版本：V2 ｜ 建立日期：2026/05/03 ｜ 來源：V18 完整檢討報告 + V1 任務清單重構<br>
+      預計開動：董事長決策確認後 D+0 ｜ 結案目標：2026/06/30 全部交付完成
+    </p>
+
+  </main>
+</div>
+</body>
+</html>
